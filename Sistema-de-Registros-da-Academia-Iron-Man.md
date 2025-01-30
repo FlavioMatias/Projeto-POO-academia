@@ -87,8 +87,6 @@ O sistema deve ter uma interface intuitiva e de fácil navegação, proporcionan
  Código | Nome | Descrição | Categoria | Classificação
 |:---  |:--- |:--- |:--- |:--- |
 | RNF01 | Design responsivo | O sistema deve adaptar-se a qualquer tamanho de tela de dispositivo, seja, computador, tablets ou smart phones. | Usabilidade| Obrigatório |
-| RNF02 | Criptografia de dados| Senhas de usuários devem ser gravadas de forma criptografada no banco de dados. | Segurança | Obrigatório |
-| RNF03 | Controle de acesso | Só usuários autenticados podem ter acesso ao sistema, com exceção ao auto cadastramento do usuário. | Segurança | Obrigatório |
-| RNF04 | Tempo de resposta |A comunicação entre o servidor e o cliente deve ocorrer em tempo hábil | Performance | Desejável |
-| RNF05 | Sistema Web | A aplicação deve ser um site. | Arquitetura | Obrigatório |
-| RNF06 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes (na agenda, por exemplo). | Privacidade | Obrigatório |
+| RNF02 | Controle de acesso | Só usuários autenticados podem ter acesso ao sistema, com exceção ao auto cadastramento do usuário. | Segurança | Obrigatório |
+| RNF03 | Aplicativo | A aplicação deve ser um aplicativo executável. | Arquitetura | Obrigatório |
+| RNF04 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes (na agenda, por exemplo). | Privacidade | Obrigatório |
