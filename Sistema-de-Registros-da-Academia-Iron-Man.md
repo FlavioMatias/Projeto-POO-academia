@@ -89,4 +89,4 @@ O sistema deve ter uma interface intuitiva e de fácil navegação, proporcionan
 | RNF01 | Design responsivo | O sistema deve adaptar-se a qualquer tamanho de tela de dispositivo, seja, computador, tablets ou smart phones. | Usabilidade| Obrigatório |
 | RNF02 | Controle de acesso | Só usuários autenticados podem ter acesso ao sistema, com exceção ao auto cadastramento do usuário. | Segurança | Obrigatório |
 | RNF03 | Aplicativo | A aplicação deve ser um aplicativo executável. | Arquitetura | Obrigatório |
-| RNF04 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes (na agenda, por exemplo). | Privacidade | Obrigatório |
+| RNF04 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes. | Privacidade | Obrigatório |
