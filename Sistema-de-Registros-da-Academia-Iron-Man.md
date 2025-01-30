@@ -73,13 +73,14 @@ O sistema deve ter uma interface intuitiva e de fácil navegação, proporcionan
 | RF10 | Criar novo grupo muscular | Admin pode criar novos grupos musculares para a personalização de treinos. |
 | RF11 | Criar nova medida | Admin pode criar novas medidas corporais para acompanhamento dos alunos. |
 | RF12 | Renovar matrícula do aluno | Admin renova a matrícula dos alunos para novo período de pagamento. |
-| RF13 | Registrar pagamento do aluno | Admin registra os pagamentos dos alunos, garantindo que não haja cobranças pendentes. |
-| RF14 | Visualizar e alterar dados da conta | Cliente pode visualizar e alterar seus dados cadastrais na plataforma. |
-| RF15 | Visualizar medidas | ACliente pode visualizar suas medidas corporais registradas no sistema. |
-| RF16 | Visualizar ficha de treino | Cliente pode consultar sua ficha de treino personalizada. |
-| RF17 | Visualizar e pagar mensalidade | Cliente pode visualizar e pagar suas mensalidades de forma online. |
-| RF18 | Visualizar matrícula | ACliente pode verificar os dados da sua matrícula, incluindo status e data de renovação. |
-| RF19 | Visualizar planos de pagamento | Cliente pode consultar os planos de pagamento disponíveis e sua adesão a eles. |
+| RF13 | Cancelar matrícula do aluno | Admin cancela a matríca dos alunos em caso de atraso ou desistência. |
+| RF14 | Registrar pagamento do aluno | Admin registra os pagamentos dos alunos, garantindo que não haja cobranças pendentes. |
+| RF15 | Visualizar e alterar dados da conta | Cliente pode visualizar e alterar seus dados cadastrais na plataforma. |
+| RF16 | Visualizar medidas | ACliente pode visualizar suas medidas corporais registradas no sistema. |
+| RF17 | Visualizar ficha de treino | Cliente pode consultar sua ficha de treino personalizada. |
+| RF18 | Visualizar e pagar mensalidade | Cliente pode visualizar e pagar suas mensalidades de forma online. |
+| RF19 | Visualizar matrícula | ACliente pode verificar os dados da sua matrícula, incluindo status e data de renovação. |
+| RF20 | Visualizar planos de pagamento | Cliente pode consultar os planos de pagamento disponíveis e sua adesão a eles. |
 
 
 ### 9. Requisitos Não-funcionais
