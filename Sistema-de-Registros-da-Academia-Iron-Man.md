@@ -31,7 +31,7 @@ O projeto __Sistema de Registros da Academia Iron Man__ tem como objetivo desenv
 |:---  |:--- |:--- |
 | Administrador  | O administrador é o responsável pela operação completa do sistema, tendo acesso total a todas as funcionalidades. Ele gerencia todos os dados e informações da academia. | O administrador tem controle sobre as matrículas dos alunos, seus treinos, medidas, vencimentos e pagamentos. Ele também pode editar e atualizar informações dos alunos, além de gerar relatórios financeiros.|
 | Cliente  | O cliente é o aluno da academia que utiliza o sistema para acessar suas informações pessoais e financeiras. | O cliente pode visualizar suas informações de treino, medidas corporais e histórico de pagamentos. Além disso, ele tem a capacidade de realizar o pagamento das mensalidades diretamente pelo sistema. |
-| Visitante | O visitante é alguém que tem acesso limitado ao sistema, podendo apenas visualizar algumas informações básicas, sem a possibilidade de realizar qualquer ação dentro da plataforma. | O visitante pode acessar o sistema, mas não tem permissão para visualizar informações privadas, fazer pagamentos ou alterar qualquer dado. Ele pode apenas navegar pelas funcionalidades públicas da plataforma. |
+| Visitante | O visitante é alguém que tem acesso limitado ao sistema sem a possibilidade de realizar qualquer ação dentro da plataforma. | O visitante pode acessar o sistema, mas não tem permissão para visualizar informações privadas, fazer pagamentos ou alterar qualquer dado. |
 
 ### 4. Descrição do Ambiente dos Usuários
 
