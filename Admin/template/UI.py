@@ -5,12 +5,11 @@ class UI:
     def main():
         st.title("Gestão de Alunos")
 
-        # Menu lateral para navegação
         menu = st.sidebar.selectbox("Menu", ["Inserir Aluno", "Listar Alunos"])
 
         if menu == "Inserir Aluno":
             st.header("Inserir Novo Aluno")
-            # Campos para inserir dados do aluno
+
             nome = st.text_input("Nome")
             email = st.text_input("Email")
             tel = st.text_input("Telefone")
@@ -21,7 +20,6 @@ class UI:
             rg = st.text_input("RG")
             profissao = st.text_input("Profissão")
 
-            # Botão para inserir o aluno
             if st.button("Inserir Aluno"):
                 try:
                     View.inserir_aluno(nome, email, tel, data_cadastro, nascimento, sexo, cpf, rg, profissao)
@@ -33,7 +31,6 @@ class UI:
             st.header("Lista de Alunos")
             alunos = View.listar_alunos()
             if alunos:
-                # Exibe cada aluno com seus atributos
                 for aluno in alunos:
                     st.write(aluno.to_dict())
                     st.markdown("---")

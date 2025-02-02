@@ -1,8 +1,8 @@
 class Medicao:
     def __init__(self, id=0, id_cliente=0, data=""):
-        self.__id = id
-        self.__id_cliente = id_cliente
-        self.__data = data
+        self.id = id
+        self.id_cliente = id_cliente
+        self.data = data
 
     @property
     def id(self):
@@ -28,12 +28,20 @@ class Medicao:
     def data(self, data: str):
         self.__data = data
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "id_cliente": self.id_cliente,
+            "data": self.data
+        }
+    
+
 class Medida:
     def __init__(self, id=0, id_medicoes=0, id_partcorpo=0, valor=0.0):
-        self.__id = id
-        self.__id_medicoes = id_medicoes
-        self.__id_partcorpo = id_partcorpo
-        self.__valor = valor
+        self.id = id
+        self.id_medicoes = id_medicoes
+        self.id_partcorpo = id_partcorpo
+        self.valor = valor
 
     @property
     def id(self):
@@ -67,11 +75,19 @@ class Medida:
     def valor(self, valor: float):
         self.__valor = valor
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "id_medicoes": self.id_medicoes,
+            "id_partcorpo": self.id_partcorpo,
+            "valor": self.valor
+        }
+    
 class PartCorpo:
     def __init__(self, id=0, nome="", unidade=""):
-        self.__id = id
-        self.__nome = nome
-        self.__unidade = unidade
+        self.id = id
+        self.nome = nome
+        self.unidade = unidade
 
     @property
     def id(self):
@@ -97,3 +113,9 @@ class PartCorpo:
     def unidade(self, unidade: str):
         self.__unidade = unidade
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "unidade": self.unidade
+        }

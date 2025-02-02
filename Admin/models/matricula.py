@@ -65,5 +65,13 @@ class Matricula:
     def validade(self, validade: str):
         if not isinstance(validade, str):
             raise TypeError("A validade deve ser uma string!")
-        # Se quiser validar o formato da data, pode usar o mesmo método sugerido acima.
         self.__validade = validade
+        
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "id_cliente": self.id_cliente,
+            "plano": self.plano,
+            "data": self.data,
+            "validade": self.validade
+        }

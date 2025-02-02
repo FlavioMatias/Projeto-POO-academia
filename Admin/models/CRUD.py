@@ -52,27 +52,27 @@ class CRUD:
     def salvar():
         pass
 
-class Matriculas(CRUD):
+class Medidas(CRUD):
     objetos = []
     
     @classmethod
     def salvar(cls):
-        with open("data/matriculas.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+        with open("data/medidas.json", mode="w") as arquivo:
+            dados = [medida.to_dict() for medida in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("data/matriculas.json", mode="r") as arquivo:
+            with open("data/medidas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 
                 for obj in objetos_json:
-                    A = Matricula(
-                        obj["id"], obj["id_cliente"], obj.get("plano", ""),
-                        obj.get("data", ""), obj.get("validade", "")
+                    M = Medida(
+                        obj["id"], obj["id_medicoes"], obj["id_partcorpo"], obj.get("valor", 0.0)
                     )
-                    cls.objetos.append(A)
+                    cls.objetos.append(M)
         except FileNotFoundError:
             pass
 
@@ -106,7 +106,8 @@ class Enderecos(CRUD):
     @classmethod
     def salvar(cls):
         with open("data/enderecos.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [endereco.to_dict() for endereco in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -116,19 +117,22 @@ class Enderecos(CRUD):
                 objetos_json = json.load(arquivo)
                 
                 for obj in objetos_json:
-                    A = Endereco(
+                    E = Endereco(
                         obj["id"], obj["id_cliente"], obj.get("bairro", ""),
                         obj.get("cep", ""), obj.get("rua", ""), obj.get("numero", "")
                     )
-                    cls.objetos.append(A)
+                    cls.objetos.append(E)
         except FileNotFoundError:
             pass
 
 class Planos(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/planos.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [plano.to_dict() for plano in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -138,18 +142,21 @@ class Planos(CRUD):
                 objetos_json = json.load(arquivo)
                 
                 for obj in objetos_json:
-                    A = Plano(
+                    P = Plano(
                         obj["id"], obj["nome"], obj.get("valor", 0.0), obj.get("tempo", "")
                     )
-                    cls.objetos.append(A)
+                    cls.objetos.append(P)
         except FileNotFoundError:
             pass
 
 class Pagamentos(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/pagamentos.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [pagamento.to_dict() for pagamento in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -168,10 +175,13 @@ class Pagamentos(CRUD):
             pass
 
 class Medicoes(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/medicoes.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [medicao.to_dict() for medicao in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -189,10 +199,13 @@ class Medicoes(CRUD):
             pass
 
 class Medidas(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/medidas.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [medida.to_dict() for medida in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -210,10 +223,13 @@ class Medidas(CRUD):
             pass
 
 class PartesCorpo(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/partcorpos.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [partcorpo.to_dict() for partcorpo in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -229,11 +245,15 @@ class PartesCorpo(CRUD):
                     cls.objetos.append(P)
         except FileNotFoundError:
             pass
-class TreinosAlunos:
+
+class TreinosAlunos(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/treinoaluno.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [treino_aluno.to_dict() for treino_aluno in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
@@ -251,10 +271,13 @@ class TreinosAlunos:
             pass
 
 class Treinos(CRUD):
+    objetos = []
+    
     @classmethod
     def salvar(cls):
         with open("data/treinos.json", mode="w") as arquivo:
-            json.dump([vars(obj) for obj in cls.objetos], arquivo)
+            dados = [treino.to_dict() for treino in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     
     @classmethod
     def abrir(cls):
