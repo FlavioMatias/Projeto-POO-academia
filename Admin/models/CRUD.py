@@ -1,11 +1,11 @@
 import json
 
-from matricula import Matricula
-from alunos import Aluno,Endereco
-from plano import Plano
-from pagamento import Pagamento
-from medicao import Medicao, Medida, PartCorpo
-from treino import TreinoAluno,Treino
+from Admin.models.matricula import Matricula
+from Admin.models.alunos import Aluno, Endereco
+from Admin.models.plano import Plano
+from Admin.models.pagamento import Pagamento
+from Admin.models.medicao import Medicao, Medida, PartCorpo
+from Admin.models.treino import TreinoAluno,Treino
 
 
 class CRUD:
@@ -79,20 +79,20 @@ class Matriculas(CRUD):
 class Alunos(CRUD):
     @classmethod
     def salvar(cls):
-        with open("data/alunos.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default = vars)
-
+        with open("Data/alunos.json", mode="w") as arquivo:
+            dados = [aluno.to_dict() for aluno in cls.objetos]
+            json.dump(dados, arquivo, indent=4)
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("data/alunos.json", mode="r") as arquivo:
+            with open("Data/alunos.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
 
                 for obj in objetos_json:
                     A = Aluno(
                         obj["id"], obj["nome"], obj.get("email", ""), obj.get("tel", ""),
-                        obj("data_cadastro"), obj.get("nascimento", ""), obj.get("sexo", ""),
+                        obj["data_cadastro"], obj.get("nascimento", ""), obj.get("sexo", ""),
                         obj.get("cpf", ""), obj.get("rg", ""), obj.get("profissao", "")
                     )
                     cls.objetos.append(A)    

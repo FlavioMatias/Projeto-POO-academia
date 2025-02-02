@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "nome": "Flavio Matias",
+        "email": "flaviomatiasnf@gmail.com",
+        "tel": "(84) 99182-8152",
+        "data_cadastro": "02/02/2025",
+        "nascimento": "25/12/2004",
+        "sexo": "M",
+        "cpf": "70753417405",
+        "rg": "992319329",
+        "profissao": "garoto de programa"
+    },
+    {
+        "id": 1,
+        "nome": "Flavio Mela\u00e7o",
+        "email": "flavionf@gmail.com",
+        "tel": "(84) 99182-8251",
+        "data_cadastro": "02/02/2025",
+        "nascimento": "25/12/2004",
+        "sexo": "M",
+        "cpf": "70753417405",
+        "rg": "230079898",
+        "profissao": "garoto de programa"
+    }
+]
