@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "id_cliente": 0,
+        "plano": 1,
+        "data": "02/02/2025",
+        "validade": "02/03/2025"
+    },
+    {
+        "id": 2,
+        "id_cliente": 0,
+        "plano": 1,
+        "data": "02/02/2025",
+        "validade": "02/03/2025"
+    },
+    {
+        "id": 3,
+        "id_cliente": 0,
+        "plano": 1,
+        "data": "02/02/2025",
+        "validade": "02/03/2025"
+    }
+]

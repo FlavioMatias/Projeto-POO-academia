@@ -57,7 +57,7 @@ class Matriculas(CRUD):
     
     @classmethod
     def salvar(cls):
-        with open("data/matriculas.json", mode="w") as arquivo:
+        with open("Data/matriculas.json", mode="w") as arquivo:
             dados = [matricula.to_dict() for matricula in cls.objetos]
             json.dump(dados, arquivo, indent=4)
     
@@ -65,7 +65,7 @@ class Matriculas(CRUD):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("data/matriculas.json", mode="r") as arquivo:
+            with open("Data/matriculas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 
                 for obj in objetos_json:
@@ -75,7 +75,7 @@ class Matriculas(CRUD):
                     )
                     cls.objetos.append(M)
         except FileNotFoundError:
-            pass
+            print('ai')
 
 class Alunos(CRUD):
     @classmethod
@@ -129,7 +129,7 @@ class Planos(CRUD):
     
     @classmethod
     def salvar(cls):
-        with open("data/planos.json", mode="w") as arquivo:
+        with open("Data/planos.json", mode="w") as arquivo:
             dados = [plano.to_dict() for plano in cls.objetos]
             json.dump(dados, arquivo, indent=4)
     
@@ -137,7 +137,7 @@ class Planos(CRUD):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("data/planos.json", mode="r") as arquivo:
+            with open("Data/planos.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 
                 for obj in objetos_json:
