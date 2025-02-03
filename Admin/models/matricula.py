@@ -1,7 +1,7 @@
 import json
-import datetime
+from datetime import datetime
 class Matricula:
-    def __init__(self, id=0, id_cliente=0, plano="", data="", validade=""):
+    def __init__(self, id, id_cliente, plano, data, validade):
         self.id = id
         self.id_cliente = id_cliente
         self.plano = plano
@@ -33,6 +33,7 @@ class Matricula:
             raise TypeError("O id_cliente deve ser um número inteiro!")
         if id_cliente < 0:
             raise ValueError("O id_cliente não pode ser negativo!")
+        print('drento:', id_cliente)
         self.__id_cliente = id_cliente
 
     @property
@@ -66,7 +67,7 @@ class Matricula:
         if not isinstance(validade, str):
             raise TypeError("A validade deve ser uma string!")
         self.__validade = validade
-        
+
     def to_dict(self):
         return {
             "id": self.id,

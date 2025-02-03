@@ -1,4 +1,3 @@
-import json
 import re
 from datetime import datetime
 
@@ -15,6 +14,8 @@ class Aluno:
         self.rg = rg
         self.profissao = profissao
 
+    def __str__(self):
+        return f'{self.id} {self.nome}'
     @property
     def id(self):
         return self.__id
