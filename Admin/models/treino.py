@@ -37,6 +37,14 @@ class TreinoAluno:
     def data_final(self, data_final: str):
         self.__data_final = data_final
 
+    def to_dict(self):
+        return {
+            "id": self.__id,
+            "id_aluno": self.__id_aluno,
+            "data": self.__data,
+            "data_final": self.__data_final
+        }
+    
 class Treino:
     def __init__(self, id=0, id_musculo=0, id_treino=0, descricao=""):
         self.__id = id
@@ -76,6 +84,13 @@ class Treino:
     def descricao(self, descricao: str):
         self.__descricao = descricao
 
+    def to_dict(self):
+        return {
+            "id": self.__id,
+            "id_musculo": self.__id_musculo,
+            "id_treino": self.__id_treino,
+            "descricao": self.__descricao
+        }
 
 class Musculo:
     def __init__(self, id=0, nome=""):
@@ -97,3 +112,9 @@ class Musculo:
     @nome.setter
     def nome(self, nome: str):
         self.__nome = nome
+
+    def to_dict(self):
+        return {
+            "id": self.__id,
+            "nome": self.__nome
+        }

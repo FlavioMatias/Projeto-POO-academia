@@ -72,3 +72,15 @@ class Pagamento:
     @pago.setter
     def pago(self, pago: bool):
         self.__pago = pago
+        
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "id_matricula": self.id_matricula,
+            "id_cliente": self.id_cliente,
+            "emissao": self.emissao,
+            "vencimento": self.vencimento,
+            "data_pagamento": self.data_pagamento,
+            "valor": self.valor,
+            "pago": self.pago
+        }

@@ -36,5 +36,12 @@ class Plano:
     @tempo.setter
     def tempo(self, tempo: str):
         self.__tempo = tempo
-
+        
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "valor": self.valor,
+            "tempo": self.tempo
+        }
 
