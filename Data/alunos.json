@@ -1,86 +1,26 @@
 [
     {
-        "id": 0,
-        "nome": "Flavio Matias",
-        "email": "flaviomatiasnf@gmail.com",
-        "tel": "(84) 99182-8152",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "25/12/2004",
+        "id": 1,
+        "nome": "Icaro Gabriel",
+        "email": "icaro@gmai.com",
+        "tel": "(99) 99999-9999",
+        "data_cadastro": "03/02/2025",
+        "nascimento": "25/04/8888",
         "sexo": "M",
         "cpf": "70753417405",
-        "rg": "992319329",
-        "profissao": "garoto de programa"
-    },
-    {
-        "id": 1,
-        "nome": "Flavio Mela\u00e7o",
-        "email": "flavionf@gmail.com",
-        "tel": "(84) 99182-8251",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "25/12/2004",
-        "sexo": "M",
-        "cpf": "98765432100",
-        "rg": "230079898",
-        "profissao": "garoto de programa"
+        "rg": "666688889",
+        "profissao": "garota de programa"
     },
     {
         "id": 2,
-        "nome": "Maria Souza",
-        "email": "maria.souza@gmail.com",
-        "tel": "(84) 99911-2233",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "10/05/1998",
-        "sexo": "F",
-        "cpf": "98765432100",
-        "rg": "876543210",
-        "profissao": "analista de sistemas"
-    },
-    {
-        "id": 3,
-        "nome": "Jo\u00e3o Silva",
-        "email": "joao.silva@gmail.com",
-        "tel": "(84) 98877-6655",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "15/07/1995",
+        "nome": "Matue",
+        "email": "maconha@gmail.com",
+        "tel": "(84) 9991-8234",
+        "data_cadastro": "03/02/2025",
+        "nascimento": "15/02/2005",
         "sexo": "M",
-        "cpf": "26575927246",
-        "rg": "112233445",
-        "profissao": "desenvolvedor full stack"
-    },
-    {
-        "id": 4,
-        "nome": "Carlos Almeida",
-        "email": "carlos.almeida@gmail.com",
-        "tel": "(84) 99666-5544",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "22/09/1989",
-        "sexo": "M",
-        "cpf": "21400304270",
-        "rg": "998877665",
-        "profissao": "engenheiro de software"
-    },
-    {
-        "id": 5,
-        "nome": "Ana Beatriz",
-        "email": "ana.beatriz@gmail.com",
-        "tel": "(84) 99555-4433",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "03/03/2001",
-        "sexo": "F",
-        "cpf": "42883832340",
-        "rg": "556677889",
-        "profissao": "cientista de dados"
-    },
-    {
-        "id": 6,
-        "nome": "Jurema",
-        "email": "jurema@gmail.com",
-        "tel": "(84) 99182-8152",
-        "data_cadastro": "02/02/2025",
-        "nascimento": "25/12/2004",
-        "sexo": "M",
-        "cpf": "12345678909",
-        "rg": "992319329",
-        "profissao": "qa"
+        "cpf": "60237439603",
+        "rg": "457178919",
+        "profissao": "fumador"
     }
 ]

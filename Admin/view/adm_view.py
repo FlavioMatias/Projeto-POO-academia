@@ -15,17 +15,20 @@ class View:
 
         if liberado:        
             models.Alunos.inserir(aluno)
-        else:
-            raise ValueError('cpf ja cadastrado')
+            la = models.Alunos.listar()
 
-        la = models.Alunos.listar()
-
-        for alu in la:
-            if alu.cpf == re.sub(r'\D', '', cpf):
-                endereço = models.Endereco(0, alu.id, bairro, cep, rua, numero)
-                models.Enderecos.inserir(endereço)
+            for alu in la:
+                if alu.cpf == re.sub(r'\D', '', cpf):
+                    endereço = models.Endereco(0, alu.id, bairro, cep, rua, numero)
+                    models.Enderecos.inserir(endereço)
+                    
+                else:
+                    raise ValueError('cpf ja cadastrado')
             else:
-                print('cpf nao adcionado')
+                print('endereço nao adcionado')
+
+
+
 
     def listar_alunos():
         return models.Alunos.listar()
@@ -42,16 +45,15 @@ class View:
     
     @classmethod
     def inserir_matricula(cls, id_aluno, id_plano, data, validade):
-
-        m = models.Matricula(5, id_aluno, id_plano, data, cls.calcular_validade(data, validade))
-
+        print(f'id do aluno no inserir matricula: {id_aluno}')
+        
+        m = models.Matricula(0, id_aluno, id_plano, data, cls.calcular_validade(data, validade))
         matriculas = models.Matriculas.listar()
         liberado = True
-        for m in matriculas:
-            if m.id_cliente == id_aluno:
+        for matricula in matriculas:
+            if matricula.id_cliente == id_aluno:
                 liberado = False
         if liberado:
-            print('naview:', id_aluno, m.id_cliente, id_plano)
             models.Matriculas.inserir(m)
         else:
             raise ValueError('cliente ja esta matriculado')

@@ -29,7 +29,6 @@ class Matricula:
 
     @id_cliente.setter
     def id_cliente(self, id_cliente: int):
-        print('drento1:', id_cliente)
         if not isinstance(id_cliente, int):
             raise TypeError("O id_cliente deve ser um número inteiro!")
         if id_cliente < 0:

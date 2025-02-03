@@ -124,6 +124,7 @@ class UI:
     @staticmethod
     def matricular():
         aluno = st.session_state.aluno_selecionado
+        print(aluno)
         planos = View.listar_planos()
         if aluno:
             st.header(f"Matricular Aluno: {aluno.nome}")
