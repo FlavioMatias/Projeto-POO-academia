@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class CRUD{
+abstract class CRUD{
     public static List<CRUD> objetos = new ArrayList<>();
+
+    public abstract int getId();
+    public abstract void setId(int id);
 
     public static void inserir(CRUD obj){
         abrir();

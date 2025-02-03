@@ -3,6 +3,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Aluno {
     private int id;
@@ -217,5 +219,20 @@ public class Aluno {
 
     public String getProfissao() {
         return profissao;
+    }
+
+    public Map<String, Object> toDict(){
+        Map<String, Object> dict = new HashMap<>();
+        dict.put("id", this.id);
+        dict.put("nome", this.nome);
+        dict.put("email", this.email);
+        dict.put("tel", this.tel);
+        dict.put("data_cadastro", this.dataCadastro);
+        dict.put("nascimento", this.nascimento);
+        dict.put("sexo", this.sexo);
+        dict.put("cpf", this.cpf);
+        dict.put("rg", this.rg);
+        dict.put("profissao", this.profissao);
+        return dict;
     }
 }
