@@ -6,8 +6,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Alunos extends CRUD{
-    // acho que aplicar polimorfismo na lista de objetos possa ser util(mas tbm possa ta falando besteira) 'protected List<Aluno> objetos = new ArrayList<>();'
+public class Alunos extends CRUD{ //e aqui coloca CRUD<aluno>
+    // acho que aplicar polimorfismo na lista de objetos possa ser util(mas tbm possa ta falando besteira) 'protected List<Aluno> objetos = new ArrayList<>();'| atualizaçao : estava falando besteira
     @Override
     public void salvar(){
         try {
