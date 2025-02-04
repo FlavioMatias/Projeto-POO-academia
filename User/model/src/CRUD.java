@@ -2,15 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class CRUD{
-    public static List<CRUD> objetos = new ArrayList<>();
+    protected List<Object> objetos = new ArrayList<>();
 
-    public abstract int getId();
-    public abstract void setId(int id);
-
-    public static void inserir(CRUD obj){
+    public void inserir(Object obj){
         abrir();
         int id = 0;
-        for (CRUD x : objetos){
+        for (Object x : objetos){
             if (x.getId() > id){
                 id = x.getId();
             }
@@ -21,14 +18,14 @@ abstract class CRUD{
         salvar();
     }
 
-    public static List<CRUD> listar(){
+    public List<Object> listar(){
         abrir();
         return objetos;
     }
 
-    public static CRUD listarId(int id){
+    public Object listarId(int id){
         abrir();
-        for (CRUD x : objetos){
+        for (Object x : objetos){
             if (x.getId() == id){
                 return x;
             }
@@ -36,8 +33,8 @@ abstract class CRUD{
         return null;
     }
 
-    public static void atualizar(CRUD obj){
-        CRUD x = listarId(obj.getId());
+    public void atualizar(Object obj){
+        Object x = listarId(obj.getId());
         if (x != null){
             objetos.remove(x);
             objetos.add(obj);
@@ -45,19 +42,17 @@ abstract class CRUD{
         }
     }
 
-    public static void excluir(CRUD obj){
-        CRUD x = listarId(obj.getId());
+    public void excluir(Object obj){
+        Object x = listarId(obj.getId());
         if (x != null){
             objetos.remove(x);
             salvar();
         }
     }
 
-    public static void abrir(){
-        // pass
-    }
+    // public abstract int getId();
+    // public abstract void setId(int id);
 
-    public static void salvar(){
-        // pass
-    }
+    public abstract void abrir();
+    public abstract void salvar();
 }

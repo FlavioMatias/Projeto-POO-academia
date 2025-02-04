@@ -11,20 +11,20 @@ public class Aluno {
     private String nome;
     private String email;
     private String tel;
-    private LocalDate dataCadastro;
-    private LocalDate nascimento;
+    private String dataCadastro;
+    private String nascimento;
     private String sexo;
     private String cpf;
     private String rg;
     private String profissao;
 
-    public Aluno(int id, String nome, String email, String tel, LocalDate dataCadastro, LocalDate nascimento, String sexo, String cpf, String rg, String profissao) {
+    public Aluno(int id, String nome, String email, String tel, String dataCadastro, String nascimento, String sexo, String cpf, String rg, String profissao) {
         setId(id);
         setNome(nome);
         setEmail(email);
         setTel(tel);
-        setDataCadastro(dataCadastro.toString()); // verificar se está funcionando
-        setNascimento(nascimento.toString()); // verificar se está funcionando
+        setDataCadastro(dataCadastro); // verificar se está funcionando
+        setNascimento(nascimento); // verificar se está funcionando
         setSexo(sexo);
         setCpf(cpf);
         setRg(rg);
@@ -70,7 +70,7 @@ public class Aluno {
         if (tel == null) {
             throw new IllegalArgumentException("O telefone não pode ser nulo");
         }
-        String regex = "^\\(\\d{2}\\)\\s)?\\d{4,5}-\\d{4}$";
+        String regex = "^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(tel);
 
@@ -87,7 +87,8 @@ public class Aluno {
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            this.dataCadastro = LocalDate.parse(dataCadastro, formatter);
+            LocalDate date = LocalDate.parse(dataCadastro, formatter);
+            this.dataCadastro = date.format(formatter);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("A data de cadastro é inválida. O formato correto é dd/MM/yyyy.");
         }
@@ -99,7 +100,8 @@ public class Aluno {
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            this.nascimento = LocalDate.parse(nascimento, formatter);
+            LocalDate date = LocalDate.parse(nascimento, formatter);
+            this.nascimento = date.format(formatter);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("A data de nascimento é inválida. O formato correto é dd/MM/yyyy.");
         }
@@ -124,7 +126,7 @@ public class Aluno {
             throw new IllegalArgumentException("O cpf não pode ser nulo");
         }
         
-        cpf = cpf.replaceAll("\\D", "");
+        cpf = cpf.replaceAll("[^0-9]", "");
 
         if (cpf.length() != 11 || !cpf.matches("\\d+")) {
             throw new IllegalArgumentException("O cpf é inválido. O formato correto é XXX.XXX.XXX-XX.");
@@ -169,16 +171,17 @@ public class Aluno {
         int[] peso2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
         int digito2 = calcularDigito(cpf, peso2);
 
-        return cpf.substring(9).equals(String.format("%d%d", digito1, digito2));
+        String cpfCalculado = String.format("%d%d", digito1, digito2);
+        return cpf.substring(9).equals(cpfCalculado);
     }
 
     private int calcularDigito(String cpf, int[] peso) {
         int soma = 0;
-        for (int i = 0; i < 9; i++) {
-            soma += Integer.parseInt(cpf.substring(i, i + 1)) * peso[i];
+        for (int i = 0; i < peso.length; i++) {
+            soma += Character.getNumericValue(cpf.charAt(i)) * peso[i];
         }
-        int resto = soma % 11;
-        return resto < 2 ? 0 : 11 - resto;
+        int resultado = 11 - (soma % 11);
+        return (resultado == 10 || resultado == 11) ? 0 : resultado;
     }
 
     public int getId() {
@@ -197,11 +200,11 @@ public class Aluno {
         return tel;
     }
 
-    public LocalDate getDataCadastro() {
+    public String getDataCadastro() {
         return dataCadastro;
     }
 
-    public LocalDate getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
