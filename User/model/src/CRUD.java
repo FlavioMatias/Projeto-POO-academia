@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class CRUD{
-    protected List<Object> objetos = new ArrayList<>();
+abstract class CRUD{ // aqui colocaria crud<X> deixando escolher o tipo de objeto que tera em 'objetos'
+    protected List<Object> objetos = new ArrayList<>(); // e aqui list<x> pra receber o objeto variavel
 
     public void inserir(Object obj){
         abrir();
