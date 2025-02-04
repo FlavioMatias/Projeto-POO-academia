@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Alunos extends CRUD{
+    // acho que aplicar polimorfismo na lista de objetos possa ser util(mas tbm possa ta falando besteira) 'protected List<Aluno> objetos = new ArrayList<>();'
     @Override
     public void salvar(){
         try {
