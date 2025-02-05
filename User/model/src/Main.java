@@ -26,7 +26,7 @@ public class Main {
 
         System.out.println(aluno.toDict());
 
-        // Alunos alunos = new Alunos();
-        // alunos.inserir(aluno);
+        Alunos alunos = new Alunos();
+        alunos.inserir(aluno);
     }
 }
