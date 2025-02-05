@@ -8,10 +8,10 @@ public class App {
         System.out.println(cl.quantidade());
         cl.imprimir();
 
-        Merda m = new Merda("Comebosta", 19);
+        Vampiro m = new Vampiro("Nosferatu", 19);
         System.out.println(m);
 
-        Merdas mer = new Merdas();
+        Vampiros mer = new Vampiros();
         mer.inserir(m);
         System.out.println(mer.quantidade());
         mer.imprimir();

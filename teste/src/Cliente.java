@@ -1,4 +1,4 @@
-public class Cliente {
+public class Cliente implements TemNome {
     private String nome;
     private int idade;
 

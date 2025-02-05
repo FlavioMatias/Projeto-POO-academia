@@ -1,8 +1,8 @@
-public class Merda {
+public class Vampiro implements TemNome{
     private String nome;
     private int tamanho;
 
-    public Merda(String nome, int tamanho) {
+    public Vampiro(String nome, int tamanho) {
         this.nome = nome;
         this.tamanho = tamanho;
     }
