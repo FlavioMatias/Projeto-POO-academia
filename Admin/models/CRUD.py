@@ -66,7 +66,7 @@ class Matriculas(CRUD):
     def salvar(cls):
         with open("Data/matriculas.json", mode="w") as arquivo:
             dados = [matricula.to_dict() for matricula in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -89,7 +89,7 @@ class Alunos(CRUD):
     def salvar(cls):
         with open("Data/alunos.json", mode="w") as arquivo:
             dados = [aluno.to_dict() for aluno in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     @classmethod
     def abrir(cls):
         cls.objetos = []
@@ -113,7 +113,7 @@ class Enderecos(CRUD):
     def salvar(cls):
         with open("Data/enderecos.json", mode="w") as arquivo:
             dados = [endereco.to_dict() for endereco in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -136,7 +136,7 @@ class Planos(CRUD):
     def salvar(cls):
         with open("Data/planos.json", mode="w") as arquivo:
             dados = [plano.to_dict() for plano in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -158,7 +158,7 @@ class Pagamentos(CRUD):
     def salvar(cls):
         with open("Data/pagamentos.json", mode="w") as arquivo:
             dados = [pagamento.to_dict() for pagamento in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -181,7 +181,7 @@ class Medicoes(CRUD):
     def salvar(cls):
         with open("Data/medicoes.json", mode="w") as arquivo:
             dados = [medicao.to_dict() for medicao in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -203,7 +203,7 @@ class Medidas(CRUD):
     def salvar(cls):
         with open("Data/medidas.json", mode="w") as arquivo:
             dados = [medida.to_dict() for medida in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -225,7 +225,7 @@ class PartesCorpo(CRUD):
     def salvar(cls):
         with open("Data/partcorpos.json", mode="w") as arquivo:
             dados = [partcorpo.to_dict() for partcorpo in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -247,7 +247,7 @@ class TreinosAlunos(CRUD):
     def salvar(cls):
         with open("Data/treinoaluno.json", mode="w") as arquivo:
             dados = [treino_aluno.to_dict() for treino_aluno in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -269,7 +269,7 @@ class Treinos(CRUD):
     def salvar(cls):
         with open("Data/treinos.json", mode="w") as arquivo:
             dados = [treino.to_dict() for treino in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
@@ -291,7 +291,7 @@ class Musculos(CRUD):
     def salvar(cls):
         with open("Data/musculos.json", mode="w") as arquivo:
             dados = [musculo.to_dict() for musculo in cls.objetos]
-            json.dump(dados, arquivo, indent=4)
+            json.dump(dados, arquivo)
     
     @classmethod
     def abrir(cls):
