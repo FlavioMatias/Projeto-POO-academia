@@ -70,16 +70,26 @@ class Matricula:
         self.__plano = plano
 
     @data.setter
-    def data(self, data: str):
+    def data_cadastro(self, data: str):
         try:
-            datetime.strptime(data, '%d/%m/%Y')
-            self.__data = data
+            data_obj = datetime.strptime(data, '%d/%m/%Y')
         except ValueError:
-            raise ValueError("Data de cadastro inválida. Use o formato 'DD/MM/YYYY'.")
+            raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
+        
+        if data_obj > datetime.today():
+            raise ValueError("Data não pode ser no futuro.")
+
+        self.__data = data
 
     @validade.setter
     def validade(self, validade: str):
-        if not isinstance(validade, str):
-            raise TypeError("A validade deve ser uma string!")
+        try:
+            data_obj = datetime.strptime(validade, '%d/%m/%Y')
+        except ValueError:
+            raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
+        
+        if data_obj < datetime.today():
+            raise ValueError("Data não pode ser no passado.")
+        
         self.__validade = validade
 

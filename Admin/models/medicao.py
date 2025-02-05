@@ -147,10 +147,12 @@ class PartCorpo:
         unidades_validas = ["cm", "m", "kg", "mmHg", "bpm", "%"]
         if not isinstance(unidade, str) or not unidade.strip():
             raise ValueError("A unidade deve ser uma string não vazia.")
-        if not unidade.lower() in unidades_validas:
-            self.__unidade = unidade
-        else:
+        
+        elif not unidade.lower() in unidades_validas:
             raise ValueError("unidade não reconhecida")
+        
+        else:
+            self.__unidade = unidade
 
     def to_dict(self):
         return {"id": self.id, "nome": self.nome, "unidade": self.unidade}

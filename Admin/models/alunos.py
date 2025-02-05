@@ -114,11 +114,13 @@ class Aluno:
     def data_cadastro(self, data_cadastro: str):
         try:
             data_obj = datetime.strptime(data_cadastro, '%d/%m/%Y')
-            if data_obj < datetime.today():
-                raise ValueError("Data de cadastro não pode ser no passado.")
-            self.__data_cadastro = data_cadastro
         except ValueError:
             raise ValueError("Data de cadastro inválida. Use o formato 'DD/MM/YYYY'.")
+
+        if data_obj > datetime.today():
+            raise ValueError("Data de cadastro não pode ser no futuro.")
+
+        self.__data_cadastro = data_cadastro
         
     @nascimento.setter
     def nascimento(self, nascimento: str):
@@ -149,7 +151,7 @@ class Aluno:
         if not self.__validar_cpf(cpf):
             raise ValueError("CPF inválido.")
         
-        self.__cpf = cpf
+        self.__cpf = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
         
     @rg.setter
     def rg(self, rg: str):
@@ -248,7 +250,7 @@ class Endereco:
     
     @cep.setter
     def cep(self, cep: str):
-        if not re.match(r'^\d{8}$', cep):
+        if not re.match(r'^\d{8}$', cep) or not re.match(r'^\d{5}-\d{3}$', cep):
             raise ValueError("CEP deve ter 8 dígitos numéricos.")
         self.__cep = cep
     
