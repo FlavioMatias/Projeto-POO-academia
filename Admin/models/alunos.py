@@ -114,6 +114,8 @@ class Aluno:
     def data_cadastro(self, data_cadastro: str):
         try:
             data_obj = datetime.strptime(data_cadastro, '%d/%m/%Y')
+            if data_obj < datetime.today():
+                raise ValueError("Data de cadastro não pode ser no passado.")
             self.__data_cadastro = data_cadastro
         except ValueError:
             raise ValueError("Data de cadastro inválida. Use o formato 'DD/MM/YYYY'.")
@@ -122,10 +124,11 @@ class Aluno:
     def nascimento(self, nascimento: str):
         try:
             data_obj = datetime.strptime(nascimento, '%d/%m/%Y')
+            if data_obj > datetime.today():
+                raise ValueError("Data de nascimento não pode ser no futuro.")
             self.__nascimento = nascimento
         except ValueError:
             raise ValueError("Data de nascimento inválida. Use o formato 'DD/MM/YYYY'.")
-        self.__nascimento = nascimento
         
     @sexo.setter
     def sexo(self, sexo: str):
