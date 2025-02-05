@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class CRUD{ // aqui colocaria crud<X> deixando escolher o tipo de objeto que tera em 'objetos'
-    protected List<Object> objetos = new ArrayList<>(); // e aqui list<x> pra receber o objeto variavel
+abstract class CRUD <T extends Inter>{
+    protected List<T> objetos = new ArrayList<>();
 
-    public void inserir(Object obj){
+    public void inserir(T obj){
         abrir();
         int id = 0;
-        for (Object x : objetos){
+        for (T x : objetos){
             if (x.getId() > id){
                 id = x.getId();
             }
@@ -18,14 +18,14 @@ abstract class CRUD{ // aqui colocaria crud<X> deixando escolher o tipo de objet
         salvar();
     }
 
-    public List<Object> listar(){
+    public List<T> listar(){
         abrir();
         return objetos;
     }
 
-    public Object listarId(int id){
+    public T listarId(int id){
         abrir();
-        for (Object x : objetos){
+        for (T x : objetos){
             if (x.getId() == id){
                 return x;
             }
@@ -33,8 +33,8 @@ abstract class CRUD{ // aqui colocaria crud<X> deixando escolher o tipo de objet
         return null;
     }
 
-    public void atualizar(Object obj){
-        Object x = listarId(obj.getId());
+    public void atualizar(T obj){
+        T x = listarId(obj.getId());
         if (x != null){
             objetos.remove(x);
             objetos.add(obj);
@@ -42,16 +42,13 @@ abstract class CRUD{ // aqui colocaria crud<X> deixando escolher o tipo de objet
         }
     }
 
-    public void excluir(Object obj){
-        Object x = listarId(obj.getId());
+    public void excluir(T obj){
+        T x = listarId(obj.getId());
         if (x != null){
             objetos.remove(x);
             salvar();
         }
     }
-
-    // public abstract int getId();
-    // public abstract void setId(int id);
 
     public abstract void abrir();
     public abstract void salvar();

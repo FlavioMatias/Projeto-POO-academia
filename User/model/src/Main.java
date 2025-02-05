@@ -22,6 +22,7 @@ public class Main {
         String profissao = "Programador";
 
         Aluno aluno = new Aluno(id, name, email, tel, dataCadastroStr, nascimentoStr, sexo, cpf, rg, profissao);
+        aluno.setId(50);
 
         System.out.println(aluno.toDict());
 

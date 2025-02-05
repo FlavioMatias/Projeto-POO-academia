@@ -3,7 +3,7 @@ import java.util.regex.Matcher;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Endereco {
+public class Endereco implements Inter{
     private int id;
     private int idCliente;
     private String bairro;

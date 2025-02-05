@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Aluno {
+public class Aluno implements Inter{
     private int id;
     private String nome;
     private String email;
