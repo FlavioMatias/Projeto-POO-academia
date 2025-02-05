@@ -6,10 +6,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartesCorpo {
-    public static List<CRUD> objetos = new ArrayList<>();
-
-    public static void salvar(){
+public class PartesCorpo extends CRUD<ParteCorpo>{
+    
+    @Override
+    public void salvar(){
         try {
             FileWriter writer = new FileWriter("data/partcorpos.json");
             Gson gson = new Gson();
@@ -20,7 +20,8 @@ public class PartesCorpo {
         }
     }
 
-    public static void abrir(){
+    @Override
+    public void abrir(){
         objetos.clear();
         try {
             FileReader reader = new FileReader("data/partcorpos.json");

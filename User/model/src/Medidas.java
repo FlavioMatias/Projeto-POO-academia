@@ -6,10 +6,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Medidas {
-    public static List<CRUD> objetos = new ArrayList<>();
-
-    public static void salvar(){
+public class Medidas extends CRUD<Medida>{
+    @Override
+    public void salvar(){
         try {
             FileWriter writer = new FileWriter("data/medidas.json");
             Gson gson = new Gson();
@@ -20,7 +19,8 @@ public class Medidas {
         }
     }
 
-    public static void abrir(){
+    @Override
+    public void abrir(){
         objetos.clear();
         try {
             FileReader reader = new FileReader("data/medidas.json");

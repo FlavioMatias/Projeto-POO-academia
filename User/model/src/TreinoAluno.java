@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class TreinoAluno {
+public class TreinoAluno implements Inter{
     private int id;
     private int idAluno;
     private String data;

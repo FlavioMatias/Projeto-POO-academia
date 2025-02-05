@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Matricula {
+public class Matricula implements Inter{
     private int id;
     private int idCliente;
     private String plano;
