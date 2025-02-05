@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Plano {
+public class Plano implements Inter {
     private int id;
     private String nome;
     private double valor;

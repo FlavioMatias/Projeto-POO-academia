@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pagamento {
+public class Pagamento implements Inter{
     private int id;
     private int idMatricula;
     private int idCliente;

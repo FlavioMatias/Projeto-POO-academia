@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Medicao {
+public class Medicao implements Inter{
     private int id;
     private int idCliente;
     private String data;

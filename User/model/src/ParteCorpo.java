@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParteCorpo {
+public class ParteCorpo implements Inter{
     private int id;
     private String nome;
     private String unidade;

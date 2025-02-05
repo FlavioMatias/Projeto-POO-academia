@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Medida {
+public class Medida implements Inter{
     private int id;
     private int idMedicoes;
     private int idPartCorpo;
@@ -40,6 +40,22 @@ public class Medida {
             throw new IllegalArgumentException("O valor da medicao não pode ser negativo.");
         }
         this.valor = valor; // FAZER MAIS VALIDACOES
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getIdMedicoes () {
+        return idMedicoes;
+    }
+
+    public int getIdPartCorpo () {
+        return idPartCorpo;
+    }
+
+    public double getValor () {
+        return valor;
     }
 
     public Map<String, Object> toMap() {
