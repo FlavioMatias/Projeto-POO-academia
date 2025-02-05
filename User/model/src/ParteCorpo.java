@@ -14,7 +14,7 @@ public class ParteCorpo implements Inter{
 
     public void setId(int id) {
         if (id < 0) {
-            throw new IllegalArgumentException("O id da parte do corpo não pode ser negativo.");
+            throw new IllegalArgumentException("O id da parte do corpo nao pode ser negativo.");
         }
         this.id = id;
     }
@@ -27,22 +27,37 @@ public class ParteCorpo implements Inter{
     }
 
     public void setUnidade(String unidade) {
-        if (unidade == null) {
-            throw new IllegalArgumentException("A unidade da parte do corpo não pode ser nula.");
+        String[] unidadesValidas = {"cm", "m", "kg", "mmHg", "bpm", "%"};
+
+        if (unidade == null || unidade.trim().isEmpty()) {
+            throw new IllegalArgumentException("A unidade deve ser uma string nao vazia.");
         }
-        this.unidade = unidade;
+
+        boolean unidadeValida = false;
+        for (String validUnidade : unidadesValidas) {
+            if (unidade.equalsIgnoreCase(validUnidade)) {
+                unidadeValida = true;
+                break;
+            }
+        }
+
+        if (unidadeValida) {
+            this.unidade = unidade;
+        } else {
+            throw new IllegalArgumentException("Unidade nao reconhecida.");
+        }
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }    
 
     public String getNome() {  
-        return nome;
+        return this.nome;
     }
 
     public String getUnidade() {
-        return unidade;
+        return this.unidade;
     }
 
     public Map<String, Object> toDict() {
@@ -51,5 +66,10 @@ public class ParteCorpo implements Inter{
         dict.put("nome", this.nome);
         dict.put("unidade", this.unidade);
         return dict;
+    }
+
+    @Override
+    public String toString() {
+        return "ParteCorpo(ID: " + this.id + ", Nome: " + this.nome + ", Unidade: " + this.unidade + ")";
     }
 }

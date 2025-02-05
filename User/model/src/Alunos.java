@@ -25,7 +25,7 @@ public class Alunos extends CRUD<Aluno>{
         objetos.clear();
         try {
             FileReader reader = new FileReader("Data/alunos.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType(); // acho que é aluno ali dentro de nao crud
+            Type listType = new TypeToken<List<CRUD>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {

@@ -3,14 +3,14 @@ import java.util.Map;
 
 public class Treino implements Inter{
     private int id;
-    private int idMusculo;
-    private int idTreino;
+    private int id_musculo;
+    private int id_treino;
     private String descricao;
 
-    public Treino(int id, int idMusculo, int idTreino, String descricao) {
+    public Treino(int id, int id_musculo, int id_treino, String descricao) {
         setId(id);
-        setIdMusculo(idMusculo);        
-        setIdTreino(idTreino);
+        setIdMusculo(id_musculo);        
+        setIdTreino(id_treino);
         setDescricao(descricao);
     }
 
@@ -21,25 +21,25 @@ public class Treino implements Inter{
         this.id = id;
     }
 
-    public void setIdMusculo(int idMusculo) {
-        if (idMusculo < 0) {
+    public void setIdMusculo(int id_musculo) {
+        if (id_musculo < 0) {
             throw new IllegalArgumentException("O id do treino não pode ser negativo.");
         }
-        this.idMusculo = idMusculo;
+        this.id_musculo = id_musculo;
     }
 
-    public void setIdTreino(int idTreino) {
-        if (idTreino < 0) {
+    public void setIdTreino(int id_treino) {
+        if (id_treino < 0) {
             throw new IllegalArgumentException("O id do treino não pode ser negativo.");
         }
-        this.idTreino = idTreino;
+        this.id_treino = id_treino;
     }
 
     public void setDescricao(String descricao) {
-        if (descricao == null) {
-            throw new IllegalArgumentException("A descricao do treino não pode ser nula.");
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição não pode estar vazia.");
         }
-        this.descricao = descricao;
+        this.descricao = descricao.trim();
     }
 
     public int getId() {
@@ -47,11 +47,11 @@ public class Treino implements Inter{
     }
 
     public int getIdMusculo() {
-        return idMusculo;
+        return id_musculo;
     }   
 
     public int getIdTreino() {
-        return idTreino;
+        return id_treino;
     }
 
     public String getDescricao() {
@@ -61,9 +61,14 @@ public class Treino implements Inter{
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
-        map.put("id_musculo", idMusculo);
-        map.put("id_treino", idTreino);
+        map.put("id_musculo", id_musculo);
+        map.put("id_treino", id_treino);
         map.put("descricao", descricao);
         return map;
+    }
+
+    @Override
+    public String toString() {
+        return "Treino(" + "id=" + id + ", id_musculo=" + id_musculo + ", id_treino=" + id_treino + ", descricao=" + descricao + ')';
     }
 }

@@ -23,8 +23,8 @@ public class Aluno implements Inter{
         setNome(nome);
         setEmail(email);
         setTel(tel);
-        setData_cadastro(data_cadastro); // verificar se está funcionando
-        setNascimento(nascimento); // verificar se está funcionando
+        setData_cadastro(data_cadastro);
+        setNascimento(nascimento);
         setSexo(sexo);
         setCpf(cpf);
         setRg(rg);
@@ -37,79 +37,86 @@ public class Aluno implements Inter{
 
     public void setNome(String nome) {
         if (nome == null) {
-            throw new IllegalArgumentException("O nome não pode ser nulo");
+            throw new IllegalArgumentException("O nome nao pode ser nulo");
         }
         if (nome.length() < 2) {
             throw new IllegalArgumentException("O nome deve ter pelo menos 2 caracteres");
         }
         if (!nome.matches("[a-zA-Z\\s]+")){
-            throw new IllegalArgumentException("O nome deve conter apenas letras e espaços");
+            throw new IllegalArgumentException("O nome deve conter apenas letras e espacos");
         }
         if (!Character.isUpperCase(nome.charAt(0))) {
-            throw new IllegalArgumentException("O nome deve começar com uma letra maiúscula");
+            throw new IllegalArgumentException("O nome deve comecar com uma letra maiuscula");
         }
+
         this.nome = nome;
     }
 
     public void setEmail(String email) {
         if (email == null) {
-            throw new IllegalArgumentException("O email não pode ser nulo");
+            throw new IllegalArgumentException("O email nao pode ser nulo");
         }
-        
         String regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("O email é inválido. O formato correto é 'exemplo@dominio.com'.");
+            throw new IllegalArgumentException("O email eh invalido. O formato correto eh 'exemplo@dominio.com'.");
         }
+
         this.email = email;
     }
 
     public void setTel(String tel) {
         if (tel == null) {
-            throw new IllegalArgumentException("O telefone não pode ser nulo");
+            throw new IllegalArgumentException("O telefone nao pode ser nulo");
         }
         String regex = "^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(tel);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("O telefone é inválido. O formato correto é (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
+            throw new IllegalArgumentException("O telefone eh invalido. O formato correto eh (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
         }
 
         this.tel = tel;
     }
 
     public void setData_cadastro(String data_cadastro) {
-        if (data_cadastro == null) {
-            throw new IllegalArgumentException("A data de cadastro não pode ser nula");
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate date = LocalDate.parse(data_cadastro, formatter);
-            this.data_cadastro = date.format(formatter);
+            LocalDate dataObj = LocalDate.parse(data_cadastro, formatter);
+
+            if (dataObj.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Data de cadastro nao pode ser no futuro.");
+            }
+
+            this.data_cadastro = data_cadastro;
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("A data de cadastro é inválida. O formato correto é dd/MM/yyyy.");
+            throw new IllegalArgumentException("A data de cadastro eh invalida. O formato correto eh dd/MM/yyyy.");
         }
     }
 
     public void setNascimento(String nascimento) {
-        if (nascimento == null) {
-            throw new IllegalArgumentException("A data de nascimento não pode ser nula");
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate date = LocalDate.parse(nascimento, formatter);
-            this.nascimento = date.format(formatter);
+            LocalDate dataObj = LocalDate.parse(nascimento, formatter);
+
+            if (dataObj.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Data de nascimento nao pode ser no futuro.");
+            }
+
+            this.nascimento = nascimento;
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("A data de nascimento é inválida. O formato correto é dd/MM/yyyy.");
+            throw new IllegalArgumentException("A data de nascimento eh invalida. O formato correto eh dd/MM/yyyy.");
         }
     }
 
     public void setSexo(String sexo) {
         if (sexo == null) {
-            throw new IllegalArgumentException("O sexo não pode ser nulo");
+            throw new IllegalArgumentException("O sexo nao pode ser nulo");
         }
 
         sexo = sexo.toUpperCase();
@@ -117,23 +124,23 @@ public class Aluno implements Inter{
         if (sexo.equals("M") || sexo.equals("F") || sexo.equals("MASCULINO") || sexo.equals("FEMININO") || sexo.equals("OUTRO")) {
             this.sexo = sexo;
         } else {
-            throw new IllegalArgumentException("Sexo inválido.");
+            throw new IllegalArgumentException("Sexo invalido.");
         }
     }
 
     public void setCpf(String cpf) {
         if (cpf == null) {
-            throw new IllegalArgumentException("O cpf não pode ser nulo");
+            throw new IllegalArgumentException("O cpf nao pode ser nulo");
         }
         
         cpf = cpf.replaceAll("[^0-9]", "");
 
         if (cpf.length() != 11 || !cpf.matches("\\d+")) {
-            throw new IllegalArgumentException("O cpf é inválido. O formato correto é XXX.XXX.XXX-XX.");
+            throw new IllegalArgumentException("CPF deve conter 11 digitos numericos.");
         }
 
         if (!validarCpf(cpf)) {
-            throw new IllegalArgumentException("O cpf é inválido.");
+            throw new IllegalArgumentException("O cpf eh invalido.");
         }
 
         this.cpf = cpf;
@@ -141,13 +148,13 @@ public class Aluno implements Inter{
 
     public void setRg(String rg) {    
         if (rg == null) {
-            throw new IllegalArgumentException("O rg não pode ser nulo");
+            throw new IllegalArgumentException("O rg nao pode ser nulo");
         }
         
         rg = rg.replaceAll("\\D", "");
 
         if (rg.length() != 9 || !rg.matches("\\d+")) {
-            throw new IllegalArgumentException("O rg é inválido. O formato correto é XXX.XXX.XXX-XX.");
+            throw new IllegalArgumentException("RG deve conter 9 digitos numericos.");
         }
 
         this.rg = rg;
@@ -155,7 +162,7 @@ public class Aluno implements Inter{
 
     public void setProfissao(String profissao) {
         if (profissao == null || profissao.length() < 2) {
-            throw new IllegalArgumentException("A profissão deve ter pelo menos 2 caracteres");
+            throw new IllegalArgumentException("profissao invalida");
         }
         this.profissao = profissao;
     }
@@ -185,43 +192,43 @@ public class Aluno implements Inter{
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public String getTel() {
-        return tel;
+        return this.tel;
     }
 
     public String getData_cadastro() {
-        return data_cadastro;
+        return this.data_cadastro;
     }
 
     public String getNascimento() {
-        return nascimento;
+        return this.nascimento;
     }
 
     public String getSexo() {
-        return sexo;
+        return this.sexo;
     }
 
     public String getCpf() {
-        return cpf;
+        return this.cpf;
     }
 
     public String getRg() {
-        return rg;
+        return this.rg;
     }
 
     public String getProfissao() {
-        return profissao;
+        return this.profissao;
     }
 
     public Map<String, Object> toDict(){
@@ -237,5 +244,19 @@ public class Aluno implements Inter{
         dict.put("rg", this.rg);
         dict.put("profissao", this.profissao);
         return dict;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno ID: " + this.id + "\n" +
+                "Nome: " + this.nome + "\n" +
+                "Email: " + this.email + "\n" +
+                "Telefone: " + this.tel + "\n" +
+                "Data de cadastro: " + this.data_cadastro + "\n" +
+                "Data de nascimento: " + this.nascimento + "\n" +
+                "Sexo: " + this.sexo + "\n" +
+                "CPF: " + this.cpf + "\n" +
+                "RG: " + this.rg + "\n" +
+                "Profissao: " + this.profissao + "\n";
     }
 }

@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class Matricula implements Inter{
     private int id;
-    private int idCliente;
+    private int id_cliente;
     private String plano;
     private String data;
     private String validade;
 
-    public Matricula(int id, int idCliente, String plano, String data, String validade) {
+    public Matricula(int id, int id_cliente, String plano, String data, String validade) {
         setId(id);
-        setIdCliente(idCliente);
+        setIdCliente(id_cliente);
         setPlano(plano);
         setData(data);
         setValidade(validade);
@@ -26,16 +26,16 @@ public class Matricula implements Inter{
         this.id = id;
     }
 
-    public void setIdCliente(int idCliente) {
-        if (idCliente < 0) {
+    public void setIdCliente(int id_cliente) {
+        if (id_cliente < 0) {
             throw new IllegalArgumentException("O id do cliente não pode ser negativo.");
         }
-        this.idCliente = idCliente;
+        this.id_cliente = id_cliente;
     }
 
     public void setPlano(String plano) {
         if (plano == null) {
-            throw new IllegalArgumentException("O plano da matricula não pode ser nulo.");
+            throw new IllegalArgumentException("Plano invalido");
         }
         this.plano = plano;
     }
@@ -45,9 +45,14 @@ public class Matricula implements Inter{
 
         try {
             LocalDate dateObj = LocalDate.parse(data, formatter);
+
+            if (dateObj.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Data nao pode ser no futuro.");
+            }
+
             this.data = data;
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("A data de cadastro é inválida. O formato correto é dd/MM/yyyy.");
+            throw new IllegalArgumentException("Data de cadastro invalida. Use o formato 'DD/MM/YYYY'.");
         }
     }
 
@@ -63,7 +68,7 @@ public class Matricula implements Inter{
     }
 
     public int getIdCliente() {
-        return idCliente;
+        return id_cliente;
     }
 
     public String getPlano() {
@@ -81,10 +86,20 @@ public class Matricula implements Inter{
     public Map<String, Object> toDict() {
         Map<String, Object> dict = new HashMap<>();
         dict.put("id", this.id);
-        dict.put("id_cliente", this.idCliente);
+        dict.put("id_cliente", this.id_cliente);
         dict.put("plano", this.plano);
         dict.put("data", this.data);
         dict.put("validade", this.validade);
         return dict;
+    }
+
+    @Override
+    public String toString() {    
+        return "Matricula:" + "\n" +
+                "  id=" + this.id + "\n" +
+                "  id_cliente=" + this.id_cliente + "\n" +
+                "  plano=" + this.plano + "\n" +
+                "  data=" + this.data + "\n" +
+                "  validade=" + this.validade + "\n";
     }
 }

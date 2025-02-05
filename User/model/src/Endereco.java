@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class Endereco implements Inter{
     private int id;
-    private int idCliente;
+    private int id_cliente;
     private String bairro;
     private String cep;
     private String rua;
     private String numero;
 
-    public Endereco(int id, int idCliente, String bairro, String cep, String rua, String numero) {
+    public Endereco(int id, int id_cliente, String bairro, String cep, String rua, String numero) {
         setId(id);
-        setIdCliente(idCliente);
+        setIdCliente(id_cliente);
         setBairro(bairro);
         setCep(cep);
         setRua(rua);
@@ -22,23 +22,23 @@ public class Endereco implements Inter{
 
     public void setId(int id) {
         if (id < 0) {
-            throw new IllegalArgumentException("O id do endereço não pode ser negativo.");
+            throw new IllegalArgumentException("O id do endereço nao pode ser negativo.");
         }
 
         this.id = id;
     }
 
-    public void setIdCliente(int idCliente) {
-        if (idCliente < 0) {
-            throw new IllegalArgumentException("O id do cliente não pode ser negativo.");
+    public void setIdCliente(int id_cliente) {
+        if (id_cliente < 0) {
+            throw new IllegalArgumentException("ID do cliente deve ser um numero inteiro nao negativo.");
         }
 
-        this.idCliente = idCliente;
+        this.id_cliente = id_cliente;
     }
 
     public void setBairro(String bairro) {
         if (bairro == null || bairro.trim().isEmpty()) {
-            throw new IllegalArgumentException("O bairro não pode ser nulo ou vazio.");
+            throw new IllegalArgumentException("O bairro nao pode ser nulo ou vazio.");
         }
 
         this.bairro = bairro;
@@ -50,7 +50,7 @@ public class Endereco implements Inter{
         Matcher matcher = pattern.matcher(cep);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("O CEP é inválido. O formato correto é 00000000.");
+            throw new IllegalArgumentException("CEP deve ter 8 digitos numericos.");
         }
 
         this.cep = cep;
@@ -58,7 +58,7 @@ public class Endereco implements Inter{
 
     public void setRua(String rua) {
         if (rua == null || rua.trim().isEmpty()) {
-            throw new IllegalArgumentException("A rua não pode ser nula ou vazia.");
+            throw new IllegalArgumentException("A rua nao pode ser vazia.");
         }
 
         this.rua = rua;
@@ -75,44 +75,54 @@ public class Endereco implements Inter{
         Matcher matcherAlfanumerico = patternAlfanumerico.matcher(numero);
 
         if (!matcherNumerico.matches() && !matcherAlfanumerico.matches()) {
-            throw new IllegalArgumentException("Número deve ser numérico ou uma string válida como 'Apto. 101'.");
+            throw new IllegalArgumentException("Número deve ser numerico ou uma string valida como 'Apto. 101'.");
         }
 
         this.numero = numero;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public int getIdCliente() {
-        return idCliente;
+        return this.id_cliente;
     }
 
     public String getBairro() {
-        return bairro;
+        return this.bairro;
     }
 
     public String getCep() {
-        return cep;
+        return this.cep;
     }
 
     public String getRua() {        
-        return rua;
+        return this.rua;
     }
 
     public String getNumero() {
-        return numero;
+        return this.numero;
     }
 
     public Map<String, Object> toDict() {
         Map<String, Object> dict = new HashMap<>();
         dict.put("id", this.id);
-        dict.put("id_cliente", this.idCliente);
+        dict.put("id_cliente", this.id_cliente);
         dict.put("bairro", this.bairro);
         dict.put("cep", this.cep);
         dict.put("rua", this.rua);
         dict.put("numero", this.numero);
         return dict;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco ID: " + this.id + "\n" +
+                "ID do Cliente: " + this.id_cliente + "\n" +
+                "Bairro: " + this.bairro + "\n" +
+                "CEP: " + this.cep + "\n" +
+                "Rua: " + this.rua + "\n" +
+                "Numero: " + this.numero + "\n";
     }
 }
