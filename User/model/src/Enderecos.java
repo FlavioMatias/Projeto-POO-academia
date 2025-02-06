@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Enderecos extends CRUD<Endereco>{
+
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("data/enderecos.json");
+            FileWriter writer = new FileWriter("Data/enderecos.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);
             writer.close();
@@ -22,7 +23,7 @@ public class Enderecos extends CRUD<Endereco>{
     public void abrir(){
         objetos.clear();
         try {
-            FileReader reader = new FileReader("data/enderecos.json");
+            FileReader reader = new FileReader("Data/enderecos.json");
             Type listType = new TypeToken<List<CRUD>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();

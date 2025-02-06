@@ -52,15 +52,24 @@ public class Matricula implements Inter{
 
             this.data = data;
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Data de cadastro invalida. Use o formato 'DD/MM/YYYY'.");
+            throw new IllegalArgumentException("Data invalida. Use o formato 'DD/MM/YYYY'.");
         }
     }
 
     public void setValidade(String validade) {
-        if (validade == null) {
-            throw new IllegalArgumentException("A validade da matricula não pode ser nula.");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate dateObj = LocalDate.parse(data, formatter);
+
+            if (dateObj.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Data de validade nao pode ser no futuro.");
+            }
+
+            this.validade = validade;
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Data de validade invalida. Use o formato 'DD/MM/YYYY'.");
         }
-        this.validade = validade;
     }
 
     public int getId() {

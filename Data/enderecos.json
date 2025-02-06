@@ -1,10 +1,1 @@
-[
-    {
-        "id": 1,
-        "id_cliente": 1,
-        "bairro": "centro",
-        "cep": "70009965",
-        "rua": "do medo",
-        "numero": "157"
-    }
-]
+[{"id":1,"id_cliente":1,"bairro":"Centro","cep":"12345678","rua":"Rua Principal","numero":"123"}]

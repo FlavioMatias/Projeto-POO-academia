@@ -21,7 +21,7 @@ public class ParteCorpo implements Inter{
 
     public void setNome(String nome) {
         if (nome == null) {
-            throw new IllegalArgumentException("O nome da parte do corpo não pode ser nulo.");
+            throw new IllegalArgumentException("O nome da parte do corpo nao pode ser nulo.");
         }
         this.nome = nome;
     }

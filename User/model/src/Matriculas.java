@@ -11,7 +11,7 @@ public class Matriculas extends CRUD<Matricula>{
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("Data/alunos.json");
+            FileWriter writer = new FileWriter("Data/matriculas.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);
             writer.close();
@@ -24,8 +24,8 @@ public class Matriculas extends CRUD<Matricula>{
     public void abrir(){
         objetos.clear();
         try {
-            FileReader reader = new FileReader("Data/alunos.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType(); // acho que é aluno ali dentro de nao crud
+            FileReader reader = new FileReader("Data/matriculas.json");
+            Type listType = new TypeToken<List<CRUD>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {

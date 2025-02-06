@@ -78,10 +78,10 @@ public class Main {
         Medida medida = new Medida(id, id_medicoes, id_partcorpo, valor);
         medida.setId(50);
 
-        //System.out.println(medida);
+        // System.out.println(medida);
 
-        // Medicas medicas = new Medicas();
-        // medicas.inserir(medida);
+        // Medidas medidas = new Medidas();
+        // medidas.inserir(medida);
 
         id = 1;
         String nome = "Peito";
@@ -123,7 +123,7 @@ public class Main {
         // System.out.println(planow);
 
         // Planos planos = new Planos();
-        // planos.inserir(plano);
+        // planos.inserir(planow);
 
         id = 1;
         int id_aluno = 1;
@@ -135,7 +135,7 @@ public class Main {
 
         // System.out.println(treinoAluno);
 
-        // TreinoAlunos treinoalunos = new TreinoAlunos();
+        // TreinosAlunos treinoalunos = new TreinosAlunos();
         // treinoalunos.inserir(treinoAluno);
 
         id = 1;
@@ -148,7 +148,18 @@ public class Main {
 
         System.out.println(treino);
 
-        // Treinos treinos = new Treinos();
-        // treinos.inserir(treino);
+        Treinos treinos = new Treinos();
+        treinos.inserir(treino);
+
+        id = 1;
+        nome = "Quadriceps";
+
+        Musculo musculo = new Musculo(id, nome);
+        musculo.setId(50);
+
+        // System.out.println(musculo);
+
+        // Musculos musculos = new Musculos();
+        // musculos.inserir(musculo)
     }
 }

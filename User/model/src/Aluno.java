@@ -32,6 +32,10 @@ public class Aluno implements Inter{
     }
 
     public void setId(int id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("O id nao pode ser negativo.");
+        }
+
         this.id = id;
     }
 
