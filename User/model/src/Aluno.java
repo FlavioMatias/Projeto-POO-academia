@@ -11,19 +11,19 @@ public class Aluno implements Inter{
     private String nome;
     private String email;
     private String tel;
-    private String dataCadastro;
+    private String data_cadastro;
     private String nascimento;
     private String sexo;
     private String cpf;
     private String rg;
     private String profissao;
 
-    public Aluno(int id, String nome, String email, String tel, String dataCadastro, String nascimento, String sexo, String cpf, String rg, String profissao) {
+    public Aluno(int id, String nome, String email, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao) {
         setId(id);
         setNome(nome);
         setEmail(email);
         setTel(tel);
-        setDataCadastro(dataCadastro); // verificar se está funcionando
+        setData_cadastro(data_cadastro); // verificar se está funcionando
         setNascimento(nascimento); // verificar se está funcionando
         setSexo(sexo);
         setCpf(cpf);
@@ -81,14 +81,14 @@ public class Aluno implements Inter{
         this.tel = tel;
     }
 
-    public void setDataCadastro(String dataCadastro) {
-        if (dataCadastro == null) {
+    public void setData_cadastro(String data_cadastro) {
+        if (data_cadastro == null) {
             throw new IllegalArgumentException("A data de cadastro não pode ser nula");
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate date = LocalDate.parse(dataCadastro, formatter);
-            this.dataCadastro = date.format(formatter);
+            LocalDate date = LocalDate.parse(data_cadastro, formatter);
+            this.data_cadastro = date.format(formatter);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("A data de cadastro é inválida. O formato correto é dd/MM/yyyy.");
         }
@@ -200,8 +200,8 @@ public class Aluno implements Inter{
         return tel;
     }
 
-    public String getDataCadastro() {
-        return dataCadastro;
+    public String getData_cadastro() {
+        return data_cadastro;
     }
 
     public String getNascimento() {
@@ -230,7 +230,7 @@ public class Aluno implements Inter{
         dict.put("nome", this.nome);
         dict.put("email", this.email);
         dict.put("tel", this.tel);
-        dict.put("data_cadastro", this.dataCadastro);
+        dict.put("data_cadastro", this.data_cadastro);
         dict.put("nascimento", this.nascimento);
         dict.put("sexo", this.sexo);
         dict.put("cpf", this.cpf);

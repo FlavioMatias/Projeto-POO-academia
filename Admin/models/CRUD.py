@@ -1,11 +1,18 @@
 import json
 
-from Admin.models.matricula import Matricula
-from Admin.models.alunos import Aluno, Endereco
-from Admin.models.plano import Plano
-from Admin.models.pagamento import Pagamento
-from Admin.models.medicao import Medicao, Medida, PartCorpo
-from Admin.models.treino import TreinoAluno,Treino, Musculo
+# from Admin.models.matricula import Matricula
+# from Admin.models.alunos import Aluno, Endereco
+# from Admin.models.plano import Plano
+# from Admin.models.pagamento import Pagamento
+# from Admin.models.medicao import Medicao, Medida, PartCorpo
+# from Admin.models.treino import TreinoAluno,Treino, Musculo
+
+from matricula import Matricula
+from alunos import Aluno, Endereco
+from plano import Plano
+from pagamento import Pagamento
+from medicao import Medicao, Medida, PartCorpo
+from treino import TreinoAluno,Treino, Musculo
 
 class CRUD:
     
@@ -105,8 +112,8 @@ class Alunos(CRUD):
                     )
                     cls.objetos.append(A)    
 
-        except FileNotFoundError as e:
-            print(e) 
+        except FileNotFoundError:
+            print("fudeu")
 
 class Enderecos(CRUD):
     @classmethod
