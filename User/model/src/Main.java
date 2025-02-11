@@ -1,35 +1,77 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // System.out.print("Digite o ID: ");
+        // int id = scanner.nextInt();
+        // scanner.nextLine();
+
+        // System.out.print("Digite o nome: ");
+        // String name = scanner.nextLine();
+
+        // System.out.print("Digite o e-mail: ");
+        // String email = scanner.nextLine();
+
+        // System.out.print("Digite o telefone: ");
+        // String tel = scanner.nextLine();
+
+        // System.out.print("Digite a data de cadastro (dd/mm/yyyy): ");
+        // String dataCadastro = scanner.nextLine();
+
+        // System.out.print("Digite a data de nascimento (dd/mm/yyyy): ");
+        // String nascimento = scanner.nextLine();
+
+        // System.out.print("Digite o sexo (M/F): ");
+        // String sexo = scanner.nextLine();
+
+        // System.out.print("Digite o CPF: ");
+        // String cpf = scanner.nextLine();
+
+        // System.out.print("Digite o RG: ");
+        // String rg = scanner.nextLine();
+
+        // System.out.print("Digite a profissão: ");
+        // String profissao = scanner.nextLine();
+
         int id = 1;
-        String name = "John Doe";
+        String name = "Bostinha";
         String email = "r1GfB@example.com";
         String tel = "(12) 3456-7890";
-
-        LocalDate dataCadastro = LocalDate.now();
-        LocalDate nascimento = LocalDate.of(1990, 1, 1);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        String dataCadastroStr = dataCadastro.format(formatter);
-        String nascimentoStr = nascimento.format(formatter);
-
+        String dataCadastro = "11/02/2025";
+        String nascimento = "11/02/2025";
         String sexo = "M";
         String cpf = "713.280.564-90";
         String rg = "123456789";
         String profissao = "Programador";
 
-        Aluno aluno = new Aluno(id, name, email, tel, dataCadastroStr, nascimentoStr, sexo, cpf, rg, profissao);
+        Aluno aluno = new Aluno(id, name, email, tel, dataCadastro, nascimento, sexo, cpf, rg, profissao);
         aluno.setId(50);
 
-        // System.out.println(aluno);
+        System.out.println(aluno);
 
-        // Alunos alunos = new Alunos();
-        // alunos.inserir(aluno);
+        Alunos alunos = new Alunos();
+        alunos.inserir(aluno);
 
-        // System.out.println(alunos.listar());
+        System.out.println(alunos.listar());
+
+        id = aluno.getId();
+        name = "Jorge";
+        email = "jorge@email.com";
+        tel = "(99) 9999-9999";
+        dataCadastro = "11/02/2025";
+        nascimento = "11/02/2025";
+        sexo = "F";
+        cpf = "707.534.174-05";
+        rg = "123456789";
+        profissao = "nao tem";
+
+        Aluno aluno2 = new Aluno(id, name, email, tel, dataCadastro, nascimento, sexo, cpf, rg, profissao);
+
+        alunos.atualizar(aluno2);
+
+        System.out.println(alunos.listar());
 
         id = 1;
         int id_cliente = 1;
@@ -80,12 +122,12 @@ public class Main {
         Medida medida = new Medida(id, id_medicoes, id_partcorpo, valor);
         medida.setId(50);
 
-        System.out.println(medida);
+        // System.out.println(medida);
 
-        Medidas medidas = new Medidas();
-        medidas.inserir(medida);
+        // Medidas medidas = new Medidas();
+        // medidas.inserir(medida);
 
-        System.out.println(medidas.listar());
+        // System.out.println(medidas.listar());
 
         id = 1;
         String nome = "Peito";
@@ -165,5 +207,7 @@ public class Main {
 
         // Musculos musculos = new Musculos();
         // musculos.inserir(musculo)
+
+        scanner.close();
     }
 }
