@@ -24,7 +24,7 @@ public class Medidas extends CRUD<Medida>{
         objetos.clear();
         try {
             FileReader reader = new FileReader("Data/medidas.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType();
+            Type listType = new TypeToken<List<Medida>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {

@@ -29,6 +29,8 @@ public class Main {
         // Alunos alunos = new Alunos();
         // alunos.inserir(aluno);
 
+        // System.out.println(alunos.listar());
+
         id = 1;
         int id_cliente = 1;
         String bairro = "Centro";
@@ -78,10 +80,12 @@ public class Main {
         Medida medida = new Medida(id, id_medicoes, id_partcorpo, valor);
         medida.setId(50);
 
-        // System.out.println(medida);
+        System.out.println(medida);
 
-        // Medidas medidas = new Medidas();
-        // medidas.inserir(medida);
+        Medidas medidas = new Medidas();
+        medidas.inserir(medida);
+
+        System.out.println(medidas.listar());
 
         id = 1;
         String nome = "Peito";
@@ -146,10 +150,10 @@ public class Main {
         Treino treino = new Treino(id, id_musculo, id_treino, descricao);
         treino.setId(50);
 
-        System.out.println(treino);
+        // System.out.println(treino);
 
-        Treinos treinos = new Treinos();
-        treinos.inserir(treino);
+        // Treinos treinos = new Treinos();
+        // treinos.inserir(treino);
 
         id = 1;
         nome = "Quadriceps";

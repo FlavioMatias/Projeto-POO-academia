@@ -15,3 +15,5 @@ profissao = "nada"
 aluno1 = Aluno(id, nome, email, tel, data_cadastro, nascimento, sexo, cpf, rd, profissao)
 print(aluno1)
 Alunos.inserir(aluno1)
+
+print(Alunos.listar())

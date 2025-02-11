@@ -25,7 +25,7 @@ public class Treinos extends CRUD<Treino> {
         objetos.clear();
         try {
             FileReader reader = new FileReader("Data/treinos.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType();
+            Type listType = new TypeToken<List<Treino>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {

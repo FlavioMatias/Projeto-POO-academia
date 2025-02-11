@@ -24,7 +24,7 @@ public class Enderecos extends CRUD<Endereco>{
         objetos.clear();
         try {
             FileReader reader = new FileReader("Data/enderecos.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType();
+            Type listType = new TypeToken<List<Endereco>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {

@@ -25,7 +25,7 @@ public class Matriculas extends CRUD<Matricula>{
         objetos.clear();
         try {
             FileReader reader = new FileReader("Data/matriculas.json");
-            Type listType = new TypeToken<List<CRUD>>(){}.getType();
+            Type listType = new TypeToken<List<Matricula>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {
