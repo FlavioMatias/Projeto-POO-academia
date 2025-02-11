@@ -81,8 +81,10 @@ class Aluno:
         
         if not isinstance(nome, str):
             raise ValueError("Nome deve ser uma string.")
-        if len(nome) < 2:
+        if len(nome) < 3:
             raise ValueError("Nome deve ter pelo menos 2 caracteres.")
+        if not re.fullmatch(r"[A-Za-zÀ-ÖØ-öø-ÿ]+( [A-Za-zÀ-ÖØ-öø-ÿ]+)*", nome):
+            raise ValueError("Nome deve conter apenas letras e espaços simples.")
         if not nome.isalpha() and not nome.replace(" ", "").isalpha():
             raise ValueError("Nome deve conter apenas letras e espaços.")
         if not nome.istitle():
@@ -105,11 +107,23 @@ class Aluno:
         if not isinstance(tel, str):
             raise ValueError("Telefone deve ser uma string.")
 
-        regex = r'^\(?\d{2}\)?\s?\d{4,5}-\d{4}$'
-        if not re.match(regex, tel):
+        regex = r'^\(?(\d{2})\)?\s?\d{4,5}[-]?\d{4}$'
+
+        match = re.match(regex, tel)
+        if not match:
             raise ValueError("Telefone inválido. O formato correto é (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.")
+
+        ddd = int(match.group(1)) 
+
+        ddds_validos = {
+            11, 21, 31, 41, 61, 71, 81, 91, 85, 61, 51, 43, 53, 62, 64, 66, 81, 82, 92, 93, 95, 96, 97
+        }
+
+        if ddd not in ddds_validos:
+            raise ValueError("DDD inválido. O código de área não é válido no Brasil.")
+
         self.__tel = tel
-        
+
     @data_cadastro.setter
     def data_cadastro(self, data_cadastro: str):
         try:
@@ -156,23 +170,28 @@ class Aluno:
     @rg.setter
     def rg(self, rg: str):
         rg = re.sub(r'\D', '', rg)
-
         if len(rg) != 9 or not rg.isdigit():
-            raise ValueError("RG deve conter 9 dígitos numéricos.")
+            raise ValueError("RG deve conter exatamente 9 dígitos numéricos.")
+        if rg == rg[0] * 9:
+            raise ValueError("RG inválido: sequência numérica repetitiva detectada.")
         self.__rg = rg
-        
     @profissao.setter
     def profissao(self, profissao: str):
-        if len(profissao) >=2 and isinstance(profissao, str):
+        if len(profissao) >= 2 and isinstance(profissao, str):
+            if re.search(r'\d', profissao):
+                raise ValueError('Profissão não pode conter digitos numéricos.')
             self.__profissao = profissao
         else:
-            raise ValueError('profissão invalida')
+            raise ValueError('Profissão inválida. A profissão deve ter pelo menos 2 caracteres e ser uma string.')
         
     def __validar_cpf(self, cpf: str) -> bool:
         def calcular_digito(cpf: str, peso: list) -> int:
             soma = sum(int(cpf[i]) * peso[i] for i in range(len(peso)))
             resto = soma % 11
             return 0 if resto < 2 else 11 - resto
+
+        if cpf == cpf[0] * 11:
+            return False
 
         peso1 = [10, 9, 8, 7, 6, 5, 4, 3, 2]
         digito1 = calcular_digito(cpf, peso1)
