@@ -88,8 +88,5 @@ class Matricula:
         except ValueError:
             raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
         
-        if data_obj < datetime.today():
-            raise ValueError("Data não pode ser no passado.")
-        
         self.__validade = validade
 
