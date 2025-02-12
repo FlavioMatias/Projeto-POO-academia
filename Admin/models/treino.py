@@ -50,8 +50,6 @@ class TreinoAluno:
     def data_final(self, data_final: str):
         try:
             self.__data_final = datetime.strptime(data_final, "%d/%m/%Y").date()
-            if self.__data_final < datetime.now().date():
-                raise ValueError("A data final não pode ser uma data no passado.")
             if self.__data_final < self.__data:
                 raise ValueError("A data final não pode ser anterior à data de início.")
         except ValueError:
