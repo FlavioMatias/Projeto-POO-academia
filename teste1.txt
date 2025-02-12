@@ -1,0 +1,31 @@
+cadastrar aluno -> criar aluno e criar endereco
+visualizar e editar dados dos alunos -> manter aluno e manter endereco
+
+
+
+matricular aluno -> criar matricula e criar pagamentos (de acordo com o plano escolhido)
+visualizar e editar matriculas -> manter matricula e manter pagamentos
+visualizar caloteiros -> calculo para ver se a matricula está ativa e o pagamento atrasado
+visualizar pagamentos -> logica para saber se o pagamento ta proximo de vencer ou vencido
+cancelar matricula -> finaliza matricula (nao exclui)
+renovar matricula -> ver se todos os pagamentos estao em dia. se sim -> finaliza e cria uma nova. se nao -> matricula fica em aberto alertando que ta devendo
+
+obs: matricula precisa de atributo de ativa ou finalizada
+duvidas: se a pessoa finaliza um plano (passou os 6 meses do plano semestral) e ela ta devendo 2 pagamentos, mas quer renovar a matricula para pagar o que ta devendo nessa matricula, oque deve ser feito?
+ideia: finalizar a matricula e passar o que ta devendo mais os do plano para esse 
+
+
+criar... treinos dos alunos -> manter treinos
+criar... medidas -> manter medidas
+
+
+
+criar... planos de pagamento -> manter planos de pagamento
+
+
+
+criar... grupo muscular -> manter grupo muscular
+
+
+
+criar... medida -> manter medida
