@@ -12,6 +12,9 @@ cpf = "713.280.564-90"
 rd = "123456789"
 profissao = "nada"
 
-aluno1 = Aluno(id, nome, email, tel, data_cadastro, nascimento, sexo, cpf, rd, profissao)
-print(aluno1)
-Alunos.inserir(aluno1)
+# aluno1 = Aluno(id, nome, email, tel, data_cadastro, nascimento, sexo, cpf, rd, profissao)
+# print(aluno1)
+# Alunos.inserir(aluno1)
+
+for x in Alunos.listar():
+    print(x)
