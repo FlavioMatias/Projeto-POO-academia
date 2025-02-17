@@ -1,110 +1,92 @@
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
+from datetime import datetime
 
-public class Matricula implements Inter{
-    private int id;
-    private int id_cliente;
-    private int plano;
-    private String data;
-    private String validade;
+class Matricula:
+    def __init__(self, id, id_cliente, plano, data, validade):
+        self.id = id
+        self.id_cliente = id_cliente
+        self.plano = plano
+        self.data = data
+        self.validade = validade
 
-    public Matricula(int id, int id_cliente, int plano, String data, String validade) {
-        setId(id);
-        setIdCliente(id_cliente);
-        setPlano(plano);
-        setData(data);
-        setValidade(validade);
-    }
-
-    public void setId(int id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("O id da matricula não pode ser negativo.");
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "id_cliente": self.id_cliente,
+            "plano": self.plano,
+            "data": self.data,
+            "validade": self.validade
         }
-        this.id = id;
-    }
+    
+    def __str__(self):
+        return (f"Matricula: \n"
+                f"  id={self.id},\n"
+                f"  id_cliente={self.id_cliente},\n"
+                f"  plano={self.plano},\n"
+                f"  data={self.data},\n"
+                f"  validade={self.validade}\n")
+    
+    # Getters
+    @property
+    def id(self):
+        return self.__id
 
-    public void setIdCliente(int id_cliente) {
-        if (id_cliente < 0) {
-            throw new IllegalArgumentException("O id do cliente não pode ser negativo.");
-        }
-        this.id_cliente = id_cliente;
-    }
+    @property
+    def id_cliente(self):
+        return self.__id_cliente
 
-    public void setPlano(int plano) {
-        if (plano < 0) {
-            throw new IllegalArgumentException("Plano invalido");
-        }
-        this.plano = plano;
-    }
+    @property
+    def plano(self):
+        return self.__plano
 
-    public void setData(String data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    @property
+    def data(self):
+        return self.__data
 
-        try {
-            LocalDate dateObj = LocalDate.parse(data, formatter);
+    @property
+    def validade(self):
+        return self.__validade
 
-            this.data = data;
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Data invalida. Use o formato 'DD/MM/YYYY'.");
-        }
-    }
+    # Setters
+    @id.setter
+    def id(self, id: int):
+        if not isinstance(id, int):
+            raise TypeError("O id deve ser um número inteiro!")
+        if id < 0:
+            raise ValueError("O id não pode ser negativo!")
+        self.__id = id
 
-    public void setValidade(String validade) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    @id_cliente.setter
+    def id_cliente(self, id_cliente: int):
+        if not isinstance(id_cliente, int):
+            raise TypeError("O id_cliente deve ser um número inteiro!")
+        if id_cliente < 0:
+            raise ValueError("O id_cliente não pode ser negativo!")
+        self.__id_cliente = id_cliente
 
-        try {
-            LocalDate dateObj = LocalDate.parse(validade, formatter);
+    @plano.setter
+    def plano(self, plano: int):
+        if not isinstance(plano, int):
+            raise TypeError("Plano inválido")
+        self.__plano = plano
 
-            if (dateObj.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Data de validade nao pode ser no futuro.");
-            }
+    @data.setter
+    def data_cadastro(self, data: str):
+        try:
+            data_obj = datetime.strptime(data, '%d/%m/%Y')
+        except ValueError:
+            raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
+        
+        if data_obj > datetime.today():
+            raise ValueError("Data não pode ser no futuro.")
 
-            this.validade = validade;
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Data de validade invalida. Use o formato 'DD/MM/YYYY'.");
-        }
-    }
+        self.__data = data
 
-    public int getId() {
-        return id;
-    }
+    @validade.setter
+    def validade(self, validade: str):
+        try:
+            data_obj = datetime.strptime(validade, '%d/%m/%Y')
+        except ValueError:
+            raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
+        
+        self.__validade = validade
 
-    public int getIdCliente() {
-        return id_cliente;
-    }
-
-    public int getPlano() {
-        return plano;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public String getValidade() {
-        return validade;
-    }
-
-    public Map<String, Object> toDict() {
-        Map<String, Object> dict = new HashMap<>();
-        dict.put("id", this.id);
-        dict.put("id_cliente", this.id_cliente);
-        dict.put("plano", this.plano);
-        dict.put("data", this.data);
-        dict.put("validade", this.validade);
-        return dict;
-    }
-
-    @Override
-    public String toString() {    
-        return "Matricula:" + "\n" +
-                "  id=" + this.id + "\n" +
-                "  id_cliente=" + this.id_cliente + "\n" +
-                "  plano=" + this.plano + "\n" +
-                "  data=" + this.data + "\n" +
-                "  validade=" + this.validade + "\n";
-    }
-}
