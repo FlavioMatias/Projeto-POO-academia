@@ -7,11 +7,11 @@ import java.util.Map;
 public class Matricula implements Inter{
     private int id;
     private int id_cliente;
-    private String plano;
+    private int plano;
     private String data;
     private String validade;
 
-    public Matricula(int id, int id_cliente, String plano, String data, String validade) {
+    public Matricula(int id, int id_cliente, int plano, String data, String validade) {
         setId(id);
         setIdCliente(id_cliente);
         setPlano(plano);
@@ -33,8 +33,8 @@ public class Matricula implements Inter{
         this.id_cliente = id_cliente;
     }
 
-    public void setPlano(String plano) {
-        if (plano == null) {
+    public void setPlano(int plano) {
+        if (plano < 0) {
             throw new IllegalArgumentException("Plano invalido");
         }
         this.plano = plano;
@@ -76,7 +76,7 @@ public class Matricula implements Inter{
         return id_cliente;
     }
 
-    public String getPlano() {
+    public int getPlano() {
         return plano;
     }
 
