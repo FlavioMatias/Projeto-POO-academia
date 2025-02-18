@@ -17,10 +17,12 @@ public class Aluno implements Inter{
     private String cpf;
     private String rg;
     private String profissao;
+    private String senha;
 
-    public Aluno(int id, String nome, String email, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao) {
+    public Aluno(int id, String nome, String senha, String email, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao) {
         setId(id);
         setNome(nome);
+        setSenha(senha);
         setEmail(email);
         setTel(tel);
         setData_cadastro(data_cadastro);
@@ -56,6 +58,17 @@ public class Aluno implements Inter{
         this.nome = nome;
     }
 
+    public void setSenha(String senha){
+        if (senha == null) {
+            throw new IllegalArgumentException("A senha nao pode ser nulo");
+        }
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("A senha deve ter pelo menos 8 caracteres");
+        }
+
+        this.senha = senha;
+    }
+
     public void setEmail(String email) {
         if (email == null) {
             throw new IllegalArgumentException("O email nao pode ser nulo");
@@ -72,15 +85,60 @@ public class Aluno implements Inter{
     }
 
     public void setTel(String tel) {
-        if (tel == null) {
-            throw new IllegalArgumentException("O telefone nao pode ser nulo");
+        if (tel == null || !(tel instanceof String)) {
+            throw new IllegalArgumentException("Telefone deve ser uma string.");
         }
-        String regex = "^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$";
+
+        String regex = "^\\(?([0-9]{2})\\)?\\s?[0-9]{4,5}[-]?[0-9]{4}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(tel);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("O telefone eh invalido. O formato correto eh (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
+            throw new IllegalArgumentException("Telefone inválido. O formato correto é (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
+        }
+
+        int ddd = Integer.parseInt(matcher.group(1));
+
+        int[] dddsValidos = {
+            11, 12, 13, 14, 15, 16, 17, 18, 19,  // SP
+            21, 22, 24,  // RJ
+            27, 28,  // ES
+            31, 32, 33, 34, 35, 37, 38,  // MG
+            41, 42, 43, 44, 45, 46,  // PR
+            47, 48, 49,  // SC
+            51, 53, 54, 55,  // RS
+            61,  // DF
+            62, 64,  // GO
+            63,  // TO
+            65, 66,  // MT
+            67,  // MS
+            68,  // AC
+            69,  // RO
+            71, 73, 74, 75, 77,  // BA
+            79,  // SE
+            81, 87,  // PE
+            82,  // AL
+            83,  // PB
+            84,  // RN
+            85, 88,  // CE
+            86, 89,  // PI
+            91, 93, 94,  // PA
+            92, 97,  // AM
+            95,  // RR
+            96,  // AP
+            98, 99  // MA
+        };
+
+        boolean dddValido = false;
+        for (int validDdd : dddsValidos) {
+            if (ddd == validDdd) {
+                dddValido = true;
+                break;
+            }
+        }
+
+        if (!dddValido) {
+            throw new IllegalArgumentException("DDD inválido. O código de área não é válido no Brasil.");
         }
 
         this.tel = tel;
@@ -133,21 +191,21 @@ public class Aluno implements Inter{
     }
 
     public void setCpf(String cpf) {
-        if (cpf == null) {
-            throw new IllegalArgumentException("O cpf nao pode ser nulo");
+        if (!cpf.matches("\\d{11}") && !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+            throw new IllegalArgumentException("CPF deve estar no formato xxx.xxx.xxx-xx ou conter apenas 11 dígitos numéricos.");
         }
-        
-        cpf = cpf.replaceAll("[^0-9]", "");
+
+        cpf = cpf.replaceAll("\\D", "");
 
         if (cpf.length() != 11 || !cpf.matches("\\d+")) {
-            throw new IllegalArgumentException("CPF deve conter 11 digitos numericos.");
+            throw new IllegalArgumentException("CPF deve conter 11 dígitos numéricos.");
         }
 
         if (!validarCpf(cpf)) {
-            throw new IllegalArgumentException("O cpf eh invalido.");
+            throw new IllegalArgumentException("CPF inválido.");
         }
 
-        this.cpf = cpf;
+        this.cpf = String.format("%s.%s.%s-%s", cpf.substring(0, 3), cpf.substring(3, 6), cpf.substring(6, 9), cpf.substring(9));
     }
 
     public void setRg(String rg) {    
@@ -172,7 +230,7 @@ public class Aluno implements Inter{
     }
 
     private boolean validarCpf(String cpf) {
-        if (cpf == null || cpf.length() != 11) {
+        if (cpf == null || cpf.length() != 11 || cpf.equals(String.valueOf(cpf.charAt(0)).repeat(11))) {
             return false;
         }
 
@@ -201,6 +259,10 @@ public class Aluno implements Inter{
 
     public String getNome() {
         return this.nome;
+    }
+
+    public String getSenha() {
+        return this.senha;
     }
 
     public String getEmail() {
@@ -239,6 +301,7 @@ public class Aluno implements Inter{
         Map<String, Object> dict = new HashMap<>();
         dict.put("id", this.id);
         dict.put("nome", this.nome);
+        dict.put("senha", this.senha);
         dict.put("email", this.email);
         dict.put("tel", this.tel);
         dict.put("data_cadastro", this.data_cadastro);
