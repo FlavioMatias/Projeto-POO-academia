@@ -72,7 +72,7 @@ class Matricula:
         self.__plano = plano
 
     @data.setter
-    def data_cadastro(self, data: str):
+    def data(self, data: str):
         try:
             data_obj = datetime.strptime(data, '%d/%m/%Y')
         except ValueError:

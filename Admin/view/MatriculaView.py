@@ -40,10 +40,11 @@ class MatriculaView:
         validade = data_dt + relativedelta(**tempo_plano)
 
         m = Matricula(
+            id=0,
             id_aluno=id_aluno,
             plano=plano,
-            data_matricula=data,
-            data_vencimento=validade.strftime('%d/%m/%Y')
+            data=data,
+            validade=validade.strftime('%d/%m/%Y')
         )
 
         for matricula in Matriculas.listar():
@@ -77,5 +78,4 @@ class MatriculaView:
     @staticmethod
     def buscar_matricula(id: int):
         return Matriculas.buscar_por_id(id)
-    
     
