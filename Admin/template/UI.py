@@ -1,4 +1,4 @@
-from Admin.view.adm_view import View 
+from Admin.view.AlunosView import View 
 import streamlit as st
 from datetime import datetime
 class UI:

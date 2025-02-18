@@ -1,18 +1,18 @@
 import json
 
-# from Admin.models.matricula import Matricula
-# from Admin.models.alunos import Aluno, Endereco
-# from Admin.models.plano import Plano
-# from Admin.models.pagamento import Pagamento
-# from Admin.models.medicao import Medicao, Medida, PartCorpo
-# from Admin.models.treino import TreinoAluno,Treino, Musculo
+from Admin.models.matricula import Matricula
+from Admin.models.alunos import Aluno, Endereco
+from Admin.models.plano import Plano
+from Admin.models.pagamento import Pagamento
+from Admin.models.medicao import Medicao, Medida, PartCorpo
+from Admin.models.treino import TreinoAluno,Treino, Musculo
 
-from matricula import Matricula
-from alunos import Aluno, Endereco
-from plano import Plano
-from pagamento import Pagamento
-from medicao import Medicao, Medida, PartCorpo
-from treino import TreinoAluno,Treino, Musculo
+#from matricula import Matricula
+#from alunos import Aluno, Endereco
+#from plano import Plano
+#from pagamento import Pagamento
+#from medicao import Medicao, Medida, PartCorpo
+#from treino import TreinoAluno,Treino, Musculo
 
 class CRUD:
     
@@ -55,7 +55,7 @@ class CRUD:
                 
     @classmethod
     def excluir(cls, obj):
-        x = cls.listar_id(obj.id)
+        x = cls.buscar_por_id(obj.id)
         if x != None:
             cls.objetos.remove(x)
             cls.salvar()
@@ -84,8 +84,8 @@ class Matriculas(CRUD):
                 
                 for obj in objetos_json:
                     M = Matricula(
-                        obj["id"], obj["id_cliente"], obj.get("plano", ""),
-                        obj.get("data", ""), obj.get("validade", "")
+                        obj["id"], obj["id_aluno"], obj.get("plano", ""),
+                        obj.get("data", ""), obj.get("validade", ""),obj.get("ativa", False)
                     )
                     cls.objetos.append(M)
         except FileNotFoundError as e:
@@ -106,7 +106,7 @@ class Alunos(CRUD):
 
                 for obj in objetos_json:
                     A = Aluno(
-                        obj["id"], obj["nome"], obj.get("email", ""), obj.get("tel", ""),
+                        obj["id"], obj["nome"], obj["senha"], obj.get("email", ""), obj.get("tel", ""),
                         obj["data_cadastro"], obj.get("nascimento", ""), obj.get("sexo", ""),
                         obj.get("cpf", ""), obj.get("rg", ""), obj.get("profissao", "")
                     )

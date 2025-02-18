@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 class Aluno:
-    def __init__(self,id = 0, nome : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None):
+    def __init__(self,id = 0, nome : str = None, senha : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None):
         self.id = id
         self.nome = nome
         self.email = email
@@ -13,6 +13,7 @@ class Aluno:
         self.cpf = cpf
         self.rg = rg
         self.profissao = profissao
+        self.senha = senha
 
     def __str__(self):
         return (f"Aluno ID: {self.id}\n"
@@ -30,6 +31,7 @@ class Aluno:
         return {
             'id': self.id,
             'nome': self.nome,
+            'senha': self.senha,
             'email': self.email,
             'tel': self.tel,
             'data_cadastro': self.data_cadastro,
@@ -96,10 +98,9 @@ class Aluno:
     def email(self, email: str):
         if not isinstance(email, str):
             raise ValueError("E-mail deve ser uma string.")
-        regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-        if not re.match(regex, email):
+        regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.fullmatch(regex, email):
             raise ValueError("E-mail inválido. O formato correto é 'exemplo@dominio.com'.")
-        
         self.__email = email
         
     @tel.setter
@@ -115,11 +116,37 @@ class Aluno:
 
         ddd = int(match.group(1)) 
 
-        ddds_validos = {
-            11, 21, 31, 41, 61, 71, 81, 91, 85, 61, 51, 43, 53, 62, 64, 66, 81, 82, 92, 93, 95, 96, 97
-        }
+        ddds_brasil = [
+            11, 12, 13, 14, 15, 16, 17, 18, 19,  # SP
+            21, 22, 24,  # RJ
+            27, 28,  # ES
+            31, 32, 33, 34, 35, 37, 38,  # MG
+            41, 42, 43, 44, 45, 46,  # PR
+            47, 48, 49,  # SC
+            51, 53, 54, 55,  # RS
+            61,  # DF
+            62, 64,  # GO
+            63,  # TO
+            65, 66,  # MT
+            67,  # MS
+            68,  # AC
+            69,  # RO
+            71, 73, 74, 75, 77,  # BA
+            79,  # SE
+            81, 87,  # PE
+            82,  # AL
+            83,  # PB
+            84,  # RN
+            85, 88,  # CE
+            86, 89,  # PI
+            91, 93, 94,  # PA
+            92, 97,  # AM
+            95,  # RR
+            96,  # AP
+            98, 99 # MA
+        ]
 
-        if ddd not in ddds_validos:
+        if ddd not in ddds_brasil:
             raise ValueError("DDD inválido. O código de área não é válido no Brasil.")
 
         self.__tel = tel
@@ -127,11 +154,11 @@ class Aluno:
     @data_cadastro.setter
     def data_cadastro(self, data_cadastro: str):
         try:
-            data_obj = datetime.strptime(data_cadastro, '%d/%m/%Y').date()
+            data_obj = datetime.strptime(data_cadastro, '%d/%m/%Y')
         except ValueError:
             raise ValueError("Data de cadastro inválida. Use o formato 'DD/MM/YYYY'.")
 
-        if data_obj > datetime.today().date():
+        if data_obj > datetime.today():
             raise ValueError("Data de cadastro não pode ser no futuro.")
 
         self.__data_cadastro = data_cadastro
@@ -139,13 +166,12 @@ class Aluno:
     @nascimento.setter
     def nascimento(self, nascimento: str):
         try:
-            data_obj = datetime.strptime(nascimento, '%d/%m/%Y').date()
+            data_obj = datetime.strptime(nascimento, '%d/%m/%Y')
+            if data_obj > datetime.today():
+                raise ValueError("Data de nascimento não pode ser no futuro.")
+            self.__nascimento = nascimento
         except ValueError:
             raise ValueError("Data de nascimento inválida. Use o formato 'DD/MM/YYYY'.")
-
-        if data_obj > datetime.today().date():
-            raise ValueError("Data de nascimento não pode ser no futuro.")
-        self.__nascimento = nascimento
         
     @sexo.setter
     def sexo(self, sexo: str):
@@ -161,7 +187,7 @@ class Aluno:
         cpf = re.sub(r'\D', '', cpf)
 
         if len(cpf) != 11 or not cpf.isdigit():
-            raise ValueError("CPF deve conter 11 dígitos numéricos.")
+            raise ValueError("CPF deve ter 11 dígitos numéricos.")
         
         if not self.__validar_cpf(cpf):
             raise ValueError("CPF inválido.")
@@ -270,7 +296,7 @@ class Endereco:
     
     @cep.setter
     def cep(self, cep: str):
-        if not re.match(r'^\d{8}$', cep) or not re.match(r'^\d{5}-\d{3}$', cep):
+        if not re.match(r'^\d{8}$', cep) and not re.match(r'^\d{5}-\d{3}$', cep):
             raise ValueError("CEP deve ter 8 dígitos numéricos.")
         self.__cep = cep
     
@@ -285,4 +311,3 @@ class Endereco:
         if not re.match(r'^\d+$', numero) and not re.match(r'^[A-Za-z0-9\s]+$', numero):
             raise ValueError("Número deve ser numérico ou uma string válida como 'Apto. 101'.")
         self.__numero = numero
-
