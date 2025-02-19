@@ -59,6 +59,24 @@ public class Main {
 
         System.out.println(alunos.listar());
 
+        id = 1;
+        name = "Icaro";
+        email = "email@email.com";
+        tel = "84996581121";
+        dataCadastro = "12/02/2025";
+        nascimento = "12/02/2025";
+        sexo = "M";
+        cpf = "713.280.564-90";
+        rg = "123456789";
+        profissao = "Programador";
+        senha = "12345678";
+
+        Aluno novoaluno = new Aluno(id, name, senha, email, tel, dataCadastro, nascimento, sexo, cpf, rg, profissao);
+
+        alunos.atualizar(novoaluno);
+
+        System.out.println(alunos.listar());
+
         // id = aluno.getId();
         // name = "Jorge";
         // email = "jorge@email.com";

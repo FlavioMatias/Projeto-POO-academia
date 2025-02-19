@@ -52,7 +52,7 @@ public class indexUI{
         if (op == 0) {
             indexUI.logout();
         } if (op == 1) {
-            atualizarUI.mensagem();
+            aluno_nome = atualizarUI.main(aluno_id);
         } if (op == 2) {
             // ver suas medidas
         } if (op == 3) {

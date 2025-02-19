@@ -19,4 +19,10 @@ public class ViewCliente {
         }
         return null;
     }
+
+    public static void atualizarAluno (int id_aluno, String nome, String email, String senha, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao){
+        Aluno novoAluno = new Aluno(id_aluno, nome, senha, email, tel, data_cadastro, nascimento, sexo, cpf, rg, profissao);
+        Alunos alunos = new Alunos();
+        alunos.atualizar(novoAluno);
+    }
 }
