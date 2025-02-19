@@ -14,20 +14,20 @@ public class indexUI{
         Scanner scanner = new Scanner(System.in);
         System.out.println("1 - Entrar no sistema, 9 - Fim");
         
-        System.out.println("Informe uma opção: ");
+        System.out.print("Informe uma opção: ");
         int op = scanner.nextInt();
         if (op == 1) {
-            indexUI.visitante_entrar_no_sistema();
+            indexUI.login();
         }
         return op;
     }
 
-    public static void visitante_entrar_no_sistema(){
+    public static void login(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe o cpf: ");
+        System.out.print("Informe o cpf: ");
         String cpf = scanner.nextLine();
 
-        System.out.println("Informe a senha: ");
+        System.out.print("Informe a senha: ");
         String senha = scanner.nextLine();
 
         Map<String, Object> obj = ViewCliente.login(cpf, senha);
@@ -40,22 +40,30 @@ public class indexUI{
         }
     }
 
-    public static int menu_cliente (){
+    public static int menu_aluno (){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informações do cliente....");
         System.out.println("1 - Atualizar, 2 - Ver suas medidas, 3 - Ver seus treinos, 4 - Ver sua matricula");
-        System.out.println("0 - Sair, 99 - Fim");
+        System.out.println("0 - Sair, 9 - Fim");
 
-        System.out.println("\nInforme uma opção: ");
+        System.out.print("Informe uma opção: ");
         int op = scanner.nextInt();
 
-        if (op == 0){
-            indexUI.sair_do_sistema();
+        if (op == 0) {
+            indexUI.logout();
+        } if (op == 1) {
+            atualizarUI.mensagem();
+        } if (op == 2) {
+            // ver suas medidas
+        } if (op == 3) {
+            // ver seus treinos
+        } if (op == 4) {
+            // ver sua matricula
         }
         return op;
     }
 
-    public static void sair_do_sistema(){
+    public static void logout(){
         aluno_id = 0;
         aluno_nome = "";
     }
@@ -67,7 +75,7 @@ public class indexUI{
                 op = indexUI.menu_visitante();
             } else {
                 System.out.println("\nBem-vindo(a) " + aluno_nome);
-                op = indexUI.menu_cliente();
+                op = indexUI.menu_aluno();
             }
         }
     }
