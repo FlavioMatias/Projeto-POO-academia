@@ -1,11 +1,11 @@
 from datetime import datetime
 
 class TreinoAluno:
-    def __init__(self, id=0, id_aluno=0, data="", data_final=""):
+    def __init__(self, id=0, id_aluno=0, data="", atv=True):
         self.id = id
         self.id_aluno = id_aluno
         self.data = data
-        self.data_final = data_final
+        self.ativo = atv
 
     # Getters
     @property
@@ -62,11 +62,12 @@ class TreinoAluno:
             "id": self.id,
             "id_aluno": self.id_aluno,
             "data": self.data,
-            "data_final": self.data_final
+            "data_final": self.data_final,
+            "ativo": self.ativo
         }
 
     def __str__(self):
-        return f"TreinoAluno(ID: {self.id}, Aluno: {self.id_aluno}, Data: {self.data}, Data Final: {self.data_final})"
+        return f"TreinoAluno(ID: {self.id}, Aluno: {self.id_aluno}, Data: {self.data}, Data Final: {self.data_final}, Ativo: {self.ativo})"
 
 
 class Treino:

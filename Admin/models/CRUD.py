@@ -265,7 +265,7 @@ class TreinosAlunos(CRUD):
                 
                 for obj in objetos_json:
                     T = TreinoAluno(
-                        obj["id"], obj["id_aluno"], obj.get("data", ""), obj.get("data_final", "")
+                        obj["id"], obj["id_aluno"], obj.get("data", ""), obj.get("ativo", False)
                     )
                     cls.objetos.append(T)
         except FileNotFoundError as e:
