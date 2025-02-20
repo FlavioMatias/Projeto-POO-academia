@@ -1,29 +1,32 @@
 from datetime import datetime
 
 class Matricula:
-    def __init__(self, id, id_cliente, plano, data, validade):
+    def __init__(self, id, id_aluno, plano, data, validade, ativa=True):
         self.id = id
-        self.id_cliente = id_cliente
+        self.id_aluno = id_aluno
         self.plano = plano
         self.data = data
         self.validade = validade
+        self.ativa = ativa
 
     def to_dict(self):
         return {
             "id": self.id,
-            "id_cliente": self.id_cliente,
+            "id_aluno": self.id_aluno,
             "plano": self.plano,
             "data": self.data,
-            "validade": self.validade
+            "validade": self.validade,
+            "ativa": self.ativa
         }
     
     def __str__(self):
         return (f"Matricula: \n"
-                f"  id={self.id},\n"
-                f"  id_cliente={self.id_cliente},\n"
-                f"  plano={self.plano},\n"
-                f"  data={self.data},\n"
-                f"  validade={self.validade}\n")
+                f"  id: {self.id},\n"
+                f"  id_aluno: {self.id_aluno},\n"
+                f"  plano: {self.plano},\n"
+                f"  data: {self.data},\n"
+                f"  validade: {self.validade}\n"
+                f"  ativa: {self.ativa}\n")
     
     # Getters
     @property
@@ -31,8 +34,8 @@ class Matricula:
         return self.__id
 
     @property
-    def id_cliente(self):
-        return self.__id_cliente
+    def id_aluno(self):
+        return self.__id_aluno
 
     @property
     def plano(self):
@@ -55,13 +58,13 @@ class Matricula:
             raise ValueError("O id não pode ser negativo!")
         self.__id = id
 
-    @id_cliente.setter
-    def id_cliente(self, id_cliente: int):
-        if not isinstance(id_cliente, int):
-            raise TypeError("O id_cliente deve ser um número inteiro!")
-        if id_cliente < 0:
-            raise ValueError("O id_cliente não pode ser negativo!")
-        self.__id_cliente = id_cliente
+    @id_aluno.setter
+    def id_aluno(self, id_aluno: int):
+        if not isinstance(id_aluno, int):
+            raise TypeError("O id_aluno deve ser um número inteiro!")
+        if id_aluno < 0:
+            raise ValueError("O id_aluno não pode ser negativo!")
+        self.__id_aluno = id_aluno
 
     @plano.setter
     def plano(self, plano: int):
@@ -70,7 +73,7 @@ class Matricula:
         self.__plano = plano
 
     @data.setter
-    def data_cadastro(self, data: str):
+    def data(self, data: str):
         try:
             data_obj = datetime.strptime(data, '%d/%m/%Y')
         except ValueError:

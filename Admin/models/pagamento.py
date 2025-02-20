@@ -97,8 +97,12 @@ class Pagamento:
         self.__pago = pago
 
     def validar_data(self, data_str, campo):
-        """ Valida a data e a converte para datetime.date """
+        """ Valida se a data está no formato dd/mm/aaaa e a converte para datetime.date """
+        if not isinstance(data_str, str):  # Garante que o valor seja uma string
+            raise ValueError(f"A data de {campo} deve ser uma string no formato DD/MM/YYYY.")
+        
         try:
+            # Tenta converter a string para datetime.date
             return datetime.strptime(data_str, "%d/%m/%Y").date()
         except ValueError:
             raise ValueError(f"A data de {campo} deve estar no formato DD/MM/YYYY.")

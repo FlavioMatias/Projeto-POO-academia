@@ -1,4 +1,4 @@
-from Admin.template.UI import UI
+from Admin.template.IndexUI import IndexUI
 
-UI.main()
+IndexUI.main()
 

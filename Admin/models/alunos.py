@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 class Aluno:
-    def __init__(self,id = 0, nome : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None):
+    def __init__(self,id = 0, nome : str = None, senha : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None):
         self.id = id
         self.nome = nome
         self.email = email
@@ -13,6 +13,7 @@ class Aluno:
         self.cpf = cpf
         self.rg = rg
         self.profissao = profissao
+        self.senha = senha
 
     def __str__(self):
         return (f"Aluno ID: {self.id}\n"
@@ -30,6 +31,7 @@ class Aluno:
         return {
             'id': self.id,
             'nome': self.nome,
+            'senha': self.senha,
             'email': self.email,
             'tel': self.tel,
             'data_cadastro': self.data_cadastro,
@@ -96,10 +98,9 @@ class Aluno:
     def email(self, email: str):
         if not isinstance(email, str):
             raise ValueError("E-mail deve ser uma string.")
-        regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-        if not re.match(regex, email):
+        regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.fullmatch(regex, email):
             raise ValueError("E-mail inválido. O formato correto é 'exemplo@dominio.com'.")
-        
         self.__email = email
         
     @tel.setter
@@ -186,7 +187,7 @@ class Aluno:
         cpf = re.sub(r'\D', '', cpf)
 
         if len(cpf) != 11 or not cpf.isdigit():
-            raise ValueError("CPF deve conter 11 dígitos numéricos.")
+            raise ValueError("CPF deve ter 11 dígitos numéricos.")
         
         if not self.__validar_cpf(cpf):
             raise ValueError("CPF inválido.")
@@ -295,7 +296,7 @@ class Endereco:
     
     @cep.setter
     def cep(self, cep: str):
-        if not re.match(r'^\d{8}$', cep) or not re.match(r'^\d{5}-\d{3}$', cep):
+        if not re.match(r'^\d{8}$', cep) and not re.match(r'^\d{5}-\d{3}$', cep):
             raise ValueError("CEP deve ter 8 dígitos numéricos.")
         self.__cep = cep
     
@@ -310,4 +311,3 @@ class Endereco:
         if not re.match(r'^\d+$', numero) and not re.match(r'^[A-Za-z0-9\s]+$', numero):
             raise ValueError("Número deve ser numérico ou uma string válida como 'Apto. 101'.")
         self.__numero = numero
-

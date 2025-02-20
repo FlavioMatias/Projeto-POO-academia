@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"id": 1, "nome": "Bostinha", "email": "r1GfB@example.com", "tel": "84996581121", "data_cadastro": "12/02/2025", "nascimento": "12/02/2025", "sexo": "M", "cpf": "713.280.564-90", "rg": "123456789", "profissao": "Programador"}, {"id": 2, "nome": "Icaro", "email": "icaro@email.com", "tel": "(99) 9999-9999", "data_cadastro": "05/02/2025", "nascimento": "15/02/2005", "sexo": "M", "cpf": "713.280.564-90", "rg": "123456789", "profissao": "nada"}]
+=======
+[{"id": 1, "nome": "Flavio Matias", "senha": "flavio1234", "email": "Flavio@gmail.com", "tel": "84991827364", "data_cadastro": "18/02/2025", "nascimento": "25/12/2004", "sexo": "M", "cpf": "707.534.174-05", "rg": "123456789", "profissao": "Estudante"}]
+>>>>>>> flavio
