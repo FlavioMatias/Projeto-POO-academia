@@ -69,7 +69,7 @@ public class matriculaUI {
                     if (pagamento_selecionado != null && !pagamento_selecionado.getPago()){
                         LocalDate hoje_data = LocalDate.now();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        String dataString = data.format(formatter);
+                        String dataString = hoje_data.format(formatter);
                         ViewCliente.pagarMensalidade(pagamento_selecionado, dataString);
                     }  else {
                         System.out.println("Id indisponivel.");
