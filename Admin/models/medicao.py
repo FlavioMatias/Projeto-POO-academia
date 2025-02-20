@@ -36,8 +36,6 @@ class Medicao:
     def data(self, data: str):
         try:
             data_obj = datetime.strptime(data, '%d/%m/%Y')
-            if data_obj < datetime.today():
-                raise ValueError("Data não pode ser no passado.")
             self.__data = data
         except ValueError:
             raise ValueError("Data inválida. Use o formato 'DD/MM/YYYY'.")

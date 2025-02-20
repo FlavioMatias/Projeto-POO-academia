@@ -30,7 +30,6 @@ class TreinoAlunoView:
     @staticmethod
     def listar_treinos():
         treinos = TreinosAlunos.listar()
-        treinos.sort(key=lambda x: datetime.strptime(x.data, '%d/%m/%Y'), reverse=True)
         return treinos
     
     @staticmethod

@@ -8,10 +8,10 @@ class MedidasUI:
         
         for medição in MedicaoView.listar_medicoes():
             with st.container(border=True):
-                aluno = AlunosView.buscar_aluno(medição.id_aluno)
+                aluno = AlunosView.buscar_aluno(medição.id_cliente)
                 medidas, detalhe = st.columns((6,1))
                 with medidas:
-                    print(medição)
+                    st.write(medição)
                 with detalhe:
                     if st.button('datalhes'):
                         cls.detalhes_medicao(medição.id)

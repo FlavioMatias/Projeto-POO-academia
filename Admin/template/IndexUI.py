@@ -14,7 +14,6 @@ class IndexUI:
 
     @classmethod
     def main(cls):
-        cls.__logado = True
         if not cls.__logado:
             cls.login()
 

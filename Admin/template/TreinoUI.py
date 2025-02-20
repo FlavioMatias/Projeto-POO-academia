@@ -13,7 +13,7 @@ class TreinoUI:
                     st.write('ID:', treino.id)
                     st.write('aluno:', aluno.nome)
                     st.write('Data:', treino.data)
-                    st.write('Atividades:', treino.atv)
+                    st.write('Atividades:', treino.ativo)
 
                 with detalhe:
                     if st.button('datalhes', key=treino.id):

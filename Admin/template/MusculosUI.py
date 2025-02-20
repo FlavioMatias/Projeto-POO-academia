@@ -13,7 +13,7 @@ class MusculosUI:
             with st.container(border=True):
                 treinos, buttons = st.columns((6,1))
                 with treinos:
-                    print(musculo)
+                    st.write(musculo)
 
                 with buttons:
                     if st.button('atualizar'):

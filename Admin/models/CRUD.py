@@ -105,10 +105,11 @@ class Alunos(CRUD):
                 objetos_json = json.load(arquivo)
 
                 for obj in objetos_json:
+                    print(obj["nome"])
                     A = Aluno(
-                        obj["id"], obj["nome"], obj["senha"], obj.get("email", ""), obj.get("tel", ""),
+                        obj["id"], obj["nome"], obj.get("email", ""), obj.get("tel", ""),
                         obj["data_cadastro"], obj.get("nascimento", ""), obj.get("sexo", ""),
-                        obj.get("cpf", ""), obj.get("rg", ""), obj.get("profissao", "")
+                        obj.get("cpf", ""), obj.get("rg", ""), obj.get("profissao", ""), obj["senha"]
                     )
                     cls.objetos.append(A)    
 

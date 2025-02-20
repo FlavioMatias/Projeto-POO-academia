@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 class Aluno:
-    def __init__(self,id = 0, nome : str = None, senha : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None):
+    def __init__(self,id = 0, nome : str = None, email : str = None, tel : str = None, data_cadastro : str = None, nascimento : str = None, sexo : str = None, cpf : str = None, rg : str = None, profissao : str = None, senha : str = None):
         self.id = id
         self.nome = nome
         self.email = email
@@ -89,8 +89,8 @@ class Aluno:
             raise ValueError("Nome deve conter apenas letras e espaços simples.")
         if not nome.isalpha() and not nome.replace(" ", "").isalpha():
             raise ValueError("Nome deve conter apenas letras e espaços.")
-        if not nome.istitle():
-            raise ValueError("Nome deve começar com letra maiúscula.")
+        #if not nome.istitle():
+            #raise ValueError("Nome deve começar com letra maiúscula.")
         
         self.__nome = nome
         

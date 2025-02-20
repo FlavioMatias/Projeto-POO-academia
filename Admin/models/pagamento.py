@@ -76,7 +76,7 @@ class Pagamento:
 
     @data_pagamento.setter
     def data_pagamento(self, data_pagamento):
-        if data_pagamento is None:
+        if data_pagamento is None or data_pagamento == "":
             self.__data_pagamento = None
         else:
             pagamento_date = self.validar_data(data_pagamento, "data_pagamento")
