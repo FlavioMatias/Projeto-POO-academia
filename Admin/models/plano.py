@@ -61,4 +61,4 @@ class Plano:
         }
 
     def __str__(self):
-        return f"Plano(ID: {self.id}, Nome: {self.nome}, Valor: R$ {self.valor:.2f}, Tempo: {self.tempo})"
+        return f"ID: {self.id}, Nome: {self.nome}, Valor: R$ {self.valor:.2f}, Tempo: {self.tempo})"

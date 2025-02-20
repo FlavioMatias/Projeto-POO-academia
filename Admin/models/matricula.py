@@ -21,11 +21,12 @@ class Matricula:
     
     def __str__(self):
         return (f"Matricula: \n"
-                f"  id={self.id},\n"
-                f"  id_aluno={self.id_aluno},\n"
-                f"  plano={self.plano},\n"
-                f"  data={self.data},\n"
-                f"  validade={self.validade}\n")
+                f"  id: {self.id},\n"
+                f"  id_aluno: {self.id_aluno},\n"
+                f"  plano: {self.plano},\n"
+                f"  data: {self.data},\n"
+                f"  validade: {self.validade}\n"
+                f"  ativa: {self.ativa}\n")
     
     # Getters
     @property
@@ -89,9 +90,6 @@ class Matricula:
             data_obj = datetime.strptime(validade, '%d/%m/%Y')
         except ValueError:
             raise ValueError("Data  inválida. Use o formato 'DD/MM/YYYY'.")
-        
-        if data_obj < datetime.today():
-            raise ValueError("Data não pode ser no passado.")
         
         self.__validade = validade
 

@@ -112,8 +112,8 @@ class Alunos(CRUD):
                     )
                     cls.objetos.append(A)    
 
-        except FileNotFoundError:
-            print("fudeu")
+        except FileNotFoundError as e:
+            print(e)
 
 class Enderecos(CRUD):
     @classmethod
