@@ -60,11 +60,6 @@ public class Matricula implements Inter{
 
         try {
             LocalDate dateObj = LocalDate.parse(validade, formatter);
-
-            if (dateObj.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Data de validade nao pode ser no futuro.");
-            }
-
             this.validade = validade;
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Data de validade invalida. Use o formato 'DD/MM/YYYY'.");

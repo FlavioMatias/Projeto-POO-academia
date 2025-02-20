@@ -51,13 +51,13 @@ public class indexUI{
 
         if (op == 0) {
             indexUI.logout();
-        } if (op == 1) {
+        } else if (op == 1) {
             aluno_nome = atualizarUI.main(aluno_id);
-        } if (op == 2) {
-            // ver suas medidas
-        } if (op == 3) {
+        } else if (op == 2) {
+            op = medicoesUI.main(aluno_id);
+        } else if (op == 3) {
             // ver seus treinos
-        } if (op == 4) {
+        } else if (op == 4) {
             // ver sua matricula
         }
         return op;
