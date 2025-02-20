@@ -58,7 +58,7 @@ public class indexUI{
         } else if (op == 3) {
             // ver seus treinos
         } else if (op == 4) {
-            // ver sua matricula
+            op = matriculaUI.main(aluno_id);
         }
         return op;
     }

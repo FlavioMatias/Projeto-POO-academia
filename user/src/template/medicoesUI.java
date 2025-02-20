@@ -96,6 +96,7 @@ public class medicoesUI {
                         medida.getIdPartCorpo(),
                         medida.getValor(),
                         "N/A");
+                
             }
         }
     }

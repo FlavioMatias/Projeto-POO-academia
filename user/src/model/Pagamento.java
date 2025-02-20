@@ -68,20 +68,29 @@ public class Pagamento implements Inter{
     }
     
     public void setDataPagamento(String data_pagamento) {
-        String data_pagamento_data = validarData(data_pagamento, "data_pagamento");
-
-        if (this.emissao != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate data_pagamentoDate = LocalDate.parse(data_pagamento_data, formatter);
-            LocalDate emissaoDate = LocalDate.parse(this.emissao, formatter);
-
-            if (data_pagamentoDate.isBefore(emissaoDate)) {
-                throw new IllegalArgumentException("A data de pagamento nao pode ser anterior a data de emissao.");
-            }
+        if (data_pagamento.isEmpty()) {
+            this.data_pagamento = "";
+            return;
         }
-
-        this.data_pagamento = data_pagamento_data;
+    
+        String data_pagamento_data = validarData(data_pagamento, "data_pagamento");
+    
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data_pagamentoDate = LocalDate.parse(data_pagamento_data, formatter);
+    
+            if (this.emissao != null) {
+                LocalDate emissaoDate = LocalDate.parse(this.emissao, formatter);
+                if (data_pagamentoDate.isBefore(emissaoDate)) {
+                    throw new IllegalArgumentException("A data de pagamento não pode ser anterior à data de emissão.");
+                }
+            }
+    
+            this.data_pagamento = data_pagamento_data;
+    
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Data de pagamento inválida. Formato esperado: dd/MM/yyyy");
+        }
     }
     
     public void setValor(double valor) {

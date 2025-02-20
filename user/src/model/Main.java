@@ -118,33 +118,77 @@ public class Main {
 
 
 
-        int id = 1;
-        int id_medicao = 3;
-        int id_partcorpo = 1;
-        double valor = 37;
+        // int id = 1;
+        // int id_medicao = 3;
+        // int id_partcorpo = 1;
+        // double valor = 37;
 
-        Medida medida1 = new Medida(id, id_medicao, id_partcorpo, valor);
+        // Medida medida1 = new Medida(id, id_medicao, id_partcorpo, valor);
         
-        id = 2;
-        id_medicao = 3;
-        id_partcorpo = 2;
-        valor = 50;
+        // id = 2;
+        // id_medicao = 3;
+        // id_partcorpo = 2;
+        // valor = 50;
 
-        Medida medida2 = new Medida(id, id_medicao, id_partcorpo, valor);
+        // Medida medida2 = new Medida(id, id_medicao, id_partcorpo, valor);
+
+        // id = 3;
+        // id_medicao = 3;
+        // id_partcorpo = 3;
+        // valor = 100;
+
+        // Medida medida3 = new Medida(id, id_medicao, id_partcorpo, valor);
+
+        // Medidas medidas = new Medidas();
+
+        // medidas.inserir(medida1);
+        // medidas.inserir(medida2);
+        // medidas.inserir(medida3);
+
+        // System.out.println(medidas.listar());
+
+
+
+
+        int id = 1;
+        int id_matricula = 1;
+        int id_cliente = 1;
+        String emissao = "18/02/2025";
+        String vencimento = "18/03/2025";
+        String data_pagamento = "19/02/2025";
+        double valor = 50;
+        boolean pago = true;
+
+        Pagamento pagamento1 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+
+        id = 2;
+        id_matricula = 1;
+        id_cliente = 1;
+        emissao = "18/01/2025";
+        vencimento = "18/02/2025";
+        data_pagamento = "";
+        valor = 50;
+        pago = false;
+
+        Pagamento pagamento2 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
 
         id = 3;
-        id_medicao = 3;
-        id_partcorpo = 3;
-        valor = 100;
+        id_matricula = 1;
+        id_cliente = 1;
+        emissao = "18/02/2025";
+        vencimento = "18/04/2025";
+        data_pagamento = "";
+        valor = 50;
+        pago = false;
 
-        Medida medida3 = new Medida(id, id_medicao, id_partcorpo, valor);
+        Pagamento pagamento3 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
 
-        Medidas medidas = new Medidas();
+        Pagamentos pagamentos = new Pagamentos();
 
-        medidas.inserir(medida1);
-        medidas.inserir(medida2);
-        medidas.inserir(medida3);
+        pagamentos.inserir(pagamento1);
+        pagamentos.inserir(pagamento2);
+        pagamentos.inserir(pagamento3);
 
-        System.out.println(medidas.listar());
+        System.out.println(pagamentos.listar());
     }
 }

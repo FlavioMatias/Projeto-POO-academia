@@ -29,7 +29,7 @@ public class ViewCliente {
         alunos.atualizar(novoAluno);
     }
 
-    public static LocalDate getDataAsLocalDate(String data) {
+    public static LocalDate dataParaLocalDate(String data) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(data, formatter);
     }
@@ -44,7 +44,7 @@ public class ViewCliente {
             }
         }
 
-        lista.sort((a1, a2) -> ViewCliente.getDataAsLocalDate(a2.getData()).compareTo(ViewCliente.getDataAsLocalDate(a1.getData())));
+        lista.sort((a1, a2) -> ViewCliente.dataParaLocalDate(a2.getData()).compareTo(ViewCliente.dataParaLocalDate(a1.getData())));
 
         return lista;
     }
@@ -66,5 +66,59 @@ public class ViewCliente {
         PartesCorpo partesCorpo = new PartesCorpo();
 
         return partesCorpo.listar();
+    }
+
+    public static Matricula buscarMatricula (int id_aluno) {
+        Matriculas matriculas = new Matriculas();
+
+        for (Matricula m : matriculas.listar()) {
+            if (m.getId() == id_aluno && m.getAtiva()) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public static List<Pagamento> pagamentosListar (int id_matricula, int id_aluno) {
+        Pagamentos pagamentos = new Pagamentos();
+        List<Pagamento> lista = new ArrayList<>();
+
+        for (Pagamento pagamento : pagamentos.listar()) {
+            if (pagamento.getIdCliente() == id_aluno && pagamento.getIdMatricula() == id_matricula) {
+                lista.add(pagamento);
+            }
+        }
+
+        return lista;
+    }
+
+    public static String statusPagamento (Pagamento pagamento) {
+        LocalDate data = ViewCliente.dataParaLocalDate(pagamento.getVencimento());
+        if (!pagamento.getPago() && data.isBefore(LocalDate.now())){
+            return "Vencido";
+        } if (!pagamento.getPago() && data.isAfter(LocalDate.now())){
+            return "A pagar";
+        } else {
+            return "Pago";
+        }
+    }
+
+    public static void pagarMensalidade (Pagamento pagamento, String data) {
+        int id = pagamento.getId();
+        int id_matricula = pagamento.getIdMatricula();
+        int id_cliente = pagamento.getIdCliente();
+        String emissao = pagamento.getEmissao();
+        String vencimento = pagamento.getVencimento();
+        String data_pagamento = data;
+        double valor = pagamento.getValor();
+        boolean pago = true;
+
+        ViewCliente.pagamentoAtualizar(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+    }
+
+    public static void pagamentoAtualizar (int id, int id_matricula, int id_cliente, String emissao, String vencimento, String data_pagamento, double valor, boolean pago) {
+        Pagamento novopagamento = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+        Pagamentos pagamentos = new Pagamentos();
+        pagamentos.atualizar(novopagamento);
     }
 }
