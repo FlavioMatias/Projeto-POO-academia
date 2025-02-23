@@ -38,20 +38,20 @@ public class Main {
 
 
 
-        int id = 1;
-        int id_cliente = 1;
-        String bairro = "Pajuçara";
-        String cep = "90123-030";
-        String rua = "Av. Pompeia";
-        String numero = "1401";
+        // int id = 1;
+        // int id_cliente = 1;
+        // String bairro = "Pajuçara";
+        // String cep = "90123-030";
+        // String rua = "Av. Pompeia";
+        // String numero = "1401";
 
-        Endereco endereco = new Endereco(id, id_cliente, bairro, cep, rua, numero);
-        System.out.println(endereco);
+        // Endereco endereco = new Endereco(id, id_cliente, bairro, cep, rua, numero);
+        // System.out.println(endereco);
 
-        Enderecos enderecos = new Enderecos();
-        enderecos.inserir(endereco);
+        // Enderecos enderecos = new Enderecos();
+        // enderecos.inserir(endereco);
 
-        System.out.println(enderecos.listar());
+        // System.out.println(enderecos.listar());
 
 
 
@@ -169,6 +169,46 @@ public class Main {
 
 
         // int id = 1;
+        // String nome = "Peito";
+
+        // Musculo musculo1 = new Musculo(id, nome);
+
+        // id = 2;
+        // nome = "Dorsal";
+
+        // Musculo musculo2 = new Musculo(id, nome);
+
+        // id = 3;
+        // nome = "Perna";
+
+        // Musculo musculo3 = new Musculo(id, nome);
+
+        // Musculos musculos = new Musculos();
+
+        // musculos.inserir(musculo1);
+        // musculos.inserir(musculo2);
+        // musculos.inserir(musculo3);
+
+        // System.out.println(musculos.listar());
+
+
+
+        // int id = 1;
+        // int id_aluno = 1;
+        // String data = "23/02/2025";
+        // boolean ativa = true;
+
+        // TreinoAluno treinoaluno = new TreinoAluno(id, id_aluno, data, ativa);
+
+        // TreinosAlunos treinosalunos = new TreinosAlunos();
+
+        // treinosalunos.inserir(treinoaluno);
+
+        // System.out.println(treinosalunos.listar());
+
+
+
+        // int id = 1;
         // int id_matricula = 1;
         // int id_cliente = 1;
         // String emissao = "18/02/2025";
@@ -237,7 +277,7 @@ public class Main {
 
 
 
-        // int id = 1;
+        // id = 1;
         // int id_aluno = 1;
         // String data = "20/02/2025";
         // boolean ativa = true;
@@ -255,7 +295,7 @@ public class Main {
 
 
 
-        // int id = 1;
+        // id = 1;
         // int id_musculo = 1;
         // int id_treino = 1;
         // String descricao = "Puxador -> 5x8";

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 public class ViewCliente {
     public static Map<String, Object> login(String cpf, String senha){
@@ -99,17 +100,19 @@ public class ViewCliente {
             }
         }
 
+        lista.sort(Comparator.comparingInt(Pagamento::getId));
+
         return lista;
     }
 
     public static String statusPagamento (Pagamento pagamento) {
         LocalDate data = ViewCliente.dataParaLocalDate(pagamento.getVencimento());
         if (!pagamento.getPago() && data.isBefore(LocalDate.now())){
-            return "Vencido";
+            return "\u001B[31mVencido\u001B[0m";
         } if (!pagamento.getPago() && data.isAfter(LocalDate.now())){
-            return "A pagar";
+            return "\u001B[33mA pagar\u001B[0m";
         } else {
-            return "Pago";
+            return "\u001B[32mPago\u001B[0m";
         }
     }
 
@@ -152,5 +155,37 @@ public class ViewCliente {
             }
         }
         return null;
+    }
+
+    public static List<TreinoAluno> listarTreinosAluno (int id_aluno) {
+        TreinosAlunos treinosAlunos = new TreinosAlunos();
+        List<TreinoAluno> lista = new ArrayList<>();
+
+        for (TreinoAluno ta : treinosAlunos.listar()) {
+            if (ta.getIdAluno() == id_aluno) {
+                lista.add(ta);
+            }
+        }
+
+        return lista;
+    }
+
+    public static List<Treino> treinosDoTreinoAluno (int id_treinoAluno) {
+        Treinos treinos = new Treinos();
+        List<Treino> lista = new ArrayList<>();
+
+        for (Treino t : treinos.listar()) {
+            if (t.getIdTreino() == id_treinoAluno) {
+                lista.add(t);
+            }
+        }
+
+        return lista;
+    }
+
+    public static List<Musculo> musculoListar () {
+        Musculos musculos = new Musculos();
+
+        return musculos.listar();
     }
 }

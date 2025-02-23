@@ -111,7 +111,7 @@ public class indexUI{
         } else if (op == 2) {
             op = medicoesUI.main(aluno_id);
         } else if (op == 3) {
-            // ver seus treinos
+            op = treinoAlunoUI.main(aluno_id);
         } else if (op == 4) {
             op = matriculaUI.main(aluno_id);
         }
@@ -132,7 +132,7 @@ public class indexUI{
                 String nomeFormatado = aluno_nome.length() > 20 ? aluno_nome.substring(0, 17) + "..." : aluno_nome;
 
                 System.out.println("\n+----------------------------------------+");
-                System.out.printf("|  Bem-vindo(a) %-20s  |\n", nomeFormatado);
+                System.out.printf("|  Bem-vindo(a) %-23s  |\n", nomeFormatado);
                 System.out.println("+----------------------------------------+");
                 op = indexUI.menu_aluno();
             }

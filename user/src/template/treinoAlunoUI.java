@@ -6,65 +6,68 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-public class medicoesUI {
-    public static int main(int id_aluno) {
+public class treinoAlunoUI {
+    public static int main (int id_aluno) {
         Scanner scanner = new Scanner(System.in);
-        List<Medicao> medicoes = ViewCliente.listarMedicoes(id_aluno);
+        List<TreinoAluno> treinoalunos = ViewCliente.listarTreinosAluno(id_aluno);
         int op = 0;
         boolean validInput = false;
-        
+
         while (!validInput) {
             try {
-                System.out.println("\n+---------------------------------------------+");
-                System.out.println("|                SUAS MEDIÇÕES                |");
-                System.out.println("+---------------------------------------------+");
+                System.out.println("\n+----------------------------------------------------------+");
+                System.out.println("|                SEUS TREINOS CADASTRADOS                  |");
+                System.out.println("+----------------------------------------------------------+");
 
-                if (medicoes.isEmpty()) {
+                if (treinoalunos.isEmpty()) {
                     System.out.println("| Nenhuma medição cadastrada.           |");
                 } else {
-                    for (Medicao medicao : medicoes) {
-                        System.out.printf("| ID: %-4d | Cliente: %-4d | Data: %-10s |\n",
-                            medicao.getId(), medicao.getIdCliente(), medicao.getData());
+                    for (TreinoAluno ta : treinoalunos) {
+                        System.out.printf("| ID: %-4d | Aluno: %-4d | Data: %-10s | Ativo: %-5s |\n",
+                            ta.getId(),
+                            ta.getIdAluno(),
+                            ta.getData(),
+                            ta.getAtiva() ? "Sim" : "Não");
                     }
                 }
 
-                System.out.println("+---------------------------------------------+");
-                System.out.println("| 1 - Detalhar                                |");
-                System.out.println("| 2 - Voltar                                  |");
-                System.out.println("| 9 - Fim                                     |");
-                System.out.println("+---------------------------------------------+");
+                System.out.println("+----------------------------------------------------------+");
+                System.out.println("| 1 - Detalhar                                             |");
+                System.out.println("| 2 - Voltar                                               |");
+                System.out.println("| 9 - Fim                                                  |");
+                System.out.println("+----------------------------------------------------------+");
                 System.out.print("Informe sua opção: ");
                 op = scanner.nextInt();
-                
-                if (op == 1) {
+
+                if (op == 1){
                     boolean entradaValida = false;
-                    int id_medicao = 0;
+                    int id_treinoAluno = 0;
 
                     System.out.println("\n+----------------------------------------+");
-                    System.out.println("|       DETALHAR MEDIÇÃO POR ID          |");
+                    System.out.println("|       DETALHAR TREINOS POR ID          |");
                     System.out.println("+----------------------------------------+");
 
                     while (!entradaValida) {
                         try {
                             System.out.print("| Digite o ID da medição que deseja detalhar: ");
-                            id_medicao = scanner.nextInt();
+                            id_treinoAluno = scanner.nextInt();
                             entradaValida = true;
-                        } catch (Exception e) {
+                        } catch (Exception e){
                             System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
                             scanner.next();
                         }
                     }
 
-                    Medicao medicao_selecionada = null;
-                    for (Medicao medicao : medicoes) {
-                        if (medicao.getId() == id_medicao) {
-                            medicao_selecionada = medicao;
+                    TreinoAluno treinoaluno_selecionado = null;
+                    for (TreinoAluno ta : treinoalunos) {
+                        if (ta.getId() == id_treinoAluno) {
+                            treinoaluno_selecionado = ta;
                             break;
                         }
                     }
-                    
-                    if (medicao_selecionada != null) {
-                        medicoesUI.detalharMedicao(medicao_selecionada, id_aluno);
+
+                    if (treinoaluno_selecionado != null) {
+                        treinoAlunoUI.detalharTreinoAluno(treinoaluno_selecionado, id_aluno);
 
                         boolean sair = false;
 
@@ -91,65 +94,57 @@ public class medicoesUI {
                                 scanner.next();
                             }
                         }
-                    } else {
-                        System.out.println("+-----------------------------------------+");
-                        System.out.println("|  ID indisponível. Tente novamente.      |");
-                        System.out.println("+-----------------------------------------+");
                     }
-
-                } else if (op == 2){
+                } else if (op == 2) {
                     System.out.println("Voltando ao menu principal...");
                     break;
-                } else  if (op == 9){
+                } else if (op == 9) {
                     break;
                 } else {
                     System.out.println("Opção indisponivel. Tente novamente.");
-                }   
+                }
             } catch (Exception e) {
                 System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
                 scanner.next();
             }
         }
-
         return op;
     }
 
-    public static void detalharMedicao (Medicao medicao, int id_aluno) {
-        List<Medida> medidas = ViewCliente.medidasDaMedicao(medicao.getId());
-        List<ParteCorpo> partesCorpo = ViewCliente.parteCorpoListar();
-        
-        System.out.println("\n+------------------------------------------+");
-        System.out.printf("| Medidas do dia %-25s |\n", medicao.getData());
-        System.out.println("+------------------------------------------+");
-        
+    public static void detalharTreinoAluno (TreinoAluno treinoaluno, int id_aluno) {
+        List<Treino> treinos = ViewCliente.treinosDoTreinoAluno(treinoaluno.getId());
+        List<Musculo> musculos = ViewCliente.musculoListar();
 
-        if (medidas.isEmpty()) {
-            System.out.println("| Nenhuma medida cadastrada para esta medição. |");
+        System.out.println("\n+------------------------------------------+");
+        System.out.printf("| Treinos do dia %-25s |\n", treinoaluno.getData());
+        System.out.println("+------------------------------------------+");
+
+        if (treinos.isEmpty()) {
+            System.out.println("| Nenhuma treino cadastrado.               |");
             System.out.println("+------------------------------------------+");
             return;
         }
 
-        System.out.println("| Parte do Corpo       | Valor   | Unidade |");
-        System.out.println("+----------------------+---------+---------+");
+        System.out.println("| Músculo           | Descrição do Treino  |");
+        System.out.println("+-------------------+----------------------+");
 
-        for (Medida medida : medidas) {
-            ParteCorpo parteCorpo = null;
-            for (ParteCorpo parte : partesCorpo) {
-                if (parte.getId() == medida.getIdPartCorpo()) {
-                    parteCorpo = parte;
+        for (Treino t : treinos) {
+            Musculo ms = null;
+            for (Musculo m : musculos) {
+                if (m.getId() == t.getIdMusculo()) {
+                    ms = m;
                     break;
                 }
             }
 
-            if (parteCorpo != null) {
-                System.out.printf("| %-20s | %-7.2f | %-7s |\n",
-                        parteCorpo.getNome(),
-                        medida.getValor(),
-                        parteCorpo.getUnidade());
+            if (ms != null) {
+                System.out.printf("| %-17s | %-20s |\n",
+                        ms.getNome(),
+                        t.getDescricao());
             } else {
-                System.out.printf("| Parte não encontrada (ID: %-4d) | %-7.2f | %-7s |\n",
-                        medida.getIdPartCorpo(),
-                        medida.getValor(),
+                System.out.printf("| Músculo não encontrado (ID: %-4d) | %-19s |\n",
+                        t.getIdMusculo(),
+                        t.getDescricao(),
                         "N/A");
             }
         }
