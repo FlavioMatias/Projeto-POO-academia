@@ -23,10 +23,20 @@ public class ViewCliente {
         return null;
     }
 
-    public static void atualizarAluno (int id_aluno, String nome, String email, String senha, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao){
+    public static void atualizarAluno (int id_aluno, String nome, String email, String senha, String tel, String data_cadastro, String nascimento, String sexo, String cpf, String rg, String profissao, String bairro, String cep, String rua, String numero){
         Aluno novoAluno = new Aluno(id_aluno, nome, senha, email, tel, data_cadastro, nascimento, sexo, cpf, rg, profissao);
         Alunos alunos = new Alunos();
         alunos.atualizar(novoAluno);
+
+        Enderecos enderecos = new Enderecos();
+
+        for (Endereco e : enderecos.listar()) {
+            if (e.getIdCliente() == id_aluno) {
+                Endereco novoEndereco = new Endereco(e.getId(), id_aluno, bairro, cep, rua, numero);
+                enderecos.atualizar(novoEndereco);
+                break;
+            }
+        }
     }
 
     public static LocalDate dataParaLocalDate(String data) {
@@ -120,5 +130,27 @@ public class ViewCliente {
         Pagamento novopagamento = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
         Pagamentos pagamentos = new Pagamentos();
         pagamentos.atualizar(novopagamento);
+    }
+
+    public static Aluno buscarAluno (int id_aluno) {
+        Alunos alunos = new Alunos();
+
+        for (Aluno a : alunos.listar()) {
+            if (a.getId() == id_aluno) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public static Endereco buscarEndereco (int id_aluno) {
+        Enderecos enderecos = new Enderecos();
+
+        for (Endereco e : enderecos.listar()) {
+            if (e.getIdCliente() == id_aluno) {
+                return e;
+            }
+        }
+        return null;
     }
 }

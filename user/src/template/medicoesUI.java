@@ -11,29 +11,49 @@ public class medicoesUI {
         Scanner scanner = new Scanner(System.in);
         List<Medicao> medicoes = ViewCliente.listarMedicoes(id_aluno);
         int op = 0;
+        boolean validInput = false;
         
-        while (true) {
-            System.out.println("\nSuas medições:");
+        while (!validInput) {
+            try {
+                System.out.println("\n+---------------------------------------------+");
+                System.out.println("|                SUAS MEDIÇÕES                |");
+                System.out.println("+---------------------------------------------+");
 
-            if (medicoes.isEmpty()) {
-                System.out.println("Nenhuma medição cadastrada.");
-            } else {
-                for (Medicao medicao : medicoes) {
-                    System.out.println("- " + medicao);
+                if (medicoes.isEmpty()) {
+                    System.out.println("| Nenhuma medição cadastrada.           |");
+                } else {
+                    for (Medicao medicao : medicoes) {
+                        System.out.printf("| ID: %-4d | Cliente: %-4d | Data: %-10s |\n",
+                            medicao.getId(), medicao.getIdCliente(), medicao.getData());
+                    }
                 }
 
-            }
+                System.out.println("+---------------------------------------------+");
+                System.out.println("| 1 - Detalhar                                |");
+                System.out.println("| 2 - Voltar                                  |");
+                System.out.println("| 9 - Fim                                     |");
+                System.out.println("+---------------------------------------------+");
+                System.out.print("Informe sua opção: ");
+                op = scanner.nextInt();
+                
+                if (op == 1) {
+                    boolean entradaValida = false;
+                    int id_medicao = 0;
 
-            System.out.println("1 - Detalhar, 2 - Voltar, 9 - Fim");
-            System.out.print("Informe sua opção: ");
-            op = scanner.nextInt();
-            
-            if (op == 1) {
-                if (medicoes.isEmpty()) {
-                    System.out.println("Nao ha medicoes para detalhar.");
-                } else {
-                    System.out.print("\nDigite o ID da medição que deseja detalhar: ");
-                    int id_medicao = scanner.nextInt();
+                    System.out.println("\n+----------------------------------------+");
+                    System.out.println("|       DETALHAR MEDIÇÃO POR ID          |");
+                    System.out.println("+----------------------------------------+");
+
+                    while (!entradaValida) {
+                        try {
+                            System.out.print("| Digite o ID da medição que deseja detalhar: ");
+                            id_medicao = scanner.nextInt();
+                            entradaValida = true;
+                        } catch (Exception e) {
+                            System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                            scanner.next();
+                        }
+                    }
 
                     Medicao medicao_selecionada = null;
                     for (Medicao medicao : medicoes) {
@@ -45,18 +65,49 @@ public class medicoesUI {
                     
                     if (medicao_selecionada != null) {
                         medicoesUI.detalharMedicao(medicao_selecionada, id_aluno);
+
+                        boolean sair = false;
+
+                        while (!sair) {
+                            System.out.println("+------------------------------------------+");
+                            System.out.println("| 1 - Sair                                 |");
+                            System.out.println("+------------------------------------------+");
+
+                            try {
+                                System.out.print("Informe uma opção: ");
+                                op = scanner.nextInt();
+
+                                switch (op) {
+                                    case 1:
+                                        System.out.println("Saindo do menu de detalhes...");
+                                        sair = true;
+                                        break;
+                                    default:
+                                        System.out.println("Opção inválida. Tente novamente.");
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                                scanner.next();
+                            }
+                        }
                     } else {
-                        System.out.println("ID indisponivel.");
+                        System.out.println("+-----------------------------------------+");
+                        System.out.println("|  ID indisponível. Tente novamente.      |");
+                        System.out.println("+-----------------------------------------+");
                     }
 
-                }
-            } else if (op == 2){
-                System.out.println("Voltando ao menu principal...");
-                break;
-            } else  if (op == 9){
-                break;
-            } else {
-                System.out.println("Opção indisponivel. Tente novamente.");
+                } else if (op == 2){
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+                } else  if (op == 9){
+                    break;
+                } else {
+                    System.out.println("Opção indisponivel. Tente novamente.");
+                }   
+            } catch (Exception e) {
+                System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                scanner.next();
             }
         }
 
@@ -64,19 +115,22 @@ public class medicoesUI {
     }
 
     public static void detalharMedicao (Medicao medicao, int id_aluno) {
-        System.out.println("\nMedidas do dia " + medicao.getData());
-        System.out.println("----------------------------------------");
-        
         List<Medida> medidas = ViewCliente.medidasDaMedicao(medicao.getId());
         List<ParteCorpo> partesCorpo = ViewCliente.parteCorpoListar();
+        
+        System.out.println("\n+------------------------------------------+");
+        System.out.printf("| Medidas do dia %-25s |\n", medicao.getData());
+        System.out.println("+------------------------------------------+");
+        
 
         if (medidas.isEmpty()) {
-            System.out.println("Nenhuma medida cadastrada para esta medição.");
+            System.out.println("| Nenhuma medida cadastrada para esta medição. |");
+            System.out.println("+------------------------------------------+");
             return;
         }
 
-        System.out.println("Parte do Corpo\t\tValor\t\tUnidade");
-        System.out.println("----------------------------------------");
+        System.out.println("| Parte do Corpo       | Valor   | Unidade |");
+        System.out.println("+----------------------+---------+---------+");
 
         for (Medida medida : medidas) {
             ParteCorpo parteCorpo = null;
@@ -87,16 +141,15 @@ public class medicoesUI {
             }
 
             if (parteCorpo != null) {
-                System.out.printf("%-20s\t%.2f\t\t%s%n",
+                System.out.printf("| %-20s | %-7.2f | %-7s |\n",
                         parteCorpo.getNome(),
                         medida.getValor(),
                         parteCorpo.getUnidade());
             } else {
-                System.out.printf("Parte do corpo não encontrada (ID: %d)\t%.2f\t\t%s%n",
+                System.out.printf("| Parte não encontrada (ID: %-4d) | %-7.2f | %-7s |\n",
                         medida.getIdPartCorpo(),
                         medida.getValor(),
                         "N/A");
-                
             }
         }
     }

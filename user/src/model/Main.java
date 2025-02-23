@@ -38,6 +38,24 @@ public class Main {
 
 
 
+        int id = 1;
+        int id_cliente = 1;
+        String bairro = "Pajuçara";
+        String cep = "90123-030";
+        String rua = "Av. Pompeia";
+        String numero = "1401";
+
+        Endereco endereco = new Endereco(id, id_cliente, bairro, cep, rua, numero);
+        System.out.println(endereco);
+
+        Enderecos enderecos = new Enderecos();
+        enderecos.inserir(endereco);
+
+        System.out.println(enderecos.listar());
+
+
+
+
         // int id = 1;
         // int id_cliente = 1;
         // int id_plano = 1;
@@ -232,34 +250,39 @@ public class Main {
         
         // System.out.println(treinosaluno.listar());
 
-        int id = 1;
-        int id_musculo = 1;
-        int id_treino = 1;
-        String descricao = "Puxador -> 5x8";
 
-        Treino treino1 = new Treino(id, id_musculo, id_treino, descricao);
 
-        id = 2;
-        id_musculo = 2;
-        id_treino = 1;
-        descricao = "Supino reto -> 5x8";
 
-        Treino treino2 = new Treino(id, id_musculo, id_treino, descricao);
 
-        id = 3;
-        id_musculo = 3;
-        id_treino = 1;
-        descricao = "Agachamento -> 5x8";
 
-        Treino treino3 = new Treino(id, id_musculo, id_treino, descricao);
+        // int id = 1;
+        // int id_musculo = 1;
+        // int id_treino = 1;
+        // String descricao = "Puxador -> 5x8";
 
-        Treinos treinos = new Treinos();
+        // Treino treino1 = new Treino(id, id_musculo, id_treino, descricao);
 
-        treinos.inserir(treino1);
-        treinos.inserir(treino2);
-        treinos.inserir(treino3);
+        // id = 2;
+        // id_musculo = 2;
+        // id_treino = 1;
+        // descricao = "Supino reto -> 5x8";
 
-        System.out.println(treinos.listar());
+        // Treino treino2 = new Treino(id, id_musculo, id_treino, descricao);
+
+        // id = 3;
+        // id_musculo = 3;
+        // id_treino = 1;
+        // descricao = "Agachamento -> 5x8";
+
+        // Treino treino3 = new Treino(id, id_musculo, id_treino, descricao);
+
+        // Treinos treinos = new Treinos();
+
+        // treinos.inserir(treino1);
+        // treinos.inserir(treino2);
+        // treinos.inserir(treino3);
+
+        // System.out.println(treinos.listar());
 
     }
 }
