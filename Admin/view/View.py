@@ -24,15 +24,10 @@ class View:
                     break
 
             for time in range(1, int(plano.tempo.split()[0])):
-                PagamentoView.inserir_pagamento(matric.id, matric.id_aluno, time)
+                PagamentoView.inserir_pagamento(matric.id, matric.id_aluno,validade=None, intervalo_meses=time)
         except Exception as e:
             raise ValueError(f'nao foi possivel realizar a matricula por: {e}')
-        
-
-    def realizar_pagamento():
-        pass
-    def cancelar_matricula():
-        pass
+ 
     def calcular_rendimento_mensal():
         valor_total: float = 0.0
         valor_faltando: float = 0.0
@@ -117,6 +112,4 @@ class View:
     def renovar_treino():
         pass
     def renovar_medicao():
-        pass
-    def gerar_pagamentos():
         pass

@@ -98,6 +98,7 @@ class AlunosView:
     @staticmethod
     def buscar_matricula_aluno(id: int):
         for matricula in Matriculas.listar():
-            if matricula.id_aluno == id:
+            if matricula.id_aluno == id and not matricula.ativa:
                 return matricula
         return None
+    

@@ -25,15 +25,17 @@ class MatriculasUI:
                             st.write(f'Plano: {plano.id} - {plano.nome}')
                             st.write('Data da matricula:', matricula.data)
                             st.write('Valida ate:', matricula.validade)
+                            st.write("✅ Ativa" if matricula.ativa else "❌ Inativa")
 
                         with detalhe:
                             if st.button('datalhes', key=f'detalhe{matricula.id}'):
                                 cls.__page = 'detalhes'
                                 cls.__last_matricula = matricula
                                 st.rerun()
-                            if st.button('Cancelar', key=f'cancelar{matricula.id}'):
-                                MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
-                                st.rerun()
+                            if matricula.ativa:
+                                if st.button('Cancelar', key=f'cancelar{matricula.id}') :
+                                    MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
+                                    st.rerun()
 
             else:
                 for matricula in MatriculaView.buscar_matricula(int(src)):
@@ -47,15 +49,17 @@ class MatriculasUI:
                             st.write(f'Plano: {plano.id} - {plano.nome}')
                             st.write('Data da matricula:', matricula.data)
                             st.write('Valida ate:', matricula.validade)
+                            st.write("✅ Ativa" if matricula.ativa else "❌ Inativa")
 
                         with detalhe:
                             if st.button('datalhes', key=f'detalhe{matricula.id}'):
                                 cls.__page = 'detalhes'
                                 cls.__last_matricula = matricula
                                 st.rerun()
-                            if st.button('Cancelar', key=f'cancelar{matricula.id}'):
-                                MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
-                                st.rerun()
+                            if matricula.ativa:
+                                if st.button('Cancelar', key=f'cancelar{matricula.id}'):
+                                    MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
+                                    st.rerun()
 
 
         if cls.__page == 'detalhes':
@@ -135,6 +139,6 @@ class MatriculasUI:
                 else:
                     View.matricular_aluno(id_aluno_selecionado, id_plano_selecionado)
                     st.success('matricula realizada')
-
+                    st.rerun()
 
 
