@@ -1,1 +1,92 @@
-[{"id":1,"id_matricula":1,"id_cliente":1,"emissao":"18/02/2025","vencimento":"18/03/2025","data_pagamento":"19/02/2025","valor":50.0,"pago":true},{"id":2,"id_matricula":1,"id_cliente":1,"emissao":"18/01/2025","vencimento":"18/02/2025","data_pagamento":"","valor":50.0,"pago":false},{"id":3,"id_matricula":1,"id_cliente":1,"emissao":"18/02/2025","vencimento":"18/04/2025","data_pagamento":"","valor":50.0,"pago":false}]
+[
+    {
+        "id": 1,
+        "id_matricula": 1,
+        "id_cliente": 1,
+        "emissao": "01/01/2025",
+        "vencimento": "01/02/2025",
+        "data_pagamento": "09/01/2025",
+        "valor": 50.0,
+        "pago": true
+    },
+    {
+        "id": 2,
+        "id_matricula": 1,
+        "id_cliente": 1,
+        "emissao": "15/01/2025",
+        "vencimento": "15/02/2025",
+        "data_pagamento": "",
+        "valor": 50.0,
+        "pago": false
+    },
+    {
+        "id": 3,
+        "id_matricula": 2,
+        "id_cliente": 2,
+        "emissao": "20/01/2025",
+        "vencimento": "20/02/2025",
+        "data_pagamento": "25/01/2025",
+        "valor": 75.0,
+        "pago": true
+    },
+    {
+        "id": 4,
+        "id_matricula": 2,
+        "id_cliente": 2,
+        "emissao": "25/01/2025",
+        "vencimento": "25/01/2025",
+        "data_pagamento": "",
+        "valor": 75.0,
+        "pago": false
+    },
+    {
+        "id": 5,
+        "id_matricula": 3,
+        "id_cliente": 3,
+        "emissao": "05/02/2025",
+        "vencimento": "05/03/2025",
+        "data_pagamento": "13/02/2025",
+        "valor": 100.0,
+        "pago": true
+    },
+    {
+        "id": 6,
+        "id_matricula": 3,
+        "id_cliente": 3,
+        "emissao": "10/02/2025",
+        "vencimento": "10/03/2025",
+        "data_pagamento": "",
+        "valor": 100.0,
+        "pago": false
+    },
+    {
+        "id": 7,
+        "id_matricula": 4,
+        "id_cliente": 4,
+        "emissao": "15/02/2025",
+        "vencimento": "15/03/2025",
+        "data_pagamento": "18/02/2025",
+        "valor": 200.0,
+        "pago": true
+    },
+    {
+        "id": 8,
+        "id_matricula": 4,
+        "id_cliente": 4,
+        "emissao": "20/01/2025",
+        "vencimento": "20/03/2025",
+        "data_pagamento": "",
+        "valor": 200.0,
+        "pago": false
+    },
+    {
+        "id": 9,
+        "id_matricula": 5,
+        "id_cliente": 5,
+        "emissao": "20/02/2025",
+        "vencimento": "28/03/2025",
+        "data_pagamento": "21/02/2025",
+        "valor": 150.0,
+        "pago": true
+    }
+]
