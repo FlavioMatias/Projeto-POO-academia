@@ -77,5 +77,11 @@ class MatriculaView:
     
     @staticmethod
     def buscar_matricula(id: int):
-        return Matriculas.buscar_por_id(id)
+        matriculas = []
+        for matricula in Matriculas.listar():
+            if matricula.id == id:
+                matriculas.append(matricula)
+
+
+        return matriculas
     

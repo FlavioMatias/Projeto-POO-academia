@@ -31,3 +31,4 @@ class MedicaoView:
         medicoes = Medicoes.listar()
         medicoes.sort(key=lambda x: datetime.strptime(x.data, '%d/%m/%Y'), reverse=True)
         return medicoes
+    
