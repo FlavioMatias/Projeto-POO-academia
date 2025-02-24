@@ -188,4 +188,37 @@ public class ViewCliente {
 
         return musculos.listar();
     }
+
+    public static String resgatarPlano (Matricula matricula) {
+        Planos planos = new Planos();
+
+        for (Plano p : planos.listar()) {
+            if (p.getId() == matricula.getPlano()) {
+                return p.getNome();
+            }
+        }
+        return "Indisponivel";
+    }
+
+    public static String resgatarStatus (int aluno_id) {
+        Matricula matricula = ViewCliente.buscarMatricula(aluno_id);
+        
+        if (matricula == null) {
+            return "Sem matricula";
+        } 
+        List<Pagamento> pagamentos = ViewCliente.pagamentosListar(matricula.getId(), aluno_id);
+        
+        if (pagamentos.isEmpty()) {
+            return "Sem pagamentos";
+        }
+        String status = "\u001B[32mPagante\u001B[0m";
+        for (Pagamento p : pagamentos) {
+            if (ViewCliente.statusPagamento(p).equals("\u001B[31mVencido\u001B[0m")) {
+                status = "\u001B[31mCaloteiro\u001B[0m";
+                break;
+            }
+        }
+
+        return status;
+    }
 }

@@ -81,6 +81,7 @@ public class indexUI{
         System.out.printf("| %-20s: %-17s |\n", "Sexo", aluno.getSexo());
         System.out.printf("| %-20s: %-17s |\n", "Profissão", aluno.getProfissao());
         System.out.printf("| %-20s: %-17s |\n", "Data de Cadastro", aluno.getData_cadastro());
+        System.out.printf("| %-20s: %-17s |\n", "Status", ViewCliente.resgatarStatus(aluno_id));
         System.out.println("+-----------------------------------------+");
         System.out.println("|           ENDEREÇO DO CLIENTE           |");
         System.out.println("+-----------------------------------------+");

@@ -28,7 +28,7 @@ public class matriculaUI {
             System.out.println("\n+-----------------------------------------+");
             System.out.println("|          DETALHES DA MATRÍCULA          |");
             System.out.println("+-----------------------------------------+");
-            System.out.printf("| ID: %-12d | Plano: %-13s |\n", matricula.getId(), matricula.getPlano());
+            System.out.printf("| ID: %-12d | Plano: %-13s |\n", matricula.getId(), ViewCliente.resgatarPlano(matricula));
             System.out.printf("| Data: %-10s | Validade: %-10s |\n", matricula.getData(), matricula.getValidade());
             System.out.printf("| Status: %-31s |\n", matricula.getAtiva() ? "Ativa" : "Inativa");
             System.out.println("+-----------------------------------------+");
