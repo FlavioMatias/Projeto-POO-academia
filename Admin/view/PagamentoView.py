@@ -12,7 +12,8 @@ class PagamentoView:
 
         for m in Matriculas.listar():
             if m.id == id_matricula and m.ativa:
-                valor = Planos.buscar_por_id(m.plano).valor
+                valor = Planos.buscar_por_id(m.plano)
+                valor = valor.valor
                 break
 
         p = Pagamento(

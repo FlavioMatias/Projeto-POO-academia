@@ -1,5 +1,7 @@
 from .PagamentoView import PagamentoView
 from .AlunosView import AlunosView
+from .MatriculaView import MatriculaView
+from .PlanosView import PlanosView
 
 from datetime import datetime
 
@@ -12,8 +14,21 @@ class View:
     
     def renovar_matricula():
         pass
-    def matricular_aluno():
-        pass
+    def matricular_aluno(id_aluno, id_plano):
+        try:
+            MatriculaView.inserir_matricula(id_aluno, id_plano, datetime.today().strftime('%d/%m/%Y'))
+            plano = PlanosView.buscar(id_plano)
+            for matricula in MatriculaView.listar_matriculas():
+                if matricula.id_aluno == id_aluno and matricula.plano == id_plano and matricula.ativa:
+                    matric = matricula
+                    break
+
+            for time in range(1, int(plano.tempo.split()[0])):
+                PagamentoView.inserir_pagamento(matric.id, matric.id_aluno, time)
+        except Exception as e:
+            raise ValueError(f'nao foi possivel realizar a matricula por: {e}')
+        
+
     def realizar_pagamento():
         pass
     def cancelar_matricula():
