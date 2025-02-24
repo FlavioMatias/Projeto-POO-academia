@@ -95,7 +95,7 @@ public class indexUI{
         System.out.println("|              MENU DE OPÇÕES            |");
         System.out.println("+----------------------------------------+");
         System.out.println("| 1 - Atualizar informações              |");
-        System.out.println("| 2 - Ver suas medidas                   |");
+        System.out.println("| 2 - Ver suas medições                  |");
         System.out.println("| 3 - Ver seus treinos                   |");
         System.out.println("| 4 - Ver sua matrícula                  |");
         System.out.println("| 0 - Sair do Sistema                    |");

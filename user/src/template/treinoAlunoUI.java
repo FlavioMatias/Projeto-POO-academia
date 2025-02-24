@@ -23,7 +23,7 @@ public class treinoAlunoUI {
                     System.out.println("| Nenhuma medição cadastrada.           |");
                 } else {
                     for (TreinoAluno ta : treinoalunos) {
-                        System.out.printf("| ID: %-4d | Aluno: %-4d | Data: %-10s | Ativo: %-5s |\n",
+                        System.out.printf("| ID: %-4d | Data: %-10s | Ativo: %-19s |\n",
                             ta.getId(),
                             ta.getIdAluno(),
                             ta.getData(),
@@ -94,6 +94,10 @@ public class treinoAlunoUI {
                                 scanner.next();
                             }
                         }
+                    } else {
+                        System.out.println("+----------------------------------------+");
+                        System.out.println("|  ID indisponível. Tente novamente.     |");
+                        System.out.println("+----------------------------------------+");
                     }
                 } else if (op == 2) {
                     System.out.println("Voltando ao menu principal...");

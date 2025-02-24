@@ -32,9 +32,9 @@ public class atualizarUI {
             System.out.println("+----------------------------------------+");
             aluno_nome = nome;
         } catch (Exception e) {
-            System.err.println("\n+----------------------------------------+");
+            System.err.println("\n+-----------------------------------------+");
             System.err.println("|  Erro ao atualizar o aluno:             |");
-            System.err.println("+----------------------------------------+");
+            System.err.println("+-----------------------------------------+");
             System.err.println("Mensagem de erro: " + e.getMessage());
         }
 

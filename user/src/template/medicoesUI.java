@@ -23,8 +23,8 @@ public class medicoesUI {
                     System.out.println("| Nenhuma medição cadastrada.           |");
                 } else {
                     for (Medicao medicao : medicoes) {
-                        System.out.printf("| ID: %-4d | Cliente: %-4d | Data: %-10s |\n",
-                            medicao.getId(), medicao.getIdCliente(), medicao.getData());
+                        System.out.printf("| ID: %-4d | Data: %-26s |\n",
+                            medicao.getId(), medicao.getData());
                     }
                 }
 
@@ -50,7 +50,7 @@ public class medicoesUI {
                             id_medicao = scanner.nextInt();
                             entradaValida = true;
                         } catch (Exception e) {
-                            System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                            System.out.println("Entrada inválida. Por favor, insira um número inteiro.\n");
                             scanner.next();
                         }
                     }
@@ -63,15 +63,14 @@ public class medicoesUI {
                         }
                     }
                     
-                    if (medicao_selecionada != null) {
-                        medicoesUI.detalharMedicao(medicao_selecionada, id_aluno);
-
+                    if (medicao_selecionada != null) {       
                         boolean sair = false;
-
+                        
                         while (!sair) {
-                            System.out.println("+------------------------------------------+");
-                            System.out.println("| 1 - Sair                                 |");
-                            System.out.println("+------------------------------------------+");
+                            medicoesUI.detalharMedicao(medicao_selecionada, id_aluno);
+                            System.out.println("+----------------------------------------------+");
+                            System.out.println("| 1 - Sair                                     |");
+                            System.out.println("+----------------------------------------------+");
 
                             try {
                                 System.out.print("Informe uma opção: ");
@@ -118,19 +117,19 @@ public class medicoesUI {
         List<Medida> medidas = ViewCliente.medidasDaMedicao(medicao.getId());
         List<ParteCorpo> partesCorpo = ViewCliente.parteCorpoListar();
         
-        System.out.println("\n+------------------------------------------+");
-        System.out.printf("| Medidas do dia %-25s |\n", medicao.getData());
-        System.out.println("+------------------------------------------+");
+        System.out.println("\n+----------------------------------------------+");
+        System.out.printf("| Medidas do dia %-29s |\n", medicao.getData());
+        System.out.println("+----------------------------------------------+");
         
 
         if (medidas.isEmpty()) {
             System.out.println("| Nenhuma medida cadastrada para esta medição. |");
-            System.out.println("+------------------------------------------+");
+            System.out.println("+----------------------------------------------+");
             return;
         }
 
-        System.out.println("| Parte do Corpo       | Valor   | Unidade |");
-        System.out.println("+----------------------+---------+---------+");
+        System.out.println("| Parte do Corpo       | Valor   | Unidade     |");
+        System.out.println("+----------------------+---------+-------------+");
 
         for (Medida medida : medidas) {
             ParteCorpo parteCorpo = null;
@@ -142,7 +141,7 @@ public class medicoesUI {
             }
 
             if (parteCorpo != null) {
-                System.out.printf("| %-20s | %-7.2f | %-7s |\n",
+                System.out.printf("| %-20s | %-7.2f | %-11s |\n",
                         parteCorpo.getNome(),
                         medida.getValor(),
                         parteCorpo.getUnidade());
