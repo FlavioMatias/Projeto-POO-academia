@@ -8,19 +8,12 @@ from .MedidasUI import MedidasUI
 from .MusculosUI import MusculosUI
 from .PlanosUI import PlanosUI
 from .PartCorpoUI import PartCorpoUI
-from .CaixaUI import CaixaUI
 
 class IndexUI:
     __logado = False
 
     @classmethod
     def main(cls):
-        st.set_page_config(
-            page_title="Academia Iron Man",
-            page_icon=":muscle:",
-            layout="centered" 
-        )
-        cls.__logado = True
         if not cls.__logado:
             cls.login()
 
@@ -41,17 +34,7 @@ class IndexUI:
 
     @classmethod
     def menuAdmin(cls):
-
-
-        st.markdown(
-            """
-            <h1 style='text-align: center;'>
-                Academia <strong>Iron Man</strong>
-            </h1>
-            """,
-            unsafe_allow_html=True
-        )
-
+        st.title("academia iron man")
         op = st.sidebar.radio('',["Caixa", "Alunos", "Matriculas", "Pagamentos", 'Treinos', 'Medidas', 'Planos', 'Grupos Musculares', 'Fisiologias'])
         if st.sidebar.button('Sair'):
             cls.Logout()
@@ -60,7 +43,7 @@ class IndexUI:
         
         match op.lower():
             case "caixa":
-                CaixaUI.main()
+                pass
             case "alunos":
                 AlunosUI.main()
             case 'matriculas':

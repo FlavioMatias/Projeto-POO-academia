@@ -50,17 +50,16 @@ class MatriculaView:
         for matricula in Matriculas.listar():
             if matricula.id_aluno == id_aluno and matricula.ativa:
                 raise Exception('Já existe uma matrícula ativa para esse aluno')
-        
+
         Matriculas.inserir(m)
-        
     @staticmethod
     def atualizar_matricula(id, id_aluno, plano, data, validade, ativa):
         m = Matricula(
             id=id,
             id_aluno=id_aluno,
             plano=plano,
-            data=data,
-            validade=validade,
+            data_matricula=data,
+            data_vencimento=validade,
             ativa=ativa
         )
         Matriculas.atualizar(m)
@@ -78,11 +77,5 @@ class MatriculaView:
     
     @staticmethod
     def buscar_matricula(id: int):
-        matriculas = []
-        for matricula in Matriculas.listar():
-            if matricula.id == id:
-                matriculas.append(matricula)
-
-
-        return matriculas
+        return Matriculas.buscar_por_id(id)
     
