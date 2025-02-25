@@ -55,9 +55,6 @@ class AlunosUI:
         if cls.__page == 'detalhes':
             matriculado = AlunosView.buscar_matricula_aluno(cls.__last_aluno.id)
             cls.detalhes_aluno(cls.__last_aluno.id)
-            if matriculado:
-                with st.expander('Matricular'):
-                    st.write('aii')
             with st.expander("atualizar Aluno", expanded=cls.expandir_atualizar): 
                 cls.atualizar_aluno(cls.__last_aluno.id, True)
 
@@ -67,7 +64,7 @@ class AlunosUI:
                 pass
 
 
-            if st.button('voltarq'):
+            if st.button('voltar'):
                 cls.__page = 'alunos'
                 cls.__last_aluno = None
                 st.rerun()
@@ -107,13 +104,18 @@ class AlunosUI:
                 datacad_str = datacad.strftime("%d/%m/%Y") 
                 datanascimento = datanascimento.strftime("%d/%m/%Y")
                 
-                enviar = st.form_submit_button("Cadastrar")
+                enviar = st.form_submit_button("Cadastrar") 
 
                 if enviar:
                     if nome and cpf and email:
-                        AlunosView.inserir_aluno(nome, cpf, email, senha, tel, datacad_str, datanascimento, sexo, rg, profissao, bairro, cep, rua, num)
+                        try:
+                            AlunosView.inserir_aluno(nome, cpf, email, senha, tel, datacad_str, datanascimento, sexo, rg, profissao, bairro, cep, rua, num)
+                        except Exception as e:
+                        
+                            st.error(e)
                     else:
                         st.error("Preencha todos os campos obrigatórios.")
+    
     @classmethod
     def atualizar_aluno(cls, id_aluno, sla):
         aluno, endereço = AlunosView.buscar_aluno(id_aluno), AlunosView.buscar_endereco_aluno(id_aluno)
@@ -143,10 +145,13 @@ class AlunosUI:
             enviar = st.button("Atualizar")
             if enviar:
                 if nome and cpf and email:
-                    AlunosView.Atualizar_aluno(aluno.id, nome, cpf, email, senha, tel, datacad, datanascimento, sexo, rg, profissao, bairro, cep, rua, num)
-                    st.success("Aluno atualizado com sucesso.")
-                    cls.expandir_atualizar = False
-                    sleep(3)
-                    st.rerun()
+                    try:
+                        AlunosView.Atualizar_aluno(aluno.id, nome, cpf, email, senha, tel, datacad, datanascimento, sexo, rg, profissao, bairro, cep, rua, num)
+                        st.success("Aluno atualizado com sucesso.")
+                        cls.expandir_atualizar = False
+                        sleep(3)
+                        st.rerun()
+                    except Exception as e:
+                        st.error(e)
                 else:
                     st.error("Preencha todos os campos obrigatórios.")

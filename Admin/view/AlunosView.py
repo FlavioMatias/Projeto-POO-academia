@@ -37,7 +37,7 @@ class AlunosView:
             Enderecos.inserir(e)
         except Exception as e:
             Alunos.excluir(a)
-            print(e)
+            raise ValueError (e)
     
     @staticmethod
     def Atualizar_aluno(id: int, nm: str, cpf : str, email: str, senha: str, tel: str, dtCad: str, dtNasc: str, sexo: str, rg: str, prof: str, bairro: str, cep: str, rua: str, num: str):

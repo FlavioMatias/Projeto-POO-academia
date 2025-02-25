@@ -18,10 +18,12 @@ class MedidasUI:
 
             if not src:
                 for medição in MedicaoView.listar_medicoes():
+                    aluno = AlunosView.buscar_aluno(medição.id_cliente)
                     with st.container(border=True):
                         medidas, detalhe = st.columns((6,1))
                         with medidas:
-                            st.write(medição) # necessario fazer embelezamento
+                            st.write('**Medida do aluno:**', aluno.id, '|', aluno.nome)
+                            st.write("**Data:**", medição.data)
 
                         with detalhe:
                             if st.button('Detalhes', key=f'detalhe{medição.id}'):
@@ -41,7 +43,7 @@ class MedidasUI:
                         with st.container(border=True):
                             medidas, detalhe = st.columns((6,1))
                             with medidas:
-                                st.write(medição) # necessario fazer embelezamento
+                                st.write(medição) 
 
                             with detalhe:
                                 if st.button('Detalhes', key=f'detalhe{medição.id}'):

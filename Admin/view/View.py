@@ -17,14 +17,14 @@ class View:
     def matricular_aluno(id_aluno, id_plano):
         try:
             MatriculaView.inserir_matricula(id_aluno, id_plano, datetime.today().strftime('%d/%m/%Y'))
-            plano = PlanosView.buscar(id_plano)
+            plano = PlanosView.buscar_plano(id_plano)
             for matricula in MatriculaView.listar_matriculas():
                 if matricula.id_aluno == id_aluno and matricula.plano == id_plano and matricula.ativa:
                     matric = matricula
                     break
 
-            for time in range(1, int(plano.tempo.split()[0])):
-                PagamentoView.inserir_pagamento(matric.id, matric.id_aluno,validade=None, intervalo_meses=time)
+            for time in range(int(plano.tempo.split()[0])):
+                PagamentoView.inserir_pagamento(matric.id, matric.id_aluno,validade=None, intervalo_meses=time+1)
         except Exception as e:
             raise ValueError(f'nao foi possivel realizar a matricula por: {e}')
  

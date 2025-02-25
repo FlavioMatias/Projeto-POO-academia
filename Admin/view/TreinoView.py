@@ -46,3 +46,12 @@ class TreinoView:
             if t.id_treino == id_treino:
                 treinos.append(t)
         return treinos
+    
+    @staticmethod
+    def buscar_treino_por_id_musculo(id_musculo):
+        a = None
+        for treino in Treinos.listar():
+            if treino.id_musculo == id_musculo:
+                a = treino
+                break
+        return a

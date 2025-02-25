@@ -20,7 +20,10 @@ class PlanosUI:
                         p, buttons = st.columns((6,1))
 
                         with p:
-                            st.write(plano) # necessario fazer embelezamento
+                            st.write("**ID:**", plano.id)
+                            st.write("**Nome:**", plano.nome)
+                            st.write("**Valor:**", f"R$ {plano.valor:.2f}")
+                            st.write("**Duração:**", plano.tempo)
 
                         with buttons:
                             if st.button('Atualizar', key=f'aplano-{plano.id}'):

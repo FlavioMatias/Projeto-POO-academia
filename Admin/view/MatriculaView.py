@@ -58,8 +58,8 @@ class MatriculaView:
             id=id,
             id_aluno=id_aluno,
             plano=plano,
-            data_matricula=data,
-            data_vencimento=validade,
+            data=data,
+            validade=validade,
             ativa=ativa
         )
         Matriculas.atualizar(m)

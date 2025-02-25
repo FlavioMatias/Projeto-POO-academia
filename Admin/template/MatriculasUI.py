@@ -1,5 +1,6 @@
 from Admin.view import *
 import streamlit as st
+import time
 
 
 class MatriculasUI:
@@ -73,7 +74,7 @@ class MatriculasUI:
     @classmethod
     def detalhes_matricula(cls, matricula):
         aluno = AlunosView.buscar_aluno(matricula.id_aluno)
-        plano = PlanosView.buscar(matricula.plano)
+        plano = PlanosView.buscar_plano(matricula.plano)
         endereço_aluno = AlunosView.buscar_endereco_aluno(aluno.id) 
         with st.container(border=True):
             st.subheader("Detalhes da Matrícula")
@@ -139,4 +140,5 @@ class MatriculasUI:
                 else:
                     View.matricular_aluno(id_aluno_selecionado, id_plano_selecionado)
                     st.success('matricula realizada')
+                    time.sleep(2)
                     st.rerun()
