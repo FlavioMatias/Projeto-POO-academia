@@ -37,10 +37,10 @@ class PlanosView:
     
     @staticmethod
     def buscar_plano(id: int):
-        planos = []
+        planos = None
         for plano in Planos.listar():
             if plano.id == id:
-                planos.append(plano)
+                planos = plano
         return planos
     
 

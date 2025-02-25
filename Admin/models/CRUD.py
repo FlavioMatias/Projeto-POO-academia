@@ -89,7 +89,7 @@ class Matriculas(CRUD):
                     )
                     cls.objetos.append(M)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Alunos(CRUD):
     @classmethod
@@ -105,7 +105,6 @@ class Alunos(CRUD):
                 objetos_json = json.load(arquivo)
 
                 for obj in objetos_json:
-                    print(obj["nome"])
                     A = Aluno(
                         obj["id"], obj["nome"], obj.get("email", ""), obj.get("tel", ""),
                         obj["data_cadastro"], obj.get("nascimento", ""), obj.get("sexo", ""),
@@ -114,7 +113,7 @@ class Alunos(CRUD):
                     cls.objetos.append(A)    
 
         except FileNotFoundError as e:
-            print(e)
+            raise ValueError (e)
 
 class Enderecos(CRUD):
     @classmethod
@@ -137,7 +136,7 @@ class Enderecos(CRUD):
                     )
                     cls.objetos.append(E)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Planos(CRUD):
     @classmethod
@@ -159,7 +158,7 @@ class Planos(CRUD):
                     )
                     cls.objetos.append(P)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Pagamentos(CRUD):
     @classmethod
@@ -182,7 +181,7 @@ class Pagamentos(CRUD):
                     )
                     cls.objetos.append(P)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Medicoes(CRUD):
     @classmethod
@@ -204,7 +203,7 @@ class Medicoes(CRUD):
                     )
                     cls.objetos.append(M)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Medidas(CRUD):
     @classmethod
@@ -226,7 +225,7 @@ class Medidas(CRUD):
                     )
                     cls.objetos.append(M)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class PartesCorpo(CRUD):
     @classmethod
@@ -248,7 +247,7 @@ class PartesCorpo(CRUD):
                     )
                     cls.objetos.append(P)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class TreinosAlunos(CRUD):
     @classmethod
@@ -270,7 +269,7 @@ class TreinosAlunos(CRUD):
                     )
                     cls.objetos.append(T)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Treinos(CRUD):
     @classmethod
@@ -292,7 +291,7 @@ class Treinos(CRUD):
                     )
                     cls.objetos.append(T)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 
 class Musculos(CRUD):
     @classmethod
@@ -312,5 +311,5 @@ class Musculos(CRUD):
                     M = Musculo(obj["id"], obj["nome"])
                     cls.objetos.append(M)
         except FileNotFoundError as e:
-            print(e) 
+            raise ValueError (e) 
 

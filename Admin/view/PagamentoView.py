@@ -4,22 +4,25 @@ from dateutil.relativedelta import relativedelta
 
 class PagamentoView:
     @staticmethod
-    def inserir_pagamento(id_matricula, id_cliente, intervalo_meses = 1):
+    def inserir_pagamento(id_matricula, id_cliente, validade = None, intervalo_meses = 1):
         emissao = datetime.now().strftime("%d/%m/%Y")
         data_atual = datetime.strptime(emissao, "%d/%m/%Y")
-        nova_data = data_atual + relativedelta(months=intervalo_meses)
-        vencimento = nova_data.strftime("%d/%m/%Y")
+        
+        if not validade:
+            nova_data = data_atual + relativedelta(months=intervalo_meses)
+            validade = nova_data.strftime("%d/%m/%Y")
 
         for m in Matriculas.listar():
             if m.id == id_matricula and m.ativa:
-                valor = Planos.buscar_por_id(m.plano).valor
+                valor = Planos.buscar_por_id(m.plano)
+                valor = valor.valor
                 break
-
+        
         p = Pagamento(
             id_matricula=id_matricula,
             id_cliente=id_cliente,
             emissao=emissao,
-            vencimento=vencimento,
+            vencimento=validade,
             valor=valor,
             pago=False
         )

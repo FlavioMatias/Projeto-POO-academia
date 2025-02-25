@@ -83,7 +83,7 @@ public class ViewCliente {
         Matriculas matriculas = new Matriculas();
 
         for (Matricula m : matriculas.listar()) {
-            if (m.getId() == id_aluno && m.getAtiva()) {
+            if (m.getIdCliente() == id_aluno && m.getAtiva()) {
                 return m;
             }
         }

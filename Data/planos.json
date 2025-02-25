@@ -1,1 +1,1 @@
-[{"id": 1, "nome": "Semestral", "valor": 50.0, "tempo": "6 meses"}, {"id": 2, "nome": "trimestral", "valor": 25.0, "tempo": "3 meses"}, {"id": 3, "nome": "Bimestral", "valor": 50.0, "tempo": "3 meses"}, {"id": 4, "nome": "Bimestral", "valor": 55.0, "tempo": "2 meses"}]
+[{"id": 1, "nome": "Bimestral", "valor": 50.0, "tempo": "2 meses"}, {"id": 2, "nome": "Semestral", "valor": 50.0, "tempo": "6 meses"}]

@@ -22,10 +22,14 @@ class MedidaView:
         Medidas.atualizar(m)
     @staticmethod
     def excluir_medida(id):
-        m = Medidas.buscar_por_id(id)
+        m = None
+        for medida in Medidas.listar():
+            if medida.id == id:
+                m = medida
+                break
         if m is None:
-            raise Exception('Medida Não encontrado')
-        Medidas.excluir(id)
+            raise Exception('Medida nao encontrada')
+        Medidas.excluir(m)
     
     @staticmethod
     def listar_medidas():

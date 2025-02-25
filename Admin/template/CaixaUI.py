@@ -95,7 +95,7 @@ class CaixaUI:
             for aluno in View.deventes_do_mes():
                 matricula = AlunosView.buscar_matricula_aluno(aluno.id)
                 if matricula:
-                    plano = PlanosView.buscar(matricula.plano)
+                    plano = PlanosView.buscar_plano(matricula.plano)
                 with st.container(border=True):
                     st.markdown(f'### {aluno.id} | {aluno.nome}')
                     if matricula:

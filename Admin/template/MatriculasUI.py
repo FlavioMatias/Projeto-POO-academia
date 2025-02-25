@@ -1,5 +1,6 @@
 from Admin.view import *
 import streamlit as st
+import time
 
 
 class MatriculasUI:
@@ -15,41 +16,51 @@ class MatriculasUI:
                 cls.matricular_aluno()
             if not src:
                 for matricula in MatriculaView.listar_matriculas():
+                    aluno = AlunosView.buscar_aluno(matricula.id_aluno)
+                    plano = PlanosView.buscar_plano(matricula.plano)
                     with st.container(border=True):
                         dados, detalhe = st.columns((6,1))
                         with dados:
-                            st.write('ID da matricula:', matricula.id)
-                            st.write('ID do aluno:', matricula.id_aluno)
-                            st.write('ID do plano:', matricula.plano)
-                            st.write('Data da matricula:', matricula.data)
+                            st.write('**ID da matricula:**', matricula.id)
+                            st.write(f'**Aluno:** {aluno.id} - {aluno.nome}')
+                            st.write(f'**Plano:** {plano.id} - {plano.nome}')
+                            st.write('**Data da matricula:**', matricula.data)
+                            st.write('**Valida ate:**', matricula.validade)
+                            st.write("✅ **Ativa**" if matricula.ativa else "❌ Inativa")
 
                         with detalhe:
                             if st.button('datalhes', key=f'detalhe{matricula.id}'):
                                 cls.__page = 'detalhes'
                                 cls.__last_matricula = matricula
                                 st.rerun()
-                            if st.button('Cancelar', key=f'cancelar{matricula.id}'):
-                                MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
-                                st.rerun()
+                            if matricula.ativa:
+                                if st.button('Cancelar', key=f'cancelar{matricula.id}') :
+                                    MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
+                                    st.rerun()
 
             else:
                 for matricula in MatriculaView.buscar_matricula(int(src)):
+                    aluno = AlunosView.buscar_aluno(matricula.id_aluno)
+                    plano = PlanosView.buscar(matricula.plano)
                     with st.container(border=True):
                         dados, detalhe = st.columns((6,1))
                         with dados:
-                            st.write('ID da matricula:', matricula.id)
-                            st.write('ID do aluno:', matricula.id_aluno)
-                            st.write('ID do plano:', matricula.plano)
-                            st.write('Data da matricula:', matricula.data)
+                            st.write('**ID da matricula:**', matricula.id)
+                            st.write(f'**Aluno:** {aluno.id} - {aluno.nome}')
+                            st.write(f'**Plano:** {plano.id} - {plano.nome}')
+                            st.write('**Data da matricula:**', matricula.data)
+                            st.write('**Valida ate:**', matricula.validade)
+                            st.write("✅ **Ativa**" if matricula.ativa else "❌ Inativa")
 
                         with detalhe:
                             if st.button('datalhes', key=f'detalhe{matricula.id}'):
                                 cls.__page = 'detalhes'
                                 cls.__last_matricula = matricula
                                 st.rerun()
-                            if st.button('Cancelar', key=f'cancelar{matricula.id}'):
-                                MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
-                                st.rerun()
+                            if matricula.ativa:
+                                if st.button('Cancelar', key=f'cancelar{matricula.id}'):
+                                    MatriculaView.atualizar_matricula(matricula.id, matricula.id_aluno, matricula.plano, matricula.data, matricula.validade, False)
+                                    st.rerun()
 
 
         if cls.__page == 'detalhes':
@@ -105,27 +116,29 @@ class MatriculasUI:
     def matricular_aluno(cls):
         id_aluno_matriculados = [matricula.id_aluno for matricula in MatriculaView.listar_matriculas() if matricula.ativa]
         aluno_opcoes = [f"{aluno.id} | {aluno.nome}" for aluno in AlunosView.listar_alunos() if aluno.id not in id_aluno_matriculados]
-        planos = [f'{plano.id} | {plano.nome} - R${plano.valor:.2f}' for plano in PlanosView.listar_planos()]
+        planos = [f'{plano.id} | {plano.nome} - R${plano.valor:.2f} | {plano.tempo}' for plano in PlanosView.listar_planos()]
         id_plano_selecionado = None
         id_aluno_selecionado = None
         with st.expander("matricular aluno", expanded=False):
             aluno_selecionado = st.selectbox('Escolha o aluno', aluno_opcoes)
-            plano_selecionado = st.selectbox('Escolha o plano', planos)
-
+            
             if aluno_selecionado:
                 id_aluno_selecionado = int(aluno_selecionado.split(" | ")[0])
             else:
                 st.info('Nenhum aluno para matricular')
+                
+            plano_selecionado = st.selectbox('Escolha o plano', planos)
 
             if plano_selecionado:
                 id_plano_selecionado = int(plano_selecionado.split(" | ")[0])
             else:
                 st.info('Nenhum plano para registrado')
                 
-            if st.button("matricular") and (id_aluno_selecionado and id_plano_selecionado):
-                pass
-            else:
-                st.error('Selecione um')
-
-
-
+            if st.button("matricular"):
+                if not id_aluno_selecionado and id_plano_selecionado:
+                    st.error('Selecione um aluno e um plano')
+                else:
+                    View.matricular_aluno(id_aluno_selecionado, id_plano_selecionado)
+                    st.success('matricula realizada')
+                    time.sleep(2)
+                    st.rerun()

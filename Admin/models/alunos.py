@@ -89,8 +89,8 @@ class Aluno:
             raise ValueError("Nome deve conter apenas letras e espaços simples.")
         if not nome.isalpha() and not nome.replace(" ", "").isalpha():
             raise ValueError("Nome deve conter apenas letras e espaços.")
-        #if not nome.istitle():
-            #raise ValueError("Nome deve começar com letra maiúscula.")
+        if not nome.istitle():
+            raise ValueError("Nome deve começar com letra maiúscula.")
         
         self.__nome = nome
         

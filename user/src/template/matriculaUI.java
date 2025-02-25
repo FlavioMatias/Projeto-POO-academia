@@ -12,7 +12,6 @@ public class matriculaUI {
     public static int main(int id_aluno) {
         Matricula matricula = ViewCliente.buscarMatricula(id_aluno);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("oi2");
         int op = 0;
         
         while (true) {

@@ -20,7 +20,8 @@ class MusculosUI:
                         treinos, buttons = st.columns((6,1))
 
                         with treinos:
-                            st.write(musculo) # fazer embelezamento
+                            st.write('**ID**:', musculo.id)
+                            st.write('**Nome**',musculo.nome)
 
                         with buttons:
                             if st.button('Atualizar', key=f'detalhe{musculo.id}'):
@@ -41,7 +42,8 @@ class MusculosUI:
                             treinos, buttons = st.columns((6,1))
 
                             with treinos:
-                                st.write(musculo) # fazer embelezamento
+                                st.write('**ID**:', musculo.id)
+                                st.write('**Nome**',musculo.nome)
 
                             with buttons:
                                 if st.button('Atualizar', key=f'detalhe{musculo.id}'):

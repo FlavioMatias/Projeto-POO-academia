@@ -1,6 +1,7 @@
 from Admin.view import *
 import streamlit as st
 from datetime import datetime
+import time
 
 class MedidasUI:
     __page = 'medidas'
@@ -16,11 +17,14 @@ class MedidasUI:
                 cls.cadastrar_medicao()
 
             if not src:
-                for medição in MedicaoView.listar_medicoes():
+                for medição in MedicaoView.listar_medicoes():
+                    aluno = AlunosView.buscar_aluno(medição.id_cliente)
                     with st.container(border=True):
                         medidas, detalhe = st.columns((6,1))
                         with medidas:
-                            st.write(medição) # necessario fazer embelezamento
+                            st.write("**ID:**", medição.id)
+                            st.write('**Medida do aluno:**', aluno.id, '|', aluno.nome)
+                            st.write("**Data:**", medição.data) 
 
                         with detalhe:
                             if st.button('Detalhes', key=f'detalhe{medição.id}'):
@@ -36,11 +40,14 @@ class MedidasUI:
                 if not MedicaoView.buscar_medicao(int(src)):
                     st.info('Medicao nao encontrada')
                 else:
-                    for medição in MedicaoView.listar_medicoes():
+                    for medição in MedicaoView.listar_medicoes():
+                        aluno = AlunosView.buscar_aluno(medição.id_cliente)
                         with st.container(border=True):
                             medidas, detalhe = st.columns((6,1))
                             with medidas:
-                                st.write(medição) # necessario fazer embelezamento
+                                st.write("**ID:**", medição.id)
+                                st.write('**Medida do aluno:**', aluno.id, '|', aluno.nome)
+                                st.write("**Data:**", medição.data)
 
                             with detalhe:
                                 if st.button('Detalhes', key=f'detalhe{medição.id}'):

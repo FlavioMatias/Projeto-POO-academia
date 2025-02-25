@@ -20,7 +20,10 @@ class TreinoUI:
                         aluno = AlunosView.buscar_aluno(treino.id_aluno)
                         treinos, detalhe = st.columns((6,1))
                         with treinos:
-                            st.write(treino)
+                            st.write("**ID:**", treino.id)
+                            st.write("**ID do Aluno:**", treino.id_aluno)
+                            st.write("**Data:**", treino.data)
+                            st.write("**Status:**", "Ativo" if treino.ativo else "Inativo")
 
                         with detalhe:
                             if st.button('Detalhes', key=f"detalhe{treino.id}"):
@@ -37,7 +40,10 @@ class TreinoUI:
                         aluno = AlunosView.buscar_aluno(treino.id_aluno)
                         treinos, detalhe = st.columns((6,1))
                         with treinos:
-                            st.write(treino)
+                            st.write("**ID:**", treino.id)
+                            st.write("**ID do Aluno:**", treino.id_aluno)
+                            st.write("**Data:**", treino.data)
+                            st.write("**Status:**", "Ativo" if treino.ativo else "Inativo")
 
                         with detalhe:
                             if st.button('Detalhes', key=f"detalhe{treino.id}"):
@@ -74,14 +80,20 @@ class TreinoUI:
             if exercicios:
                 for exercicio in exercicios:
                     with st.container(border=True):
-                        exercicios, detalhe = st.columns((6,1))
-                        with exercicios:
-                            exercicio = TreinoView.buscar_treino(exercicio.id_musculo)
-                            st.write(exercicio)
+                        exerc, detalhe = st.columns((6,1))
+                        with exerc:
+                            exer = TreinoView.buscar_treino_por_id_musculo(exercicio.id_musculo)
+                            musculo = MusculoView.buscar_musculo(exer.id_musculo)
+                            st.write("**ID:**", exer.id)
+                            st.write("**Músculo:**", musculo.id,'|', musculo.nome)
+                            st.write("**Descrição:**", exer.descricao)
+
                         with detalhe:
                             if st.button('Excluir', key=f"cancelar{exercicio.id}"):
                                 TreinoView.excluir_treino(exercicio.id)
                                 st.rerun()
+            else:
+                st.info('Nenhum exercicio cadastrado')
 
     @classmethod
     def cadastrar_treino(cls):

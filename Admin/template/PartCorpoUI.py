@@ -20,7 +20,9 @@ class PartCorpoUI:
                         pc, detalhe = st.columns((6,1))
                         
                         with pc:
-                            st.write(parte_corpo) # necessario fazer embelezamento
+                            st.write('**ID**:', parte_corpo.id)
+                            st.write('**Nome:**', parte_corpo.nome)
+                            st.write('**Unidade:**', parte_corpo.unidade)
                         
                         with detalhe:
                             if st.button('Atualizar', key=f'detalhe{parte_corpo.id}'):
@@ -41,7 +43,9 @@ class PartCorpoUI:
                             pc, detalhe = st.columns((6,1))
                             
                             with pc:
-                                st.write(parte_corpo) # necessario fazer embelezamento
+                                st.write('**ID**:', parte_corpo.id)
+                                st.write('**Nome:**', parte_corpo.nome)
+                                st.write('**Unidade:**', parte_corpo.unidade)
                             
                             with detalhe:
                                 if st.button('Atualizar', key=f'detalhe{parte_corpo.id}'):
