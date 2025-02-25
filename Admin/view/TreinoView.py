@@ -22,10 +22,14 @@ class TreinoView:
     
     @staticmethod
     def excluir_treino(id):
-        t = Treinos.buscar_por_id(id)
+        t = None
+        for treino in Treinos.listar():
+            if treino.id == id:
+                t = treino
+                break
         if t is None:
-            raise Exception('Treino Não encontrado')
-        Treinos.excluir(id)
+            raise Exception('Treino nao encontrado')
+        Treinos.excluir(t)
     
     @staticmethod
     def listar_treinos():
@@ -34,3 +38,11 @@ class TreinoView:
     @staticmethod
     def buscar_treino(id: int):
         return Treinos.buscar_por_id(id)
+    
+    @staticmethod
+    def listar_treino_do_treinoaluno(id_treino):
+        treinos = []
+        for t in Treinos.listar():
+            if t.id_treino == id_treino:
+                treinos.append(t)
+        return treinos

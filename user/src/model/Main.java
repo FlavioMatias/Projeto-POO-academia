@@ -40,6 +40,24 @@ public class Main {
 
         // int id = 1;
         // int id_cliente = 1;
+        // String bairro = "Pajuçara";
+        // String cep = "90123-030";
+        // String rua = "Av. Pompeia";
+        // String numero = "1401";
+
+        // Endereco endereco = new Endereco(id, id_cliente, bairro, cep, rua, numero);
+        // System.out.println(endereco);
+
+        // Enderecos enderecos = new Enderecos();
+        // enderecos.inserir(endereco);
+
+        // System.out.println(enderecos.listar());
+
+
+
+
+        // int id = 1;
+        // int id_cliente = 1;
         // int id_plano = 1;
         // String data = "19/02/2025";
         // String validade = "31/08/2025";
@@ -150,45 +168,161 @@ public class Main {
 
 
 
-        int id = 1;
-        int id_matricula = 1;
-        int id_cliente = 1;
-        String emissao = "18/02/2025";
-        String vencimento = "18/03/2025";
-        String data_pagamento = "19/02/2025";
-        double valor = 50;
-        boolean pago = true;
+        // int id = 1;
+        // String nome = "Peito";
 
-        Pagamento pagamento1 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+        // Musculo musculo1 = new Musculo(id, nome);
 
-        id = 2;
-        id_matricula = 1;
-        id_cliente = 1;
-        emissao = "18/01/2025";
-        vencimento = "18/02/2025";
-        data_pagamento = "";
-        valor = 50;
-        pago = false;
+        // id = 2;
+        // nome = "Dorsal";
 
-        Pagamento pagamento2 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+        // Musculo musculo2 = new Musculo(id, nome);
 
-        id = 3;
-        id_matricula = 1;
-        id_cliente = 1;
-        emissao = "18/02/2025";
-        vencimento = "18/04/2025";
-        data_pagamento = "";
-        valor = 50;
-        pago = false;
+        // id = 3;
+        // nome = "Perna";
 
-        Pagamento pagamento3 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+        // Musculo musculo3 = new Musculo(id, nome);
 
-        Pagamentos pagamentos = new Pagamentos();
+        // Musculos musculos = new Musculos();
 
-        pagamentos.inserir(pagamento1);
-        pagamentos.inserir(pagamento2);
-        pagamentos.inserir(pagamento3);
+        // musculos.inserir(musculo1);
+        // musculos.inserir(musculo2);
+        // musculos.inserir(musculo3);
 
-        System.out.println(pagamentos.listar());
+        // System.out.println(musculos.listar());
+
+
+
+        // int id = 1;
+        // int id_aluno = 1;
+        // String data = "23/02/2025";
+        // boolean ativa = true;
+
+        // TreinoAluno treinoaluno = new TreinoAluno(id, id_aluno, data, ativa);
+
+        // TreinosAlunos treinosalunos = new TreinosAlunos();
+
+        // treinosalunos.inserir(treinoaluno);
+
+        // System.out.println(treinosalunos.listar());
+
+
+
+        // int id = 1;
+        // int id_matricula = 1;
+        // int id_cliente = 1;
+        // String emissao = "18/02/2025";
+        // String vencimento = "18/03/2025";
+        // String data_pagamento = "19/02/2025";
+        // double valor = 50;
+        // boolean pago = true;
+
+        // Pagamento pagamento1 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+
+        // id = 2;
+        // id_matricula = 1;
+        // id_cliente = 1;
+        // emissao = "18/01/2025";
+        // vencimento = "18/02/2025";
+        // data_pagamento = "";
+        // valor = 50;
+        // pago = false;
+
+        // Pagamento pagamento2 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+
+        // id = 3;
+        // id_matricula = 1;
+        // id_cliente = 1;
+        // emissao = "18/02/2025";
+        // vencimento = "18/04/2025";
+        // data_pagamento = "";
+        // valor = 50;
+        // pago = false;
+
+        // Pagamento pagamento3 = new Pagamento(id, id_matricula, id_cliente, emissao, vencimento, data_pagamento, valor, pago);
+
+        // Pagamentos pagamentos = new Pagamentos();
+
+        // pagamentos.inserir(pagamento1);
+        // pagamentos.inserir(pagamento2);
+        // pagamentos.inserir(pagamento3);
+
+        // System.out.println(pagamentos.listar());
+
+
+
+        // int id = 1;
+        // String nome = "Dorsal";
+
+        // Musculo musculo1 = new Musculo(id, nome);
+
+        // id = 2;
+        // nome = "Peito";
+
+        // Musculo musculo2 = new Musculo(id, nome);
+
+        // id = 3;
+        // nome = "Perna";
+
+        // Musculo musculo3 = new Musculo(id, nome);
+
+        // Musculos musculos = new Musculos();
+
+        // musculos.inserir(musculo1);
+        // musculos.inserir(musculo2);
+        // musculos.inserir(musculo3);
+
+        // System.out.println(musculos.listar());
+
+
+
+
+        // id = 1;
+        // int id_aluno = 1;
+        // String data = "20/02/2025";
+        // boolean ativa = true;
+
+        // TreinoAluno treinoaluno = new TreinoAluno(id, id_aluno, data, ativa);
+
+        // TreinosAlunos treinosaluno = new TreinosAlunos();
+
+        // treinosaluno.inserir(treinoaluno);
+        
+        // System.out.println(treinosaluno.listar());
+
+
+
+
+
+
+        // id = 1;
+        // int id_musculo = 1;
+        // int id_treino = 1;
+        // String descricao = "Puxador -> 5x8";
+
+        // Treino treino1 = new Treino(id, id_musculo, id_treino, descricao);
+
+        // id = 2;
+        // id_musculo = 2;
+        // id_treino = 1;
+        // descricao = "Supino reto -> 5x8";
+
+        // Treino treino2 = new Treino(id, id_musculo, id_treino, descricao);
+
+        // id = 3;
+        // id_musculo = 3;
+        // id_treino = 1;
+        // descricao = "Agachamento -> 5x8";
+
+        // Treino treino3 = new Treino(id, id_musculo, id_treino, descricao);
+
+        // Treinos treinos = new Treinos();
+
+        // treinos.inserir(treino1);
+        // treinos.inserir(treino2);
+        // treinos.inserir(treino3);
+
+        // System.out.println(treinos.listar());
+
     }
 }

@@ -1,1 +1,1 @@
-[{"id": 1, "id_aluno": 1, "plano": 1, "data": "19/02/2025", "validade": "31/08/2025", "ativa": true}, {"id": 2, "id_aluno": 2, "plano": 1, "data": "24/02/2025", "validade": "24/08/2025", "ativa": false}]
+[{"id":1,"id_aluno":1,"plano":1,"data":"19/02/2025","validade":"31/08/2025","ativa":true}, {"id":2,"id_aluno":2,"plano":1,"data":"19/02/2025","validade":"31/08/2025","ativa":true}]

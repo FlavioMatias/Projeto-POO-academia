@@ -32,4 +32,8 @@ class MusculoView:
     
     @staticmethod
     def buscar_musculo(id: int):
-        return Musculos.buscar_por_id(id)
+        musculos = []
+        for musculo in Musculos.listar():
+            if musculo.id == id:
+                musculos.append(musculo)
+        return musculos

@@ -21,13 +21,18 @@ class MedicaoView:
     
     @staticmethod
     def excluir_medicao(id):
-        m = Medicoes.buscar_por_id(id)
+        m = None
+        for medicao in Medicoes.listar():
+            if medicao.id == id:
+                m = medicao
+                break
         if m is None:
-            raise Exception('Medicao Não encontrado')
-        Medicoes.excluir(id)
+            raise Exception('Medicao nao encontrada')
+        Medicoes.excluir(m)
     
     @staticmethod
     def listar_medicoes():
         medicoes = Medicoes.listar()
         medicoes.sort(key=lambda x: datetime.strptime(x.data, '%d/%m/%Y'), reverse=True)
         return medicoes
+    

@@ -19,10 +19,10 @@ class TreinoAluno:
     @property
     def data(self):
         return self.__data
-
+    
     @property
-    def data_final(self):
-        return self.__data_final
+    def ativo(self):
+        return self.__ativo
 
     # Setters
     @id.setter
@@ -40,34 +40,25 @@ class TreinoAluno:
     @data.setter
     def data(self, data: str):
         try:
-            self.__data = datetime.strptime(data, "%d/%m/%Y").date()
-            if self.__data < datetime.now().date():
-                raise ValueError("A data de início não pode ser uma data no passado.")
+            variavel = datetime.strptime(data, "%d/%m/%Y").date()
+            self.__data = data
         except ValueError:
             raise ValueError("A data deve estar no formato 'DD/MM/YYYY'.")
 
-    @data_final.setter
-    def data_final(self, data_final: str):
-        try:
-            self.__data_final = datetime.strptime(data_final, "%d/%m/%Y").date()
-            if self.__data_final < datetime.now().date():
-                raise ValueError("A data final não pode ser uma data no passado.")
-            if self.__data_final < self.__data:
-                raise ValueError("A data final não pode ser anterior à data de início.")
-        except ValueError:
-            raise ValueError("A data final deve estar no formato 'DD/MM/YYYY'.")
+    @ativo.setter
+    def ativo(self, ativo: bool):
+        self.__ativo = ativo
 
     def to_dict(self):
         return {
             "id": self.id,
             "id_aluno": self.id_aluno,
             "data": self.data,
-            "data_final": self.data_final,
             "ativo": self.ativo
         }
 
     def __str__(self):
-        return f"TreinoAluno(ID: {self.id}, Aluno: {self.id_aluno}, Data: {self.data}, Data Final: {self.data_final}, Ativo: {self.ativo})"
+        return f"TreinoAluno(ID: {self.id}, Aluno: {self.id_aluno}, Data: {self.data}, Ativo: {self.ativo})"
 
 
 class Treino:

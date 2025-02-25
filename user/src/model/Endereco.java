@@ -46,14 +46,9 @@ public class Endereco implements Inter{
     }
 
     public void setCep(String cep) {
-        String regex = "^(\\d{5}-\\d{3})|(\\d{8})$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(cep);
-
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException("CEP deve ter 8 digitos numericos.");
+        if (!Pattern.matches("^\\d{8}$", cep) && !Pattern.matches("^\\d{5}-\\d{3}$", cep)) {
+            throw new IllegalArgumentException("CEP deve ter 8 dígitos numéricos.");
         }
-
         this.cep = cep;
     }
 

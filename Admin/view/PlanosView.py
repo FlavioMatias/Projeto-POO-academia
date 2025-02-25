@@ -9,7 +9,7 @@ class PlanosView:
             tempo = tempo
         )
         for plano in Planos.listar():
-            if plano.nome == p.nome:
+            if plano.nome == p.nome and plano.tempo == p.tempo and plano.valor == p.valor:
                 raise Exception("Plano já cadastrado")
         Planos.inserir(p)
 
@@ -36,6 +36,12 @@ class PlanosView:
         return Planos.listar()
     
     @staticmethod
-    def buscar(id: int):
-        return Planos.buscar_por_id(id)
+    def buscar_plano(id: int):
+        planos = None
+        for plano in Planos.listar():
+            if plano.id == id:
+                planos = plano
+        return planos
+    
+
         
